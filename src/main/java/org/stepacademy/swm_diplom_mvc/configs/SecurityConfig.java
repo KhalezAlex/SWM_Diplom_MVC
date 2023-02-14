@@ -11,4 +11,5 @@ public class SecurityConfig {
     private static final String[] endpointsForAdmin = {"/admin_page"};
     private static final String[] endpointsForAuthenticated = {"/profile", "/loadCitiesCountries", "/updateProfile"};
 
+
 }
