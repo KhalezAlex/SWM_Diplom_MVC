@@ -3,6 +3,7 @@ package org.stepacademy.swm_diplom_mvc.model.entities.customer.profile;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
 @Getter
@@ -31,9 +32,10 @@ public class Profile {
 
     @OneToOne(mappedBy = "profile")
     private Customer customer;
-//    @ManyToOne
-//    @JoinColumn(name = "city_id")
-//    private City city;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 
 
     public Profile() {
@@ -42,6 +44,7 @@ public class Profile {
         this.age = 0;
         this.events_organized = 0;
         this.strikes_amount = 0;
+        this.city = new City();
     }
 
     public Profile(Customer customer) {
@@ -51,5 +54,6 @@ public class Profile {
         this.events_organized = 0;
         this.strikes_amount = 0;
         this.customer = customer;
+        this.city = null;
     }
 }

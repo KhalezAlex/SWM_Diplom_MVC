@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.country.DBServiceCountry;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
-
 
 @Controller
 @RequestMapping(path = "/service")
@@ -17,12 +20,19 @@ public class GenerateBaseController {
     DBServiceRole roleService;
     @Autowired
     DBServiceCustomer customerService;
+    @Autowired
+    DBServiceCountry countryService;
+    @Autowired
+    DBServiceCity cityService;
 
 
     @GetMapping("/generateBase")
     public String generate() {
         rolesTableInit();
         adminInit();
+
+        countryInit();
+        cityInit();
         return "login_page";
     }
 
@@ -41,9 +51,18 @@ public class GenerateBaseController {
             Customer customer = new Customer("loser", "loser");
             customer.getRoles().add(roleService.findById(3).get());
             customerService.save(customer);
-//            Customer customer = customerService.save(new Customer("loser", "loser"));
-//            customer.getRoles().remove(roleService.findById(2).get());
-//            customer.getRoles().add(roleService.findById(3).get());
         }
+    }
+
+    public void countryInit(){
+        countryService.save(new Country("Россия"));
+    }
+
+    public void cityInit(){
+        String[] russianCities = {"Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Казань",
+                "Нижний Новгород", "Челябинск", "Красноярск", "Самара", "Уфа", "Ростов на Дону", "Омск", "Краснодар",
+                "Воронеж", "Пермь", "Волгоград"};
+        for(String city : russianCities)
+            cityService.save(new City(city, countryService.findById(1).get()));
     }
 }
