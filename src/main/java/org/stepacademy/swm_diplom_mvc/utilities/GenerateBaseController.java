@@ -30,9 +30,10 @@ public class GenerateBaseController {
     public String generate() {
         rolesTableInit();
         adminInit();
+
         countryInit();
         cityInit();
-        return "home";
+        return "login_page";
     }
 
     private void rolesTableInit() {

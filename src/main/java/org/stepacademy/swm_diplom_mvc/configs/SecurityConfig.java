@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 // адреса, по которым можно делать запросы неавторизованным пользователям
-    private static final String[] unAuthEndpoints = {"/" ,"/login", "/home_page", "/register",
+    private static final String[] unAuthEndpoints = {"/", "/login", "/home_page", "/register",
             "/onLoad", "/error_page", "/checkLoginForRegistration", "/service/generateBase"};
 
 // адреса для админа
@@ -43,7 +43,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(unAuthEndpoints).permitAll()
+                        .requestMatchers("/", "/service/generateBase").permitAll()
                         .requestMatchers(adminEndpoints).hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
@@ -58,13 +58,13 @@ public class SecurityConfig {
     }
 
 
-    // Зависимость кодировщика паролей
+// Зависимость кодировщика паролей
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder(); // стандартный кодировщик Spring
     }
 
-    // КОНФИГУРАЦИЯ ДЛЯ ПОДКЛЮЧЕНИЯ БД
+// КОНФИГУРАЦИЯ ДЛЯ ПОДКЛЮЧЕНИЯ БД
     @Bean
     public UserDetailsService userDetailsService() {
         return new DBUserDetailsService();
