@@ -9,8 +9,6 @@ import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @RequestMapping(path = "/service")
@@ -25,7 +23,7 @@ public class GenerateBaseController {
     public String generate() {
         rolesTableInit();
         adminInit();
-        return "home";
+        return "login_page";
     }
 
     private void rolesTableInit() {
