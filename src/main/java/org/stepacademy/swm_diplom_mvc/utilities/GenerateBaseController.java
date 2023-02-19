@@ -9,6 +9,9 @@ import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Controller
 @RequestMapping(path = "/service")
 public class GenerateBaseController {
@@ -35,9 +38,14 @@ public class GenerateBaseController {
 
     public void adminInit() {
         if (customerService.findCustomerByLogin("admin") == null) {
-            customerService.save(new Customer("admin", "admin"));
+            customerService.saveAdmin(new Customer("admin", "admin"));
             customerService.save(new Customer("user", "user"));
-            customerService.save(new Customer("loser", "loser"));
+            Customer customer = new Customer("loser", "loser");
+            customer.getRoles().add(roleService.findById(3).get());
+            customerService.save(customer);
+//            Customer customer = customerService.save(new Customer("loser", "loser"));
+//            customer.getRoles().remove(roleService.findById(2).get());
+//            customer.getRoles().add(roleService.findById(3).get());
         }
     }
 }
