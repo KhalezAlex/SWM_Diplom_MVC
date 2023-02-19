@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.customer.userDetailsService;
+package org.stepacademy.swm_diplom_mvc.model.entities.customer.dbUserDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +15,13 @@ public class DBUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("*************идет загрузка*************");
         Customer customer = daoCustomer.findCustomerByLogin(username);
-        if (customer.getId() == null) {
+        if (customer == null) {
+            System.out.println("*********" + username + "*********");
             throw new UsernameNotFoundException(username);
         }
-        return new DBUserDetails();
+        System.out.println(customer.getId() + " " + customer.getLogin() + ": " + customer.getPassword());
+        return new DBUserDetails(customer);
     }
 }

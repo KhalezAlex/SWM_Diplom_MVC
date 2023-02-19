@@ -29,11 +29,10 @@ public class GenerateBaseController {
     @GetMapping("/generateBase")
     public String generate() {
         rolesTableInit();
-        adminInit();
-
         countryInit();
         cityInit();
-        return "login_page";
+        adminInit();
+        return "home_page";
     }
 
     private void rolesTableInit() {

@@ -44,7 +44,7 @@ public class Profile {
         this.age = 0;
         this.events_organized = 0;
         this.strikes_amount = 0;
-        this.city = new City();
+        this.city = null;
     }
 
     public Profile(Customer customer) {

@@ -1,0 +1,35 @@
+.header {
+    z-index: 101;
+    margin: auto;
+    /*padding-left: 20px;*/
+    padding-right: 20px;
+    height: 70px;
+    width: 100%;
+    background-color: #b2a0a0;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.div_emblem {
+    height: 66px;
+    width: 15%;
+    background-color: darkseagreen;
+    margin: 3px auto;
+    /*position: fixed;*/
+}
+
+.select_city {
+    height: 70%;
+    width: 17%;
+    margin: 10px auto;
+    border-radius: 9px;
+}
+
+.button {
+    height: 70%;
+    width: 9%;
+    margin: 10px auto;
+    border-radius: 9px;
+}

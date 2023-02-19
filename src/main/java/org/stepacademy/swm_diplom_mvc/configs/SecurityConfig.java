@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.userDetailsService.DBUserDetailsService;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.dbUserDetails.DBUserDetailsService;
 
 import javax.sql.DataSource;
 
@@ -23,19 +23,18 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
 // адреса, по которым можно делать запросы неавторизованным пользователям
-    private static final String[] unAuthEndpoints = {"/", "/login", "/home_page", "/register",
-            "/onLoad", "/error_page", "/checkLoginForRegistration", "/service/generateBase"};
+    private static final String[] unAuthEndpoints = {"/", "/register", "/error_page", "/service/generateBase"};
 
 // адреса для админа
     private static final String[] adminEndpoints = {"/admin_page"};
 
 // адреса для авторизованных пользователей
-    private static final String[] authEndpoints = {"/profile", "/loadCitiesCountries", "/updateProfile"};
+    private static final String[] authEndpoints = {"/", "/profile", "/loadCitiesCountries", "/updateProfile"};
 
 
 
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/*");
+        return (web) -> web.ignoring().requestMatchers("/*.css");
     }
 
 
@@ -43,17 +42,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/service/generateBase").permitAll()
+                        .requestMatchers(unAuthEndpoints).permitAll()
                         .requestMatchers(adminEndpoints).hasRole("ADMIN")
+                        .requestMatchers(authEndpoints).authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                         .failureUrl("/login?error=true")
+                        .defaultSuccessUrl("/")
                 )
                 .logout().logoutSuccessUrl("/login");
-
         return http.build();
     }
 
