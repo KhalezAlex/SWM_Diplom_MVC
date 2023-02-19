@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 public class SecurityConfig {
 // адреса, по которым можно делать запросы неавторизованным пользователям
     private static final String[] unAuthEndpoints = {"/" ,"/login", "/home_page", "/register",
-            "/onLoad", "/error_page", "/checkLoginForRegistration"};
+            "/onLoad", "/error_page", "/checkLoginForRegistration", "/service/generateBase"};
 
 // адреса для админа
     private static final String[] adminEndpoints = {"/admin_page"};

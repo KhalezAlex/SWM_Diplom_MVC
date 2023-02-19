@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
+import javax.management.ConstructorParameters;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -17,10 +21,15 @@ public class Role {
     @Column(name = "role")
     private String role;
 
-    @ManyToMany()
-    @JoinColumn()
-    Customer customer;
+    @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+    Set<Customer> customer = new HashSet<>();
+
 
     public Role() {
+    }
+
+    public Role(Integer id, String role) {
+        this.id = id;
+        this.role = role;
     }
 }
