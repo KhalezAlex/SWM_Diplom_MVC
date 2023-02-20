@@ -46,14 +46,14 @@ public class ViewController {
         return "/pages/registration";
     }
 
-    @PostMapping("/register")
-    public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
-                           Authentication auth) {
-        Customer customer = new Customer(username, password);
-        customerService.save(customer);
-        session.setAttribute("isAuthenticated", auth != null);
-        return "pages/home";
-    }
+//    @PostMapping("/register")
+//    public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
+//                           Authentication auth) {
+//        Customer customer = new Customer(username, password);
+//        customerService.save(customer);
+//        session.setAttribute("isAuthenticated", auth != null);
+//        return "pages/home";
+//    }
 
     @GetMapping("/logout")
     public  String logout(HttpServletRequest request, HttpSession session) {
