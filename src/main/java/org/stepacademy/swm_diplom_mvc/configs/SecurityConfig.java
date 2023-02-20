@@ -41,17 +41,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/profile").authenticated()
-                        .requestMatchers("/register").anonymous()
+                        .requestMatchers("/register", "/login").anonymous()
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll()
+                        .loginPage("/login").permitAll()
                         .failureUrl("/login?error=true")
                         .defaultSuccessUrl("/")
-                )
-                .logout().logoutSuccessUrl("/login");
+                );
         return http.build();
     }
 

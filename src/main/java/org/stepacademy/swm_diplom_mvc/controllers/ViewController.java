@@ -1,8 +1,10 @@
 package org.stepacademy.swm_diplom_mvc.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class ViewController {
     @GetMapping("/")
     public String home(Authentication auth, Model model, HttpSession session) {
         session.setAttribute("isAuthenticated", auth != null);
+        if (auth != null) {
+            session.setAttribute("name", auth.getName());
+        }
         return "pages/home";
     }
 
@@ -48,5 +53,14 @@ public class ViewController {
         customerService.save(customer);
         session.setAttribute("isAuthenticated", auth != null);
         return "pages/home";
+    }
+
+    @GetMapping("/logout")
+    public  String logout(HttpServletRequest request, HttpSession session) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            request.getSession().invalidate();
+        }
+        return "redirect:/";
     }
 }

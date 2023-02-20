@@ -16,9 +16,8 @@
     <button th:if="${!session.isAuthenticated}" class="button" onclick="window.location.href = '/login'">
         sign in
     </button>
-    <button th:if="${session.isAuthenticated}" class="button" onclick="window.location.href = '/profile'">
-        profile
-    </button>
+    <button th:if="${session.isAuthenticated}" class="button" onclick="window.location.href = '/profile'"
+            th:text="${session.name}"></button>
 </header>
 </body>
 </html>
