@@ -6,38 +6,47 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IRepoCustomer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
 @Controller
 @RequestMapping(path = "/")
 public class ViewController {
     @Autowired
-    IRepoCustomer customerRepo;
+    DBServiceCustomer customerService;
 
     @Autowired
     PasswordEncoder encoder;
 
     @GetMapping("/")
     public String home(Authentication auth, Model model, HttpSession session) {
-//        model.addAttribute("isAuthenticated", auth != null);
         session.setAttribute("isAuthenticated", auth != null);
-        return "home_page";
+        return "pages/home";
     }
 
     @GetMapping("/getLoginForm")
     public String getLoginForm() {
-        return "login_page";
+        return "pages/login";
     }
 
-//    @PostMapping("/login")
-//    public String login(@RequestParam String username, @RequestParam String password, HttpSession session) {
-//        Customer customer = customerRepo.findByLogin(username);
-//        if (customer.getPassword().equals(encoder.encode(password)))
-//            session.setAttribute("isAuthenticated", true);
-//        else
-//            session.setAttribute("isAuthenticated", false);
-//        return "home_page";
-//    }
+    @GetMapping("/profile")
+    public String profile() {
+        return "pages/profile";
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "/pages/registration";
+    }
+
+    @PostMapping("/register")
+    public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
+                           Authentication auth) {
+        Customer customer = new Customer(username, password);
+        customerService.save(customer);
+        session.setAttribute("isAuthenticated", auth != null);
+        return "pages/home";
+    }
 }

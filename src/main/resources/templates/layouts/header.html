@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--    <link rel="stylesheet" href="../../static/layout_header.css">-->
 </head>
 <body>
-<header th:class="header" th:fragment="layout_header">
+<header th:fragment="layout_header">
     <div class="div_emblem" id="div_emblem">
     </div>
     <select class="select_city">
@@ -14,8 +13,12 @@
     <button class="button button--0">new event</button>
     <button class="button button--1">chat</button>
     <button class="button button--2">admin page</button>
-    <a th:if="${!session.isAuthenticated}" class="btn button_test" th:href="@{/getLoginForm}">sign in</a>
-    <button th:if="${session.isAuthenticated}" class="button button--3" th:href="@{/profile}">profile</button>
+    <button th:if="${!session.isAuthenticated}" class="button" onclick="window.location.href = '/login'">
+        sign in
+    </button>
+    <button th:if="${session.isAuthenticated}" class="button" onclick="window.location.href = '/profile'">
+        profile
+    </button>
 </header>
 </body>
 </html>

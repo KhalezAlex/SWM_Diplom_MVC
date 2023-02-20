@@ -31,20 +31,18 @@ public class SecurityConfig {
 // адреса для авторизованных пользователей
     private static final String[] authEndpoints = {"/", "/profile", "/loadCitiesCountries", "/updateProfile"};
 
-
-
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/*.css");
+        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/scripts/*.js", "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(unAuthEndpoints).permitAll()
-                        .requestMatchers(adminEndpoints).hasRole("ADMIN")
-                        .requestMatchers(authEndpoints).authenticated()
+                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/profile").authenticated()
+                        .requestMatchers("/register").anonymous()
+                        .requestMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

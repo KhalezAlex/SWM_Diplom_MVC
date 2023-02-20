@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Home_page</title>
-    <link media="all" rel="stylesheet" href="/index.css">
+    <link media="all" rel="stylesheet" href="/styles/index.css">
 </head>
 <body>
-<!--    <header th:insert="template_layouts/layout_header.html :: layout_header"></header>-->
-    <header th:insert="~{template_layouts/layout_header.html :: layout_header}"></header>
+    <header th:insert="~{layouts/header.html :: layout_header}"></header>
     <h1>HOME</h1>
     <a th:href="@{/service/generateBase}">Сгенерировать базу</a>
     <a th:href="@{/logout}">Log out</a>
