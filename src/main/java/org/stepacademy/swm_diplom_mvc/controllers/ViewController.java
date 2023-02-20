@@ -11,16 +11,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IRepoCustomer;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.dbUserDetails.DBUserDetailsService;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/")
 public class ViewController {
     @Autowired
-    DBServiceCustomer customerService;
+    private DBServiceCustomer customerService;
 
     @Autowired
-    PasswordEncoder encoder;
+    private PasswordEncoder encoder;
+
+    @Autowired
+    private DBServiceProfile profileService;
 
     @GetMapping("/")
     public String home(Authentication auth, Model model, HttpSession session) {
@@ -36,24 +44,19 @@ public class ViewController {
         return "pages/login";
     }
 
-    @GetMapping("/profile")
-    public String profile() {
+
+    @GetMapping("/profile/{name}")
+    public String profile(@PathVariable("name") String name, Model model){
+        Customer customer = customerService.findCustomerByLogin(name);
+        model.addAttribute("profile", new Profile(customer));
         return "pages/profile";
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "/pages/registration";
-    }
-
-    @PostMapping("/register")
-    public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
-                           Authentication auth) {
-        Customer customer = new Customer(username, password);
-        customerService.save(customer);
-        session.setAttribute("isAuthenticated", auth != null);
-        return "pages/home";
-    }
+//    @PostMapping("/profile")
+//    public String profileUp(Profile profile){
+//        profileService.update(profile);
+//        return "redirect:/profile";
+//    }
 
     @GetMapping("/logout")
     public  String logout(HttpServletRequest request, HttpSession session) {

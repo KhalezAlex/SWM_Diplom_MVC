@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
+import java.util.Optional;
+
 @Getter
 @Setter
 @Entity
@@ -40,7 +42,7 @@ public class Profile {
 
     public Profile() {
         this.name = "";
-        this.phone = "";
+        this.phone = "+7";
         this.age = 0;
         this.events_organized = 0;
         this.strikes_amount = 0;
@@ -49,11 +51,23 @@ public class Profile {
 
     public Profile(Customer customer) {
         this.name = "";
-        this.phone = "";
+        this.phone = "+7";
         this.age = 0;
         this.events_organized = 0;
         this.strikes_amount = 0;
         this.customer = customer;
         this.city = null;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", age=" + age +
+                ", events_organized=" + events_organized +
+                ", strikes_amount=" + strikes_amount +
+                ", customer=" + customer +
+                '}';
     }
 }
