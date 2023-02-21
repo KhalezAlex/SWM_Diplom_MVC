@@ -36,6 +36,11 @@ public class ViewController {
         return "pages/home";
     }
 
+    @GetMapping("/register")
+    public String register() {
+        return "/pages/registration";
+    }
+
     @GetMapping("/getLoginForm")
     public String getLoginForm() {
         return "pages/login";

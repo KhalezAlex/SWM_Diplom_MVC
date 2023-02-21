@@ -21,11 +21,6 @@ public class CustomerController {
     @Autowired
     DBServiceProfile profileService;
 
-    @GetMapping("/register")
-    public String register() {
-        return "/pages/registration";
-    }
-
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
                            Authentication auth) {
