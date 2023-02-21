@@ -48,7 +48,8 @@ public class ViewController {
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model){
         Customer customer = customerService.findCustomerByLogin(name);
-        model.addAttribute("profile", new Profile(customer));
+        Profile profile = profileService.findById(customer.getId()).get();
+        model.addAttribute("profile", profile);
         return "pages/profile";
     }
 

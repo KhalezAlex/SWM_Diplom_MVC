@@ -34,6 +34,8 @@ public class DBServiceProfile implements IDaoProfile {
     public Profile update(Profile profile) {
         Profile updated = profileRepo.findById(profile.getId()).get();
         updated.setName(profile.getName());
+        updated.setPhone(profile.getPhone());
+        updated.setAge(profile.getAge());
         return profileRepo.save(updated);
     }
 

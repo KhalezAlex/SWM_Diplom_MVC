@@ -37,10 +37,8 @@ public class CustomerController {
 
     @PostMapping("/profile")
     public String profileUp(Profile profile){
-        System.out.println(profile.getName());
-        System.out.println(profile.getCustomer().getId());
+        System.out.println(profile.getId());
         profileService.update(profile);
         return "redirect:/";
     }
-
 }

@@ -8,15 +8,16 @@
 <h1>PROFILE</h1>
 
     <form method="post" th:action="@{/customer/profile}" th:object="${profile}">
+        <input th:field=" *{id}" hidden/>
 
         <label for="profile-name">Name</label>
         <input id="profile-name" th:type="text" th:field="*{name}" required min="1" max="20"/>
 
         <label for="profile-phone">Phone</label>
-        <input id="profile-phone" th:type="text" th:field="*{phone}" required min="10" max="10"/>
+        <input id="profile-phone" th:type="text" th:field="*{phone}" required min="0" max="12"/>
 
         <label for="profile-age">Age</label>
-        <input id="profile-age" th:type="number" th:field="*{age}" required min="1" max="100"/>
+        <input id="profile-age" th:type="number" th:field="*{age}" required min="0" max="100"/>
 
         <label for="profile-events_organized">Events organized</label>
         <input id="profile-events_organized" th:type="number" th:field="*{events_organized}" disabled/>
