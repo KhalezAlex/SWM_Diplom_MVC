@@ -10,8 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 @Controller
@@ -23,12 +28,22 @@ public class ViewController {
     @Autowired
     private DBServiceProfile profileService;
 
+    @Autowired
+    private DBServiceCity cityService;
+
     @GetMapping("/")
     public String home(Authentication auth, Model model, HttpSession session) {
         session.setAttribute("isAuthenticated", auth != null);
         if (auth != null) {
             session.setAttribute("name", auth.getName());
+            session.setAttribute("city", customerService.findCustomerByLogin(auth.getName()).getProfile().getCity());
+            session.setAttribute("isAdmin", Arrays.toString(auth.getAuthorities().toArray()).lastIndexOf("ADMIN") != -1);
+        } else {
+            session.setAttribute("isAdmin",false);
         }
+        List<City> cities = cityService.findAll();
+        session.setAttribute("cities", cities);
+        System.out.println(session.getAttribute("isAdmin"));
         return "pages/home";
     }
 
@@ -37,17 +52,17 @@ public class ViewController {
         return "/pages/registration";
     }
 
-    @GetMapping("/getLoginForm")
-    public String getLoginForm() {
-        return "pages/login";
-    }
+//    @GetMapping("/getLoginForm")
+//    public String getLoginForm() {
+//        return "/pages/login";
+//    }
 
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
         Customer customer = customerService.findCustomerByLogin(name);
         Profile profile = profileService.findById(customer.getId()).get();
         model.addAttribute("profile", profile);
-        model.addAttribute("isYourProfile",auth.getName().equals(customer.getLogin()));
+        model.addAttribute("isOwner",auth.getName().equals(customer.getLogin()));
         return "pages/profile";
     }
 

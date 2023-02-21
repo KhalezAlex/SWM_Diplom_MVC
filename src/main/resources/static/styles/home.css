@@ -1,51 +1,3 @@
-/*хедер и его компоненты*/
-header {
-    z-index: 101;
-    margin: auto;
-    /*position: fixed;*/
-    /*padding-left: 20px;*/
-    padding-right: 20px;
-    height: 70px;
-    width: 90%;
-    background-color: #b2a0a0;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.div_emblem {
-    height: 66px;
-    width: 15%;
-    background-color: darkseagreen;
-    margin: 3px auto;
-}
-
-.select_city {
-    height: 70%;
-    width: 17%;
-    margin: 10px auto;
-    border-radius: 9px;
-}
-
-.button {
-    height: 70%;
-    width: 9%;
-    margin: 10px auto;
-    border-radius: 9px;
-}
-
-.a_header_links {
-    height: 70%;
-    width: 9%;
-    margin: 10px auto;
-    border-radius: 9px;
-    background-color: white;
-    border-style: solid;
-    border-width: 2px;
-    text-align: center  ;
-}
-
-
 /*общие стили*/
 
 .container {
@@ -54,13 +6,11 @@ header {
     margin: 0 auto 10px;
     padding-top: 20px;
     padding-bottom: 20px;
-    /*background-color: #ee98a2;*/
-    background-image: url("../images/Friends2.jpg");
+    background-image: url("../images/Friends2Test.jpg");
     background-size: 100%, 100%;
     display: flex;
     flex-direction: column;
     align-content: center;
-    opacity: 40%;
 }
 
 footer {
@@ -144,76 +94,10 @@ footer {
     display: none;
 }
 
-.modal_log_reg {
-    z-index: 100;
-    margin: auto;
-    padding-bottom: 20px;
-    width: 30%;
-    min-width: 300px;
-    height: fit-content;
-    overflow: auto;
-    border-radius: 10px;
-    background-color: rgb(227, 227, 227);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    opacity: 80%;
-    transition: all 0.3s ease-in-out;
-}
-
 .modal-overlay--visible {
     opacity: 1;
     visibility: visible;
     transition: all 0.3s ease-in-out;
-}
-
-.modals--visible {
-    display: block;
-}
-
-.taskChoice {
-    height: 70px;
-    border-bottom-style: solid;
-    border-color: gray;
-    border-width: 1px;
-    display: flex;
-}
-
-.parChoice {
-    font-size: 25px;
-    margin-left: 75px;
-}
-
-.form_login {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.input_reg_log_data {
-    width: 80%;
-    height: 38px;
-    margin-top: 20px;
-    border-radius: 7px;
-    border-color: #b2a0a0;
-    border-style: solid;
-    border-width: 1px;
-}
-
-.a_registration_link {
-    width: 80%;
-    text-align: right;
-}
-
-.input_reg_log_submit {
-    margin-top: 25px;
-    width: 80% ;
-    height: 38px;
-    background-color: #DF5F5FFF;
-    border-style: none;
-    border-radius: 7px;
-    font-size: 20px;
-    font-weight: bolder;
 }
 
 /*Модальное окно профиля*/

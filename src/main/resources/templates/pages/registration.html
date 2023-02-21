@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Registration</title>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link media="all" rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/layout_header.css">
+    <link rel="stylesheet" href="/styles/log_reg_forms.css">
 </head>
 <body>
-<h1>REGISTER</h1>
-<form th:action="@{/register}" th:method="post">
-  <label>
-    Login:
-    <input type="text" name="username"/>
-  </label>
-  <label>
-    Password:
-    <input type="password" name="password"/>
-  </label>
-  <button> register </button>
-</form>
+<th:block th:insert="~{layouts/header.html :: layout_header}"></th:block>
+<div class="container">
+    <div class="modal_log_reg">
+        <form class="form_login" th:method="post" th:action="@{/customer/register}">
+            <input type="text" class="input_reg_log_data"
+                   placeholder="login" name="username">
+            <input type="password" class="input_reg_log_data"
+                   placeholder="password" name="password">
+            <input type="password" class="input_reg_log_data"
+                   placeholder="repeat password">
+            <button class="input_reg_log_submit">register</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

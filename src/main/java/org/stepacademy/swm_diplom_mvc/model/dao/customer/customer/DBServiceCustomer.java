@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IRepoProfile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.IRepoRole;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 
 import java.util.List;
 import java.util.Optional;

@@ -6,13 +6,26 @@
 </head>
 <body>
 <header th:fragment="layout_header">
-    <div class="div_emblem" id="div_emblem">
+    <div class="div_emblem">
+        <button style="width: 90%; height: 90%; margin: auto" onclick="window.location.href = '/'">HOME</button>
     </div>
     <select class="select_city">
+        <th:block th:each="location: ${session.cities}">
+<!--            <option th:if="${session.isAuthenticated && location.name == session.city.getName()}"-->
+<!--                    th:checked="${location.name}" th:text="${location.name}"></option>-->
+            <option th:text="${location.name}"></option>
+        </th:block>
     </select>
     <button class="button button--0">new event</button>
     <button class="button button--1">chat</button>
-    <button class="button button--2">admin page</button>
+
+    <button class="button" th:if="${session.isAdmin}">
+        admin page
+    </button>
+    <button class="button" th:if="${!session.isAdmin}" style="opacity: 0" disabled>
+        admin page
+    </button>
+
     <button th:if="${!session.isAuthenticated}" class="button" onclick="window.location.href = '/login'">
         sign in
     </button>

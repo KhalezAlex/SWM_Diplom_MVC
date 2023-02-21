@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Home_page</title>
-    <link media="all" rel="stylesheet" href="/styles/index.css">
+    <link media="all" rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/layout_header.css">
 </head>
 <body>
     <th:block th:insert="~{layouts/header.html :: layout_header}"></th:block>
@@ -26,6 +27,5 @@
         </div>
     </div>
     <a th:href="@{/service/generateBase}">Сгенерировать базу</a>
-    <a th:href="@{/logout}">Log out</a>
 </body>
 </html>

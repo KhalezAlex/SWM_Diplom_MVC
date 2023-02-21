@@ -2,8 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register / Login</title>
-    <link media="all" rel="stylesheet" href="/styles/index.css">
+    <title>Login</title>
+    <link media="all" rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/layout_header.css">
+    <link rel="stylesheet" href="/styles/log_reg_forms.css">
 </head>
 <body>
     <th:block th:insert="~{layouts/header.html :: layout_header}"></th:block>
@@ -14,9 +16,7 @@
                        placeholder="login" name="username">
                 <input type="password" class="input_reg_log_data"
                        placeholder="password" name="password">
-<!--                <input type="password" id="input_password_repeat" class="input_reg_log_data"-->
-<!--                       placeholder="repeat password">-->
-                <a class="a_registration_link" th:href="@{/register}">Register</a>
+                <a class="a_registration_link" th:href="@{/register}">Do not have an account yet?</a>
                 <button class="input_reg_log_submit">sign in</button>
             </form>
         </div>
