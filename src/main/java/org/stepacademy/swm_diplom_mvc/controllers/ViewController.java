@@ -11,16 +11,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IRepoCustomer;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.dbUserDetails.DBUserDetailsService;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/")
 public class ViewController {
     @Autowired
-    DBServiceCustomer customerService;
+    private DBServiceCustomer customerService;
 
     @Autowired
-    PasswordEncoder encoder;
+    private DBServiceProfile profileService;
 
     @GetMapping("/")
     public String home(Authentication auth, Model model, HttpSession session) {
@@ -31,13 +36,22 @@ public class ViewController {
         return "pages/home";
     }
 
+    @GetMapping("/register")
+    public String register() {
+        return "/pages/registration";
+    }
+
     @GetMapping("/getLoginForm")
     public String getLoginForm() {
         return "pages/login";
     }
 
-    @GetMapping("/profile")
-    public String profile() {
+    @GetMapping("/profile/{name}")
+    public String profile(@PathVariable("name") String name, Model model, Authentication auth){
+        Customer customer = customerService.findCustomerByLogin(name);
+        Profile profile = profileService.findById(customer.getId()).get();
+        model.addAttribute("profile", profile);
+        model.addAttribute("isYourProfile",auth.getName().equals(customer.getLogin()));
         return "pages/profile";
     }
 
@@ -45,15 +59,6 @@ public class ViewController {
     public String register() {
         return "/pages/registration";
     }
-
-//    @PostMapping("/register")
-//    public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
-//                           Authentication auth) {
-//        Customer customer = new Customer(username, password);
-//        customerService.save(customer);
-//        session.setAttribute("isAuthenticated", auth != null);
-//        return "pages/home";
-//    }
 
     @GetMapping("/logout")
     public  String logout(HttpServletRequest request, HttpSession session) {
