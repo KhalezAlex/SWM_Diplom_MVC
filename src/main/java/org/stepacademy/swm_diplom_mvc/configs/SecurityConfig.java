@@ -22,17 +22,9 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-// адреса, по которым можно делать запросы неавторизованным пользователям
-    private static final String[] unAuthEndpoints = {"/", "/register", "/error_page", "/service/generateBase"};
-
-// адреса для админа
-    private static final String[] adminEndpoints = {"/admin_page"};
-
-// адреса для авторизованных пользователей
-    private static final String[] authEndpoints = {"/", "/profile", "/loadCitiesCountries", "/updateProfile"};
-
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/scripts/*.js", "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
+        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/scripts/*.js", "/images/*",
+                "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
 
     @Bean
@@ -46,7 +38,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        .loginPage("/login").permitAll()
+                        .loginPage("/login")
                         .failureUrl("/login?error=true")
                         .defaultSuccessUrl("/")
                 );

@@ -55,6 +55,11 @@ public class ViewController {
         return "pages/profile";
     }
 
+    @GetMapping("/register")
+    public String register() {
+        return "/pages/registration";
+    }
+
     @GetMapping("/logout")
     public  String logout(HttpServletRequest request, HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
