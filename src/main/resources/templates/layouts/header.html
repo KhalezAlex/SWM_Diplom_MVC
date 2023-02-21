@@ -17,7 +17,7 @@
         sign in
     </button>
 
-    <a th:if="${session.isAuthenticated}" class="button" th:href="@{'/profile/' + ${session.name}}"
+    <a th:if="${session.isAuthenticated}" class="a_header_links" th:href="@{'/profile/' + ${session.name}}"
             th:text="${session.name}"></a>
 </header>
 
