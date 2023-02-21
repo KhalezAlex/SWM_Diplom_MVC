@@ -2,6 +2,7 @@
 header {
     z-index: 101;
     margin: auto;
+    /*position: fixed;*/
     /*padding-left: 20px;*/
     padding-right: 20px;
     height: 70px;
@@ -33,12 +34,7 @@ header {
     border-radius: 9px;
 }
 
-footer {
-    margin: auto;
-    height: 70px;
-    width: 70%;
-    background-color: #b2a0a0;
-}
+/*общие стили*/
 
 .container {
     width: 70%;
@@ -48,11 +44,20 @@ footer {
     padding-bottom: 20px;
     /*background-color: #ee98a2;*/
     background-image: url("../images/Friends2.jpg");
-
+    background-size: 100%, 100%;
     display: flex;
     flex-direction: column;
     align-content: center;
+    opacity: 40%;
 }
+
+footer {
+    margin: auto;
+    height: 70px;
+    width: 70%;
+    background-color: #b2a0a0;
+}
+
 
 .div_search {
     background-color: aliceblue;
@@ -131,12 +136,15 @@ footer {
     z-index: 100;
     margin: auto;
     padding-bottom: 20px;
-    width: 400px;
+    width: 30%;
+    min-width: 300px;
     height: fit-content;
     overflow: auto;
     border-radius: 10px;
     background-color: rgb(227, 227, 227);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    opacity: 80%;
+    transition: all 0.3s ease-in-out;
 }
 
 .modal-overlay--visible {
@@ -162,7 +170,7 @@ footer {
     margin-left: 75px;
 }
 
-.div_login {
+.form_login {
     width: 90%;
     margin: auto;
     display: flex;
@@ -178,6 +186,11 @@ footer {
     border-color: #b2a0a0;
     border-style: solid;
     border-width: 1px;
+}
+
+.a_registration_link {
+    width: 80%;
+    text-align: right;
 }
 
 .input_reg_log_submit {
