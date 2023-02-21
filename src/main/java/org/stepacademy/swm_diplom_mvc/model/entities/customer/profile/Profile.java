@@ -32,6 +32,8 @@ public class Profile {
     @Column(name = "strikes_amount")
     private Integer strikes_amount;
 
+    //Сделать расшивку ManyToMany с Activity(Теги по видам спорта)
+
     @OneToOne(mappedBy = "profile")
     private Customer customer;
 

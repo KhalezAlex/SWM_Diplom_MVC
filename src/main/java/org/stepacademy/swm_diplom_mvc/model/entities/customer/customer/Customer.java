@@ -3,6 +3,8 @@ package org.stepacademy.swm_diplom_mvc.model.entities.customer.customer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
 
@@ -32,6 +34,12 @@ public class Customer {
     @JoinTable(name = "customer_roles", joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private Set<Event> events_organized;
+
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private
 
     public Customer() {
     }

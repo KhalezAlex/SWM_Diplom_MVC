@@ -3,7 +3,10 @@ package org.stepacademy.swm_diplom_mvc.model.entities.location.city;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,6 +24,9 @@ public class City {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
+    @OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+    private Set<Event> events;
 
     public City() {}
 
