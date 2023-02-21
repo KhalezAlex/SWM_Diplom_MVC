@@ -25,9 +25,6 @@ public class ViewController {
     private DBServiceCustomer customerService;
 
     @Autowired
-    private PasswordEncoder encoder;
-
-    @Autowired
     private DBServiceProfile profileService;
 
     @GetMapping("/")
@@ -44,20 +41,14 @@ public class ViewController {
         return "pages/login";
     }
 
-
     @GetMapping("/profile/{name}")
-    public String profile(@PathVariable("name") String name, Model model){
+    public String profile(@PathVariable("name") String name, Model model, Authentication auth){
         Customer customer = customerService.findCustomerByLogin(name);
         Profile profile = profileService.findById(customer.getId()).get();
         model.addAttribute("profile", profile);
+        model.addAttribute("isYourProfile",auth.getName().equals(customer.getLogin()));
         return "pages/profile";
     }
-
-//    @PostMapping("/profile")
-//    public String profileUp(Profile profile){
-//        profileService.update(profile);
-//        return "redirect:/profile";
-//    }
 
     @GetMapping("/logout")
     public  String logout(HttpServletRequest request, HttpSession session) {
