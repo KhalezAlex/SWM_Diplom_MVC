@@ -1,16 +1,19 @@
 package org.stepacademy.swm_diplom_mvc.model.dao.customer.profile;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IRepoCustomer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class DBServiceProfile implements IDaoProfile {
     @Autowired
-    IRepoProfile profileRepo;
+    private IRepoProfile profileRepo;
 
     @Override
     public List<Profile> findAll() {
@@ -29,7 +32,11 @@ public class DBServiceProfile implements IDaoProfile {
 
     @Override
     public Profile update(Profile profile) {
-        return null;
+        Profile updated = profileRepo.findById(profile.getId()).get();
+        updated.setName(profile.getName());
+        updated.setPhone(profile.getPhone());
+        updated.setAge(profile.getAge());
+        return profileRepo.save(updated);
     }
 
     @Override
