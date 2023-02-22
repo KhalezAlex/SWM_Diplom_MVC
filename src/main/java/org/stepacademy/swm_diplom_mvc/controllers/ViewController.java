@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
@@ -30,6 +31,9 @@ public class ViewController {
     @Autowired
     private DBServiceCity cityService;
 
+    @Autowired
+    private DBServiceRole roleService;
+
 
     @GetMapping("/")
     public String home(Authentication auth, HttpSession session) {
@@ -46,18 +50,21 @@ public class ViewController {
         session.setAttribute("cities", cityService.findAll());
     }
     private void setHomepageAuthSessionAttrs(HttpSession session, Authentication auth) {
+        //Получаем Логин пользователя
         session.setAttribute("name", auth.getName());
+        //Проверяем город в профиле пользователя
         City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
+        // Если город не указан, показываем Москву, не устанавливая атрибут селекта
         session.setAttribute("city", city == null ? cityService.findById(1).get() : city);
-        session.setAttribute("isAdmin", Arrays.toString(auth.getAuthorities().toArray()).lastIndexOf("ADMIN") != -1);
+        //Проверка пользователя на наличие роли Админ
+        session.setAttribute("isAdmin", auth.getAuthorities().toString()
+                            .contains(roleService.findById(1).get().getRole()));
     }
-
 
     @GetMapping("/register")
     public String register() {
         return "/pages/registration";
     }
-
 
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
