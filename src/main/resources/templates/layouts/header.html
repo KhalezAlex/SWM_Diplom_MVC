@@ -10,10 +10,13 @@
         <button style="width: 90%; height: 90%; margin: auto" onclick="window.location.href = '/'">HOME</button>
     </div>
     <select class="select_city">
-        <th:block th:each="location: ${session.cities}">
-<!--            <option th:if="${session.isAuthenticated && location.name == session.city.getName()}"-->
-<!--                    th:checked="${location.name}" th:text="${location.name}"></option>-->
-            <option th:text="${location.name}"></option>
+        <th:block th:each="city: ${session.cities}">
+            <option th:if="${session.isAuthenticated && (city.name == session.city.getName())}" selected>
+                [[${city.name}]]
+            </option>
+            <option th:if="${!(session.isAuthenticated && (city.name == session.city.getName()))}">
+                [[${city.name}]]
+            </option>
         </th:block>
     </select>
     <button class="button button--0">new event</button>
@@ -37,6 +40,6 @@
 </body>
 </html>
 
-<!--    <button th:if="${session.isAuthenticated}" class="button" onclick="window.location.href = '/profile'"-->
+<!--    <button th:if="${session.isAuthenticated}" class="button" onclick="window.city.href = '/profile'"-->
 <!--            th:text="${session.name}"></button>-->
 <!--th:if="${session.isAuthenticated}"-->

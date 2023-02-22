@@ -16,7 +16,6 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
 import java.util.Arrays;
-import java.util.List;
 
 
 @Controller
@@ -31,47 +30,53 @@ public class ViewController {
     @Autowired
     private DBServiceCity cityService;
 
+
     @GetMapping("/")
-    public String home(Authentication auth, Model model, HttpSession session) {
+    public String home(Authentication auth, HttpSession session) {
+        setHomePageSessionAttrs(auth, session);
+        return "pages/home";
+    }
+    private void setHomePageSessionAttrs(Authentication auth, HttpSession session) {
         session.setAttribute("isAuthenticated", auth != null);
         if (auth != null) {
-            session.setAttribute("name", auth.getName());
-            session.setAttribute("city", customerService.findCustomerByLogin(auth.getName()).getProfile().getCity());
-            session.setAttribute("isAdmin", Arrays.toString(auth.getAuthorities().toArray()).lastIndexOf("ADMIN") != -1);
+            setHomepageAuthSessionAttrs(session, auth);
         } else {
             session.setAttribute("isAdmin",false);
         }
-        List<City> cities = cityService.findAll();
-        session.setAttribute("cities", cities);
-        System.out.println(session.getAttribute("isAdmin"));
-        return "pages/home";
+        session.setAttribute("cities", cityService.findAll());
     }
+    private void setHomepageAuthSessionAttrs(HttpSession session, Authentication auth) {
+        session.setAttribute("name", auth.getName());
+        City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
+        session.setAttribute("city", city == null ? cityService.findById(1).get() : city);
+        session.setAttribute("isAdmin", Arrays.toString(auth.getAuthorities().toArray()).lastIndexOf("ADMIN") != -1);
+    }
+
 
     @GetMapping("/register")
     public String register() {
         return "/pages/registration";
     }
 
-//    @GetMapping("/getLoginForm")
-//    public String getLoginForm() {
-//        return "/pages/login";
-//    }
 
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
+        setProfileModelAttrs(model,auth, name);
+        return "pages/profile";
+    }
+    private void setProfileModelAttrs(Model model, Authentication auth, String name) {
         Customer customer = customerService.findCustomerByLogin(name);
         Profile profile = profileService.findById(customer.getId()).get();
         model.addAttribute("profile", profile);
         model.addAttribute("isOwner",auth.getName().equals(customer.getLogin()));
-        return "pages/profile";
+        model.addAttribute("cities", cityService.findAll());
     }
 
+
     @GetMapping("/logout")
-    public  String logout(HttpServletRequest request, HttpSession session) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
+    public  String logout(HttpServletRequest request) {
+        if (SecurityContextHolder.getContext().getAuthentication() != null)
             request.getSession().invalidate();
-        }
         return "redirect:/";
     }
 }

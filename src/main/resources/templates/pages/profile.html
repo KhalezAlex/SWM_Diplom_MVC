@@ -27,6 +27,28 @@
         <input id="profile-phone" th:type="text" th:field="*{phone}" required min="0" max="12"/>
         <label for="profile-age">Age</label>
         <input id="profile-age" th:type="number" th:field="*{age}" required min="0" max="100"/>
+
+<!--подгрузка городов в профиль для изменения        -->
+        <select name="city">
+            <th:block th:each="location: ${cities}">
+<!--если в профиле указан город-->
+                <th:block th:if="${profile.city != null}">
+<!--если город в итераторе совпадает с городом в профиле, ставим атрибут selected-->
+                    <option th:if="${location.name == profile.city.getName()}" selected>
+                        [[${location.name}]]
+                    </option>
+<!--иначе, грузим без аттрибута-->
+                    <option th:if="${location.name != profile.city.getName()}">
+                        [[${location.name}]]
+                    </option>
+                </th:block>
+<!--если в профиле город не указан-->
+                <option th:if="${profile.city == null}">
+                    [[${location.name}]]
+                </option>
+            </th:block>
+        </select>
+
         <label for="profile-events_organized">Events organized</label>
         <input id="profile-events_organized" th:type="number" th:field="*{events_organized}" disabled/>
         <label for="profile-strikes_amount">Strikes</label>
