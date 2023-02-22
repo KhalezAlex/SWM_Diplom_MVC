@@ -2,12 +2,14 @@ package org.stepacademy.swm_diplom_mvc.model.dao.customer.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class DBServiceRole implements IDaoRole {
     @Autowired
     IRepoRole roleRepo;

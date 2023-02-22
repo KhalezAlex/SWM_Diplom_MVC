@@ -42,23 +42,26 @@ public class ViewController {
     }
     private void setHomePageSessionAttrs(Authentication auth, HttpSession session) {
         session.setAttribute("isAuthenticated", auth != null);
+        session.setAttribute("cities", cityService.findAll());
         if (auth != null) {
             setHomepageAuthSessionAttrs(session, auth);
         } else {
-            session.setAttribute("isAdmin",false);
+            setHomepageUnAuthSessionAttrs(session);
         }
-        session.setAttribute("cities", cityService.findAll());
     }
     private void setHomepageAuthSessionAttrs(HttpSession session, Authentication auth) {
-        //Получаем Логин пользователя
+//Получаем Логин пользователя
         session.setAttribute("name", auth.getName());
-        //Проверяем город в профиле пользователя
+//Проверяем город в профиле пользователя
         City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
-        // Если город не указан, показываем Москву, не устанавливая атрибут селекта
+// Если город не указан, показываем Москву, не устанавливая атрибут селекта
         session.setAttribute("city", city == null ? cityService.findById(1).get() : city);
-        //Проверка пользователя на наличие роли Админ
+//Проверка пользователя на наличие роли ADMIN
         session.setAttribute("isAdmin", auth.getAuthorities().toString()
-                            .contains(roleService.findById(1).get().getRole()));
+                .contains(roleService.findById(1).get().getRole()));
+    }
+    private void setHomepageUnAuthSessionAttrs(HttpSession session) {
+        session.setAttribute("isAdmin",false);
     }
 
     @GetMapping("/register")

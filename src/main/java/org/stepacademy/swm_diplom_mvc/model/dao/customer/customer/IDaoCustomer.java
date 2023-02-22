@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.stepacademy.swm_diplom_mvc.model.dao.IDaoDB;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
+@Transactional
 public interface IDaoCustomer extends IDaoDB<Customer> {
     Customer findCustomerByLogin(String login);
     @Transactional

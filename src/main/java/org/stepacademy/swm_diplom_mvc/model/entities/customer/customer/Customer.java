@@ -38,12 +38,6 @@ public class Customer implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    private Set<Event> events_organized;
-
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private
-
     public Customer() {
     }
 
@@ -55,12 +49,12 @@ public class Customer implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return this.roles;
     }
 
     @Override
     public String getUsername() {
-        return getLogin();
+        return this.login;
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class DBServiceProfile implements IDaoProfile {
     @Autowired
     private IRepoProfile profileRepo;
