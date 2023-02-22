@@ -3,11 +3,14 @@ package org.stepacademy.swm_diplom_mvc.model.entities.customer.customer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +18,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "customer_t")
-public class Customer {
+public class Customer implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,7 +33,7 @@ public class Customer {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private Profile profile;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "customer_roles", joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
@@ -48,5 +51,35 @@ public class Customer {
         this.login = login;
         this.password = password;
         this.profile = new Profile();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
+    @Override
+    public String getUsername() {
+        return getLogin();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

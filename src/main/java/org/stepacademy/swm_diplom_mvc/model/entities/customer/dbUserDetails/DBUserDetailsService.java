@@ -15,13 +15,10 @@ public class DBUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("*************идет загрузка*************");
         Customer customer = daoCustomer.findCustomerByLogin(username);
         if (customer == null) {
-            System.out.println("*********" + username + "*********");
             throw new UsernameNotFoundException(username);
         }
-        System.out.println(customer.getId() + " " + customer.getLogin() + ": " + customer.getPassword());
-        return new DBUserDetails(customer);
+        return customer;
     }
 }

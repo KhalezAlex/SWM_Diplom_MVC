@@ -52,7 +52,7 @@
         <label for="profile-events_organized">Events organized</label>
         <input id="profile-events_organized" th:type="number" th:field="*{events_organized}" disabled/>
         <label for="profile-strikes_amount">Strikes</label>
-        <input id="profile-strikes_amount" th:type="number" th:field="*{name}" disabled required min="0" max="3"/>
+        <input id="profile-strikes_amount" th:type="number" th:field="*{strikes_amount}" disabled required min="0" max="3"/>
         <button>Add</button>
     </form>
         <a th:href="@{/}">Cancel</a>

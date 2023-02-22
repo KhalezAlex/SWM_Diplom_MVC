@@ -12,7 +12,6 @@ public class DBServiceRole implements IDaoRole {
     @Autowired
     IRepoRole roleRepo;
 
-
     @Override
     public List<Role> findAll() {
         return (List<Role>) roleRepo.findAll();
