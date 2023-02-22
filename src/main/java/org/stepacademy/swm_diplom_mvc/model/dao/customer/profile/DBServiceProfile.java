@@ -43,4 +43,8 @@ public class DBServiceProfile implements IDaoProfile {
     public Profile delete(Integer id) {
         return null;
     }
+
+    public Profile findByLogin(String login) {
+        return profileRepo.findByCustomer_Login(login);
+    }
 }

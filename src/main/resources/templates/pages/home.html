@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Home_page</title>
-    <link media="all" rel="stylesheet" href="/styles/index.css">
+    <link media="all" rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/layout_header.css">
 </head>
 <body>
-    <header th:insert="~{layouts/header.html :: layout_header}"></header>
+    <th:block th:insert="~{layouts/header.html :: layout_header}"></th:block>
     <div class="container">
         <div class="div_search">
             <form class="form_search_event">
@@ -26,6 +27,5 @@
         </div>
     </div>
     <a th:href="@{/service/generateBase}">Сгенерировать базу</a>
-    <a th:href="@{/logout}">Log out</a>
 </body>
 </html>

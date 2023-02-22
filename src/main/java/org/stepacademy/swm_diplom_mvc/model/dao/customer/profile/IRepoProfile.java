@@ -6,4 +6,6 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 
 public interface IRepoProfile extends CrudRepository<Profile, Integer> {
     Profile findByName(String login);
+
+    Profile findByCustomer_Login(String login);
 }

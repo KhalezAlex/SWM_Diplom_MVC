@@ -32,14 +32,15 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/profile").authenticated()
-                        .requestMatchers("/register", "/login").anonymous()
+                        .requestMatchers("/profile", "/logout").authenticated()
+                        .requestMatchers("/customer/register", "/register", "/login").anonymous()
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .failureUrl("/login?error=true")
+//                        .failureUrl("/")
                         .defaultSuccessUrl("/")
                 );
         return http.build();

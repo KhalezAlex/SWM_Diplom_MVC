@@ -6,24 +6,40 @@
 </head>
 <body>
 <header th:fragment="layout_header">
-    <div class="div_emblem" id="div_emblem">
+    <div class="div_emblem">
+        <button style="width: 90%; height: 90%; margin: auto" onclick="window.location.href = '/'">HOME</button>
     </div>
     <select class="select_city">
+        <th:block th:each="city: ${session.cities}">
+            <option th:if="${session.isAuthenticated && (city.name == session.city.getName())}" selected>
+                [[${city.name}]]
+            </option>
+            <option th:if="${!(session.isAuthenticated && (city.name == session.city.getName()))}">
+                [[${city.name}]]
+            </option>
+        </th:block>
     </select>
     <button class="button button--0">new event</button>
     <button class="button button--1">chat</button>
-    <button class="button button--2">admin page</button>
+
+    <button class="button" th:if="${session.isAdmin}">
+        admin page
+    </button>
+    <button class="button" th:if="${!session.isAdmin}" style="opacity: 0" disabled>
+        admin page
+    </button>
+
     <button th:if="${!session.isAuthenticated}" class="button" onclick="window.location.href = '/login'">
         sign in
     </button>
 
-    <a th:if="${session.isAuthenticated}" class="button" th:href="@{'/profile/' + ${session.name}}"
+    <a th:if="${session.isAuthenticated}" class="a_header_links" th:href="@{'/profile/' + ${session.name}}"
             th:text="${session.name}"></a>
 </header>
 
 </body>
 </html>
 
-<!--    <button th:if="${session.isAuthenticated}" class="button" onclick="window.location.href = '/profile'"-->
+<!--    <button th:if="${session.isAuthenticated}" class="button" onclick="window.city.href = '/profile'"-->
 <!--            th:text="${session.name}"></button>-->
 <!--th:if="${session.isAuthenticated}"-->
