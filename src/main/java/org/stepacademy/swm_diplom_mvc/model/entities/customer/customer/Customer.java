@@ -38,6 +38,9 @@ public class Customer implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    Set<Event> events_in;
+
     public Customer() {
     }
 
@@ -75,5 +78,15 @@ public class Customer implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", profile=" + profile +
+                '}';
     }
 }

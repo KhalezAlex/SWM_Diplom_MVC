@@ -64,12 +64,14 @@ public class Profile {
     @Override
     public String toString() {
         return "Profile{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", age=" + age +
                 ", events_organized=" + events_organized +
                 ", strikes_amount=" + strikes_amount +
                 ", customer=" + customer +
+                ", city=" + city +
                 '}';
     }
 }

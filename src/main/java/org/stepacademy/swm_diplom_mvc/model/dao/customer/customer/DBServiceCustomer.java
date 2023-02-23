@@ -17,10 +17,10 @@ public class DBServiceCustomer implements IDaoCustomer{
     private IRepoCustomer customerRepo;
 
     @Autowired
-    IRepoProfile profileRepo;
+    private IRepoProfile profileRepo;
 
     @Autowired
-    IRepoRole roleRepo;
+    private IRepoRole roleRepo;
 
     @Autowired
     private PasswordEncoder encoder;

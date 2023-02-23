@@ -30,4 +30,12 @@ public class Activity {
     public Activity(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
