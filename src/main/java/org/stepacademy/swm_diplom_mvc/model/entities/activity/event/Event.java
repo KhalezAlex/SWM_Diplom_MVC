@@ -36,12 +36,14 @@ public class Event {
     @Column(name = "dateTime", nullable = false)
     private LocalDateTime dateTime;
 
+//инициатор события
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "initiator_id")
+    private Customer initiator;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    private Set<Customer> customers_in;
+//участники события
+    @ManyToMany(mappedBy = "eventsIn", cascade = CascadeType.ALL)
+    private Set<Customer> participants;
 
 
     public Event() {}
@@ -59,7 +61,7 @@ public class Event {
                 ", city=" + city +
                 ", address='" + address + '\'' +
                 ", dateTime=" + dateTime +
-                ", customer=" + customer +
+                ", initiator=" + initiator +
                 '}';
     }
 }

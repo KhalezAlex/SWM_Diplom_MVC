@@ -36,7 +36,7 @@ public class GenerateBaseController {
         cityInit();
         adminInit();
         activityInit();
-        return "home_page";
+        return "pages/home";
     }
 
     private void rolesTableInit() {

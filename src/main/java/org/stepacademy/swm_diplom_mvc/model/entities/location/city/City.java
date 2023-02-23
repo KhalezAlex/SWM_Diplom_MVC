@@ -17,7 +17,7 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 150)
+    @Column(name = "name", nullable = false, length = 150, unique = true)
     private String name;
 
     //Связываем в БД сущности много "городов" одна "страна"

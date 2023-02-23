@@ -10,16 +10,16 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "country_id")
+@Table(name = "country_t")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
-    //Создаём связь в БД, одна "страна" много "городов". + подключаем зависимость к сущностям
+//Создаём связь в БД, одна "страна" много "городов". + подключаем зависимость к сущностям
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
     private Set<City> cities;
 

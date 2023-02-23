@@ -33,7 +33,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/profile", "/logout").authenticated()
-                        .requestMatchers("/customer/register", "/register", "/login").anonymous()
+                        .requestMatchers("/customer/register", "/register", "/login",
+                                        "/service/generateBase").anonymous()
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )

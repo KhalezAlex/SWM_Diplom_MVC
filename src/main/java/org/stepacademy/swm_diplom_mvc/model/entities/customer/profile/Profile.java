@@ -3,8 +3,11 @@ package org.stepacademy.swm_diplom_mvc.model.entities.customer.profile;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
+
+import java.util.Set;
 
 
 @Getter
@@ -31,14 +34,18 @@ public class Profile {
     @Column(name = "strikes_amount")
     private Integer strikes_amount;
 
-    //Сделать расшивку ManyToMany с Activity(Теги по видам спорта)
-
     @OneToOne(mappedBy = "profile")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
+
+    @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "profile_activities_t", joinColumns = @JoinColumn(name = "profile_id"),
+                inverseJoinColumns = @JoinColumn(name = "activity_id"))
+    private Set<Activity> activityTags;
+
 
 
     public Profile() {

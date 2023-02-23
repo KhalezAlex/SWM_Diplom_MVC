@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 
 import java.util.Set;
 
@@ -23,7 +23,8 @@ public class Activity {
     @OneToMany(mappedBy = "activity",cascade = CascadeType.ALL)
     private Set<Event> events;
 
-    //Сделать расшивку ManyToMany с Profile(Теги по видам спорта)
+    @ManyToMany(mappedBy = "activityTags")
+    private Set<Profile> profiles;
 
     public Activity() {}
 

@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
@@ -29,17 +28,25 @@ public class Customer implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+//Связь с таблицей личных данных
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private Profile profile;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "customer_roles", joinColumns = @JoinColumn(name = "customer_id"),
+    @JoinTable(name = "customer_roles_t", joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    Set<Role> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    Set<Event> events_in;
+//Множество событий, организованных кастомером
+    @OneToMany(mappedBy = "initiator", cascade = CascadeType.ALL)
+    private Set<Event> eventsOrganized;
+
+//Множество событий, в которых участвовал кастомер
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "event_customers_t", joinColumns = @JoinColumn(name = "customer_id"),
+                inverseJoinColumns = @JoinColumn(name = "event_id"))
+    Set<Event> eventsIn;
 
     public Customer() {
     }

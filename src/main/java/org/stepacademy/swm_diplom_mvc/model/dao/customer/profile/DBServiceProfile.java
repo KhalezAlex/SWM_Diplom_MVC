@@ -32,10 +32,15 @@ public class DBServiceProfile implements IDaoProfile {
 
     @Override
     public Profile update(Profile profile) {
-        if(profileRepo.findById(profile.getId()).isPresent()){
-            return profileRepo.save(profile);
+        Profile updated = profileRepo.findById(profile.getId()).orElse(null);
+        if (updated == null){
+            return null;
         }
-        return null;
+        updated.setAge(profile.getAge());
+        updated.setCity(profile.getCity());
+        updated.setPhone(profile.getPhone());
+        updated.setName(profile.getName());
+        return updated;
     }
 
     @Override
