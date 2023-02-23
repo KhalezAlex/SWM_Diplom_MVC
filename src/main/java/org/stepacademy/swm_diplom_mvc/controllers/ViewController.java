@@ -16,7 +16,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
-import java.util.Arrays;
+import java.util.Objects;
 
 
 @Controller
@@ -41,8 +41,11 @@ public class ViewController {
         return "pages/home";
     }
     private void setHomePageSessionAttrs(Authentication auth, HttpSession session) {
+//Атрибуты, которые нужны, не зависимо от того, аутентифицирован пользователь, или нет
         session.setAttribute("isAuthenticated", auth != null);
+    //список городов для выгрузки в хедер для отображения случайных спортивных событий на сегодня при смене города (js)
         session.setAttribute("cities", cityService.findAll());
+//Атрибуты, зависящие от того, аутентифицирован ли пользователь
         if (auth != null) {
             setHomepageAuthSessionAttrs(session, auth);
         } else {
@@ -50,11 +53,11 @@ public class ViewController {
         }
     }
     private void setHomepageAuthSessionAttrs(HttpSession session, Authentication auth) {
-//Получаем Логин пользователя
+//Передаем Логин пользователя
         session.setAttribute("name", auth.getName());
 //Проверяем город в профиле пользователя
         City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
-// Если город не указан, показываем Москву, не устанавливая атрибут селекта
+//Если город не указан, показываем Москву, не устанавливая атрибут селекта
         session.setAttribute("city", city == null ? cityService.findById(1).get() : city);
 //Проверка пользователя на наличие роли ADMIN
         session.setAttribute("isAdmin", auth.getAuthorities().toString()
@@ -64,10 +67,12 @@ public class ViewController {
         session.setAttribute("isAdmin",false);
     }
 
+
     @GetMapping("/register")
     public String register() {
         return "/pages/registration";
     }
+
 
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
@@ -77,9 +82,14 @@ public class ViewController {
     private void setProfileModelAttrs(Model model, Authentication auth, String name) {
         Customer customer = customerService.findCustomerByLogin(name);
         Profile profile = profileService.findById(customer.getId()).get();
+//Профиль для отображения в окне профиля
         model.addAttribute("profile", profile);
-        model.addAttribute("isOwner",auth.getName().equals(customer.getLogin()));
-        model.addAttribute("cities", cityService.findAll());
+//Проверка на то, будет пользователь свой профиль просматривать, или нет, чтобы на фронте ограничить редактирование
+        model.addAttribute("isOwner", auth.getName().equals(customer.getLogin()));
+//Список городов для редактирования профиля
+        if (Objects.equals(model.getAttribute("isOwner"), true)) {
+            model.addAttribute("cities", cityService.findAll());
+        }
     }
 
 

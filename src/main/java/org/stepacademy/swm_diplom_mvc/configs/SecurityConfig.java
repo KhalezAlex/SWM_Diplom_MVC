@@ -47,11 +47,11 @@ public class SecurityConfig {
     }
 
 
-// Зависимость кодировщика паролей
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder(); // стандартный кодировщик Spring
     }
+
 
 // КОНФИГУРАЦИЯ ДЛЯ ПОДКЛЮЧЕНИЯ БД
     @Bean
