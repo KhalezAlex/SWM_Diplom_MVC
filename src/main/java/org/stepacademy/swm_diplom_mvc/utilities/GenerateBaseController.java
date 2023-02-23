@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.country.DBServiceCountry;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
@@ -24,7 +26,8 @@ public class GenerateBaseController {
     DBServiceCountry countryService;
     @Autowired
     DBServiceCity cityService;
-
+    @Autowired
+    private DBServiceActivity activityService;
 
     @GetMapping("/generateBase")
     public String generate() {
@@ -32,6 +35,7 @@ public class GenerateBaseController {
         countryInit();
         cityInit();
         adminInit();
+        activityInit();
         return "home_page";
     }
 
@@ -63,5 +67,12 @@ public class GenerateBaseController {
                 "Воронеж", "Пермь", "Волгоград"};
         for(String city : russianCities)
             cityService.save(new City(city, countryService.findById(1).get()));
+    }
+
+    public void activityInit(){
+        String[] activity = {"Футбол", "Баскетбол", "Волейбол", "Хоккей", "Пробежка", "Коньки", "Санки", "Лыжи",
+                "Сноуборд", "Кросс Фит", "Тренажёрный зал"};
+        for(String act : activity)
+            activityService.save(new Activity(act));
     }
 }

@@ -40,7 +40,26 @@ public class Event {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-//    @ManyToMany()
+//    @ManyToMany(cascade = CascadeType.ALL)
 //    private Set<Customer> customers_in;
 
+
+    public Event() {}
+
+    public Event(String address, LocalDateTime dateTime) {
+        this.address = address;
+        this.dateTime = dateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", activity=" + activity +
+                ", city=" + city +
+                ", address='" + address + '\'' +
+                ", dateTime=" + dateTime +
+                ", customer=" + customer +
+                '}';
+    }
 }

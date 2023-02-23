@@ -34,4 +34,13 @@ public class City {
         this.name = name;
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country=" + country +
+                '}';
+    }
 }
