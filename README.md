@@ -1,2 +1,2 @@
 # SWM_Diplom_MVC
-![contributions](https://www.gifki.org/img-sport-animatsionnaya-kartinka-0684-78553.htm)
+![contributions](https://www.gifki.org/data/media/279/sport-animatsionnaya-kartinka-0684.gif)
