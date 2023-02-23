@@ -13,26 +13,30 @@ public class DBServiceActivity implements IDaoActivity{
 
     @Override
     public List<Activity> findAll() {
-        return null;
+        return (List<Activity>) activityRepo.findAll();
     }
 
     @Override
     public Optional<Activity> findById(Integer id) {
-        return Optional.empty();
+        return activityRepo.findById(id);
     }
 
     @Override
     public Activity save(Activity activity) {
-        return null;
+        return activityRepo.save(activity);
     }
 
     @Override
     public Activity update(Activity activity) {
+        if(activityRepo.findById(activity.getId()).isPresent())
+            activityRepo.save(activity);
         return null;
     }
 
     @Override
     public Activity delete(Integer id) {
-        return null;
+        Activity activity = findById(id).get();
+        activityRepo.delete(activity);
+        return activity;
     }
 }

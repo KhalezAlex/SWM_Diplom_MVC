@@ -19,7 +19,6 @@ public class CustomerController {
     @Autowired
     DBServiceProfile profileService;
 
-
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
                            Authentication auth) {
@@ -29,10 +28,8 @@ public class CustomerController {
         return "pages/home";
     }
 
-
     @PostMapping("/profile")
     public String profileUp(Profile profile){
-        System.out.println(profile.getId());
         profileService.update(profile);
         return "redirect:/";
     }
