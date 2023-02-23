@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
-import java.util.Optional;
 
 @Getter
 @Setter
@@ -17,13 +16,13 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 20)
     private String name;
 
-    @Column(name = "phone")
+    @Column(name = "phone", length = 11)
     private String phone;
 
-    @Column(name = "age")
+    @Column(name = "age", length = 2)
     private Integer age;
 
     @Column(name = "events_organized")
@@ -59,6 +58,27 @@ public class Profile {
         this.strikes_amount = 0;
         this.customer = customer;
         this.city = null;
+    }
+
+    public Profile(Integer id, String name, String phone, Integer age, Integer events_organized, Integer strikes_amount, City city) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.age = age;
+        this.events_organized = events_organized;
+        this.strikes_amount = strikes_amount;
+        this.city = city;
+    }
+
+    public Profile(Integer id, String name, String phone, Integer age, Integer events_organized, Integer strikes_amount, Customer customer, City city) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.age = age;
+        this.events_organized = events_organized;
+        this.strikes_amount = strikes_amount;
+        this.customer = customer;
+        this.city = city;
     }
 
     @Override
