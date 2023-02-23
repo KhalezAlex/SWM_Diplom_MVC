@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.customer.dbUserDetails;
+package org.stepacademy.swm_diplom_mvc.model.dao.customer.dbUserDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
