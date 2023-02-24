@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/scripts/*.js", "/images/*",
+        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/images/*", "/scripts/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
 
@@ -32,7 +32,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/profile", "/logout").authenticated()
+                        .requestMatchers("/profile", "/profile/update", "/logout").authenticated()
                         .requestMatchers("/customer/register", "/register", "/login",
                                         "/service/generateBase").anonymous()
                         .requestMatchers("/").permitAll()

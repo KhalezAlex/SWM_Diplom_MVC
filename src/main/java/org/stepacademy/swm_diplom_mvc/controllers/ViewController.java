@@ -8,14 +8,17 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -33,6 +36,9 @@ public class ViewController {
 
     @Autowired
     private DBServiceRole roleService;
+
+    @Autowired
+    DBServiceActivity activityService;
 
 
     @GetMapping("/")
@@ -80,16 +86,30 @@ public class ViewController {
         return "pages/profile";
     }
     private void setProfileModelAttrs(Model model, Authentication auth, String name) {
+        setProfileCommonAttrs(model, name, auth);
+        if (Objects.equals(model.getAttribute("isOwner"), true)) {
+            setProfileOwnerAttrs(model, name);
+        }
+    }
+
+    private void setProfileCommonAttrs(Model model, String name, Authentication auth) {
         Customer customer = customerService.findCustomerByLogin(name);
         Profile profile = profileService.findById(customer.getId()).get();
 //Профиль для отображения в окне профиля
         model.addAttribute("profile", profile);
 //Проверка на то, будет пользователь свой профиль просматривать, или нет, чтобы на фронте ограничить редактирование
         model.addAttribute("isOwner", auth.getName().equals(customer.getLogin()));
+    }
+
+    private void setProfileOwnerAttrs(Model model, String name) {
 //Список городов для редактирования профиля
-        if (Objects.equals(model.getAttribute("isOwner"), true)) {
-            model.addAttribute("cities", cityService.findAll());
-        }
+        model.addAttribute("cities", cityService.findAll());
+//Список видов спорта - тегов для дальнейшего использования при выборе ивентов
+        List<Activity> tags = activityService.findAll();
+        Customer customer = customerService.findCustomerByLogin(name);
+        Profile profile = profileService.findByLogin(customer.getLogin());
+        tags.removeAll(profile.getActivityTags());
+        model.addAttribute("tags", tags);
     }
 
 

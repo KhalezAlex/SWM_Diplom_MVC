@@ -39,4 +39,9 @@ public class DBServiceActivity implements IDaoActivity{
         activityRepo.delete(activity);
         return activity;
     }
+
+    @Override
+    public Activity findByName(String name) {
+        return activityRepo.findByName(name);
+    }
 }

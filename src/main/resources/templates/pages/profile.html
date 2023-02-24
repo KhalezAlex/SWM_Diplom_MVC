@@ -20,7 +20,7 @@
 
 <!--    Форма редактирования профиля-->
     <form th:if="${isOwner}" method="post" th:action="@{/profile/update}" th:object="${profile}">
-        <input th:field=" *{id}" hidden/>
+        <input id="profileId" th:field=" *{id}" hidden/>
         <input th:field="*{customer.id}" hidden>
         <label for="profile-name">Name</label>
         <input id="profile-name" th:type="text" th:field="*{name}"/>
@@ -28,12 +28,16 @@
         <input id="profile-phone" th:type="text" th:field="*{phone}"/>
         <label for="profile-age">Age</label>
         <input id="profile-age" th:type="number" th:field="*{age}" />
-
         <label for="profile-city">City</label>
         <select id="profile-city" th:field="*{city}">
-            <th:block th:each="location:${cities}">
+            <th:block th:each="location: ${cities}">
                 <option th:value="${location.id}">[[${location.name}]]</option>
             </th:block>
+        </select>
+
+        <label for="profile_activities">Your sports</label>
+        <select id="profile_activities" name="tag">
+            <option th:each="sport: ${tags}">[[${sport.name}]]</option>
         </select>
 
         <label for="profile-events_organized">Events organized</label>
@@ -45,6 +49,21 @@
         <a th:href="@{/}">Cancel</a>
 
     <a th:href="@{/logout}">Log out</a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+    <script>
+        $("#profile_activities").on('change', () => {
+            $.ajax({
+                url: "/profile/update/activity",
+                method: "GET",
+                dataType: "html",
+                data: {
+                    profileId: $("#profileId").val(),
+                    tag: $("#profile_activities").val()},
+                success: function(data) {alert(data)}
+            })
+        })
+    </script>
 </body>
 </html>
 
