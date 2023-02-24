@@ -9,18 +9,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
+import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.DBServiceEvent;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
 import java.util.List;
 import java.util.Objects;
-
 
 @Controller
 @RequestMapping(path = "/")
@@ -38,8 +39,10 @@ public class ViewController {
     private DBServiceRole roleService;
 
     @Autowired
-    DBServiceActivity activityService;
+    private DBServiceActivity activityService;
 
+    @Autowired
+    private DBServiceEvent eventService;
 
     @GetMapping("/")
     public String home(Authentication auth, HttpSession session) {
@@ -112,6 +115,18 @@ public class ViewController {
         model.addAttribute("tags", tags);
     }
 
+    @GetMapping("/new_event")
+    public String newEvent(Model model, Authentication auth){
+        Customer initiator = customerService.findCustomerByLogin(auth.getName());
+        List<Activity> activities = activityService.findAll();
+        City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
+        Event event = new Event(initiator, city);
+        model.addAttribute("new_event", event);
+        model.addAttribute("initiator", initiator);
+        model.addAttribute("activities", activities);
+        model.addAttribute("cities", city);
+        return "pages/new_event";
+    }
 
     @GetMapping("/logout")
     public  String logout(HttpServletRequest request) {

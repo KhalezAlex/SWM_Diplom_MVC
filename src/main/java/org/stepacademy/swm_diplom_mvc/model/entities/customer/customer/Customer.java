@@ -1,5 +1,6 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.customer.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,7 @@ public class Customer implements UserDetails {
     private String password;
 
 //Связь с таблицей личных данных
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private Profile profile;
@@ -93,7 +95,6 @@ public class Customer implements UserDetails {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", profile=" + profile +
                 '}';
     }
 }

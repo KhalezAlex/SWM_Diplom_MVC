@@ -1,5 +1,6 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.location.city;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class City {
     private Country country;
 
     @OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Event> events;
 
     public City() {}

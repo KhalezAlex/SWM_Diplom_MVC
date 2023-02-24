@@ -8,6 +8,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 
 @Getter
@@ -45,8 +46,12 @@ public class Event {
     @ManyToMany(mappedBy = "eventsIn", cascade = CascadeType.ALL)
     private Set<Customer> participants;
 
-
     public Event() {}
+
+    public Event(Customer initiator, City city) {
+        this.initiator = initiator;
+        this.city = city;
+    }
 
     public Event(String address, LocalDateTime dateTime) {
         this.address = address;

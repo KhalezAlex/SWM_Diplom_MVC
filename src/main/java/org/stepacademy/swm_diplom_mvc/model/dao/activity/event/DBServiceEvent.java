@@ -14,26 +14,31 @@ public class DBServiceEvent implements IDaoEvent{
 
     @Override
     public List<Event> findAll() {
-        return null;
+        return (List<Event>) eventRepo.findAll();
     }
 
     @Override
     public Optional<Event> findById(Integer id) {
-        return Optional.empty();
+        return eventRepo.findById(id);
     }
 
     @Override
     public Event save(Event event) {
-        return null;
+        return eventRepo.save(event);
     }
 
     @Override
     public Event update(Event event) {
+        if(eventRepo.findById(event.getId()).isPresent()){
+            eventRepo.save(event);
+        }
         return null;
     }
 
     @Override
     public Event delete(Integer id) {
-        return null;
+        Event event = eventRepo.findById(id).get();
+        eventRepo.delete(event);
+        return event;
     }
 }
