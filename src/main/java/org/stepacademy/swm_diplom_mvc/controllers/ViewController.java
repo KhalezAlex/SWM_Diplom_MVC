@@ -120,11 +120,9 @@ public class ViewController {
         Customer initiator = customerService.findCustomerByLogin(auth.getName());
         List<Activity> activities = activityService.findAll();
         City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
-        Event event = new Event(initiator, city);
+        Event event = new Event(city, initiator);
         model.addAttribute("new_event", event);
-        model.addAttribute("initiator", initiator);
         model.addAttribute("activities", activities);
-        model.addAttribute("cities", city);
         return "pages/new_event";
     }
 

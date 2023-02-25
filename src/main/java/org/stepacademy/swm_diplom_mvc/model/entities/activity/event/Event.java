@@ -27,7 +27,7 @@ public class Event {
 //    @Column(name = "eventName", nullable = false)
 //    private String eventName;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
     private City city;
 
@@ -38,7 +38,7 @@ public class Event {
     private LocalDateTime dateTime;
 
 //инициатор события
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "initiator_id")
     private Customer initiator;
 
@@ -48,9 +48,17 @@ public class Event {
 
     public Event() {}
 
-    public Event(Customer initiator, City city) {
-        this.initiator = initiator;
+    public Event(City city, Customer initiator) {
         this.city = city;
+        this.initiator = initiator;
+    }
+
+    public Event(Activity activity, City city, String address, LocalDateTime dateTime, Customer initiator) {
+        this.activity = activity;
+        this.city = city;
+        this.address = address;
+        this.dateTime = dateTime;
+        this.initiator = initiator;
     }
 
     public Event(String address, LocalDateTime dateTime) {
