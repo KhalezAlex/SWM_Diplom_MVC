@@ -24,7 +24,14 @@ public class DBServiceEvent implements IDaoEvent{
 
     @Override
     public Event save(Event event) {
-        return eventRepo.save(event);
+        System.out.println("DB " + event);
+        Event saveEvent = new Event();
+        saveEvent.setActivity(event.getActivity());
+        saveEvent.setCity(event.getCity());
+        saveEvent.setAddress(event.getAddress());
+        saveEvent.setDateTime(event.getDateTime());
+        saveEvent.setInitiator(event.getInitiator());
+        return eventRepo.save(saveEvent);
     }
 
     @Override

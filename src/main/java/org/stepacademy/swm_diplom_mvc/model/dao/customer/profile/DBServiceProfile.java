@@ -40,7 +40,6 @@ public class DBServiceProfile implements IDaoProfile {
         updated.setCity(profile.getCity());
         updated.setPhone(profile.getPhone());
         updated.setName(profile.getName());
-//        updated.setActivityTags(profile.getActivityTags());
         return updated;
     }
 
