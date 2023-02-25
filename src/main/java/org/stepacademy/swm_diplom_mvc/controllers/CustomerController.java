@@ -31,13 +31,4 @@ public class CustomerController {
         session.setAttribute("isAuthenticated", auth != null);
         return "pages/home";
     }
-
-//    @PostMapping("/profile")
-//    public String profileUp(@RequestParam Integer id, @RequestParam(required = false) String name, @RequestParam(required = false) String phone, @RequestParam(required = false) Integer age,
-//                            @RequestParam(required = false) String city){
-////        Profile profile = profileService.findById(id).get();
-//        Profile profile = new Profile(id, name, phone, age, cityService.findById(1).get());
-//        profileService.update(profile);
-//        return "redirect:/";
-//    }
 }

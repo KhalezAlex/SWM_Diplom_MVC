@@ -1,6 +1,8 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.customer.profile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
@@ -8,7 +10,6 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
 import java.util.Set;
-
 
 @Getter
 @Setter
@@ -28,10 +29,10 @@ public class Profile {
     @Column(name = "age", length = 2)
     private Integer age;
 
-    @Column(name = "events_organized")
+    @Column(name = "events_organized", nullable = false)
     private Integer events_organized;
 
-    @Column(name = "strikes_amount")
+    @Column(name = "strikes_amount", nullable = false)
     private Integer strikes_amount;
 
     @OneToOne(mappedBy = "profile")
@@ -45,7 +46,6 @@ public class Profile {
     @JoinTable(name = "profile_activities_t", joinColumns = @JoinColumn(name = "profile_id"),
                 inverseJoinColumns = @JoinColumn(name = "activity_id"))
     private Set<Activity> activityTags;
-
 
 
     public Profile() {
@@ -65,27 +65,6 @@ public class Profile {
         this.strikes_amount = 0;
         this.customer = customer;
         this.city = null;
-    }
-
-    public Profile(Integer id, String name, String phone, Integer age, Integer events_organized, Integer strikes_amount, City city) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.age = age;
-        this.events_organized = events_organized;
-        this.strikes_amount = strikes_amount;
-        this.city = city;
-    }
-
-    public Profile(Integer id, String name, String phone, Integer age, Integer events_organized, Integer strikes_amount, Customer customer, City city) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.age = age;
-        this.events_organized = events_organized;
-        this.strikes_amount = strikes_amount;
-        this.customer = customer;
-        this.city = city;
     }
 
     @Override

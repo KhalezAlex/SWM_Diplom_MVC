@@ -15,12 +15,12 @@ import java.util.Set;
 @RequestMapping(path = "/profile")
 public class ProfileController {
     @Autowired
-    DBServiceProfile profileService;
+    private DBServiceProfile profileService;
     @Autowired
-    DBServiceCustomer customerService;
+    private DBServiceCustomer customerService;
 
     @PostMapping("/update")
-    public String update(Profile profile, @RequestAttribute Set<String> tags){
+    public String update(Profile profile){
         profileService.update(profile);
         return "redirect:/";
     }
