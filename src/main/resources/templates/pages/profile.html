@@ -20,7 +20,7 @@
 
 <!--    Форма редактирования профиля-->
     <form th:if="${isOwner}" method="post" th:action="@{/profile/update}" th:object="${profile}">
-        <input id="profileId" th:field=" *{id}" hidden/>
+        <input id="profileId" th:field="*{id}" hidden>
         <input th:field="*{customer.id}" hidden>
         <label for="profile-name">Name</label>
         <input id="profile-name" th:type="text" th:field="*{name}"/>

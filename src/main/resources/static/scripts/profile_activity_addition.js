@@ -1,6 +1,4 @@
-let activity_select = $("#profile_activities");
-
-activity_select.on('change', () => {
+$("#profile_activities").on('change', () => {
     let activity = $("#profile_activities");
     $.ajax({
         url: "/profile/update/activity",
@@ -11,11 +9,11 @@ activity_select.on('change', () => {
             tag: activity.val()},
         success: function(data) {
             alert("Не забыть написать код, чтобы добавлялись теги в параграфы")
-            deleteTagFormSelect(data, activity_select);
+            deleteTagFormSelect(data);
         }
     })
 })
 
-function deleteTagFormSelect(tag, select) {
+function deleteTagFormSelect(tag) {
     $('#profile_activities option:contains(' + tag + ')').remove();
 }

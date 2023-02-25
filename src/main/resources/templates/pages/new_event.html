@@ -10,7 +10,7 @@
 <!--    Выбор какое спортивное мероприятие будет проведено -->
     <label for="new_event_activity">Sports: </label>
     <select id="new_event_activity" th:field="*{activity}">
-        <th:block th:each="tags:${activities}">
+        <th:block th:each="tags: ${activities}">
             <option th:value="${tags.id}">[[${tags.name}]]</option>
         </th:block>
     </select>
