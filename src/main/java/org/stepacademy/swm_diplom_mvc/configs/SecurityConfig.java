@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/new_event").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/profile", "/profile/update", "/logout").authenticated()
-                        .requestMatchers("/customer/register", "/register", "/login",
+                        .requestMatchers("/customer/register", "/register",
                                         "/service/generateBase").anonymous()
                         .requestMatchers("/").permitAll()
                         .anyRequest().authenticated()
@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .failureUrl("/login?error=true")
+                                .permitAll()
 //                        .failureUrl("/")
                         .defaultSuccessUrl("/")
                 );

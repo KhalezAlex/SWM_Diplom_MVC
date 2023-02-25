@@ -51,19 +51,7 @@
     <a th:href="@{/logout}">Log out</a>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
-    <script>
-        $("#profile_activities").on('change', () => {
-            $.ajax({
-                url: "/profile/update/activity",
-                method: "GET",
-                dataType: "html",
-                data: {
-                    profileId: $("#profileId").val(),
-                    tag: $("#profile_activities").val()},
-                success: function(data) {alert(data)}
-            })
-        })
-    </script>
+    <script th:src="@{/scripts/profile_activity_addition.js}"></script>
 </body>
 </html>
 

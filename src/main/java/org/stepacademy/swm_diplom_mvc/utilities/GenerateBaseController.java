@@ -70,7 +70,7 @@ public class GenerateBaseController {
     }
 
     public void activityInit(){
-        String[] activity = {"Футбол", "Баскетбол", "Волейбол", "Хоккей", "Пробежка", "Коньки", "Санки", "Лыжи",
+        String[] activity = {"Виды спорта: ","Футбол", "Баскетбол", "Волейбол", "Хоккей", "Пробежка", "Коньки", "Лыжи",
                 "Сноуборд", "Кросс Фит", "Тренажёрный зал"};
         for(String act : activity)
             activityService.save(new Activity(act));
