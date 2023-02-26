@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="/styles/layout_header.css">
 </head>
 <body>
-    <th:block th:insert="~{layouts/header.html :: layout_header}"></th:block>
+    <th:block th:insert="~{layouts/UX/header.html ::
+                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${name})}">
+    </th:block>
     <div class="container">
         <div class="div_search">
             <form class="form_search_event">

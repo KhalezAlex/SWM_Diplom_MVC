@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="/styles/layout_header.css">
+</head>
+<body>
+<!--    Хедер   -->
+    <th:block th:insert="~{layouts/UX/header.html ::
+                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${name})}">
+    </th:block>
+
+<!--    Форма просмотра профиля другого пользователя    -->
+    <th:block th:if="${!isOwner}" th:insert="~{layouts/UX/profile/profile_view_form.html ::
+                                            layout_profile_view_form(${profile})}"></th:block>
+
+<!--    Форма просмотра своего профиля  -->
+    <th:block th:if="${isOwner}" th:insert="~{layouts/UX/profile/profile_update_form.html ::
+                                            layout_profile_update_form(${profile}, ${cities}, ${tags})}"></th:block>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+<script th:src="@{/scripts/profile_activity_addition.js}"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.controllers;
+package org.stepacademy.swm_diplom_mvc.controllers.entity_controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

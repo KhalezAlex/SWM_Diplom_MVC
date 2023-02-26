@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update profile</title>
+
+</head>
+<body>
+<div th:fragment="layout_profile_update_form(profile, cities, tags)" class="container">
+    <!--Форма редактирования профиля-->
+    <form class="modal_profile" method="post"
+          th:action="@{/profile/update}" th:object="${profile}">
+        <input id="profileId" th:field="*{id}" hidden>
+        <input th:field="*{customer.id}" hidden>
+        <div class="form_user_data">
+            <div class="div_column_user_data">
+                <label class="label_user_data">
+                    Name
+                    <input type="text" class="input_user_data" th:field="*{name}"/>
+                </label>
+                <label class="label_user_data">
+                    Phone
+                    <input type="text" class="input_user_data" th:field="*{phone}"/>
+                </label>
+                <label class="label_user_data">
+                    Age
+                    <input type="number" class="input_user_data" th:field="*{age}"/>
+                </label>
+                <label class="label_user_data">
+                    City
+                    <select class="input_user_data" th:field="*{city}">
+                        <th:block th:each="location: ${cities}">
+                            <option th:value="${location.id}">[[${location.name}]]</option>
+                        </th:block>
+                    </select>
+                </label>
+                <label class="label_user_data">
+                    Your sports
+                    <select id="profile_activities" class="input_user_data" name="tag">
+                        <option th:each="activity: ${tags}">[[${activity.name}]]</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="div_column">
+                <img src="" class="user_picture">
+                <div>
+                    <span class="span_user_data" th:text="${profile.customer.login}"></span>
+                    <br/>
+                    <label>
+                        Initiated
+                        <input type="text" class="input_user_data" th:field="*{events_organized}" disabled/>
+                    </label>
+                    <a th:href="@{/logout}">logout</a>
+                </div>
+            </div>
+        </div>
+        <button class="button_submit_profile_changes">Save</button>
+    </form>
+    <a th:href="@{/}">Cancel</a>
+</div>
+</body>
+</html>

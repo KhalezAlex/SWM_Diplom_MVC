@@ -5,16 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<header th:fragment="layout_header">
+<header th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name)">
     <div class="div_emblem">
         <button style="width: 90%; height: 90%; margin: auto" onclick="window.location.href = '/'">HOME</button>
     </div>
     <select class="select_city">
-        <th:block th:each="city: ${session.cities}">
-            <option th:if="${session.isAuthenticated && (city.name == session.city.getName())}" selected>
+        <th:block th:each="city: ${cities}">
+            <option th:if="${isAuthenticated && (city.name == cityOfPresence.getName())}" selected>
                 [[${city.name}]]
             </option>
-            <option th:if="${!(session.isAuthenticated && (city.name == session.city.getName()))}">
+            <option th:if="${!(isAuthenticated && (city.name == cityOfPresence.getName()))}">
                 [[${city.name}]]
             </option>
         </th:block>
@@ -23,19 +23,19 @@
     <button class="button button--1">chat</button>
 
 <!--    <th:block th:each=""-->
-    <button class="button" th:if="${session.isAdmin}" onclick="window.location.href = '/admin'" >
+    <button class="button" th:if="${isAdmin}" onclick="window.location.href = '/admin'" >
         admin page
     </button>
-    <button class="button" th:if="${!session.isAdmin}" style="opacity: 0" disabled>
+    <button class="button" th:if="${!isAdmin}" style="opacity: 0" disabled>
         admin page
     </button>
 
-    <button th:if="${!session.isAuthenticated}" class="button" onclick="window.location.href = '/login'">
+    <button th:if="${!isAuthenticated}" class="button" onclick="window.location.href = '/login'">
         sign in
     </button>
 
-    <a th:if="${session.isAuthenticated}" class="a_header_links" th:href="@{'/profile/' + ${session.name}}"
-            th:text="${session.name}"></a>
+    <a th:if="${isAuthenticated}" class="a_header_links" th:href="@{'/profile/' + ${name}}"
+            th:text="${name}"></a>
 </header>
 
 </body>

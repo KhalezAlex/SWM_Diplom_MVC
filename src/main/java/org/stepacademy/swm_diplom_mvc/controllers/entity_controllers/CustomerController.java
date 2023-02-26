@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.controllers;
+package org.stepacademy.swm_diplom_mvc.controllers.entity_controllers;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

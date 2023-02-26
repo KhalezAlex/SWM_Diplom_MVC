@@ -8,14 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MVCConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("pages/home");
-        registry.addViewController("/login").setViewName("pages/login");
-        registry.addViewController("/register").setViewName("pages/registration");
-        registry.addViewController("/profile").setViewName("pages/profile");
-        registry.addViewController("/new_event").setViewName("pages/new_event");
-        registry.addViewController("/admin").setViewName("pages/admin");
-        registry.addViewController("/admin-customer").setViewName("pages/admin_page/admin-customer");
-        registry.addViewController("/admin-event").setViewName("pages/admin_page/admin-event");
-        registry.addViewController("/admin-profile").setViewName("pages/admin_page/admin-profile");
+        registry.addViewController("/").setViewName("pages/UX/home");
+        registry.addViewController("/login").setViewName("pages/UX/login");
+        registry.addViewController("/register").setViewName("pages/UX/registration");
+        registry.addViewController("/profile").setViewName("pages/UX/profile");
+        registry.addViewController("/new_event").setViewName("pages/UX/new_event");
+        registry.addViewController("/admin").setViewName("pages/admin/admin");
+        registry.addViewController("/admin-customer").setViewName("pages/admin/admin-customer");
+        registry.addViewController("/admin-event").setViewName("pages/admin/admin-event");
+        registry.addViewController("/admin-profile").setViewName("pages/admin/admin-profile");
     }
 }
