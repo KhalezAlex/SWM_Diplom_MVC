@@ -26,7 +26,7 @@ public class Event {
 
 //    @Column(name = "eventName", nullable = false)
 //    private String eventName;
-
+//Используем Merge для корректной передачи Event из html
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
     private City city;
@@ -37,7 +37,7 @@ public class Event {
     @Column(name = "dateTime", nullable = false)
     private LocalDateTime dateTime;
 
-//инициатор события
+//инициатор события. Используем Merge для корректной передачи Event из html
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "initiator_id")
     private Customer initiator;

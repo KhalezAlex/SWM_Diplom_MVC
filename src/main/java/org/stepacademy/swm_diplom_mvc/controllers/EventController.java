@@ -15,7 +15,6 @@ public class EventController {
 
     @PostMapping("/save")
     public String update(Event event){
-        System.out.println("create base " + event);
         eventService.save(event);
         return "redirect:/";
     }
