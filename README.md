@@ -11,3 +11,8 @@
 ![contributions](https://www.gifki.org/data/media/279/sport-animatsionnaya-kartinka-0082.gif)
 ![contributions]()
 ![contributions]()
+<h3>Стек технологий</h3>
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Spring/Springboot+Security+Thymeleaf)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Bootstrap+PostgreSQL+Hibernate)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=HTML/CSS/JS+Lombok+Maven)](https://git.io/typing-svg)
