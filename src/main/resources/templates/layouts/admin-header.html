@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Header</title>
+</head>
+<body>
+<div th:fragment="header">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin}">Admin Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" th:href="@{/admin-customer}">Customer</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" th:href="@{/admin-profile}">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" th:href="@{/home}" hidden>Activity</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" th:href="@{/admin-event}">Event</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" th:href="@{/home}" hidden>City</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" th:href="@{/home}" hidden>Country</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" th:href="@{/}">Go home yankee</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container-fluid text-center fixed-bottom text-bg-light" th:fragment="footer">
+  <h4>Developed by KhalezAlex and Svyat54 2023 &copy; MVP v0.0.1</h4>
+</div>
+
+</body>
+</html>

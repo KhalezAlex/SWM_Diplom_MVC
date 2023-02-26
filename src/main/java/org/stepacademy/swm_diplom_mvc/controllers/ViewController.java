@@ -117,9 +117,13 @@ public class ViewController {
 
     @GetMapping("/new_event")
     public String newEvent(Model model, Authentication auth){
+        //Находим в БД инициатора, по логину(тот кто сейчас зарегистрирован)
         Customer initiator = customerService.findCustomerByLogin(auth.getName());
+        //Грузим теги активностей
         List<Activity> activities = activityService.findAll();
+        //Находим в БД город, по логину
         City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
+        //Создаём экземпляр для передачи в модель, с данными города и кастомера
         if (city == null)
             city = cityService.findById(1).get();
         Event event = new Event(city, initiator);

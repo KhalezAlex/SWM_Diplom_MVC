@@ -31,12 +31,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/admin", "/admin-customer", "/admin-profile", "/admin-event")
+                        .hasRole("ADMIN")
                         .requestMatchers("/new_event", "/event/save").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/profile", "/profile/update", "/logout").authenticated()
                         .requestMatchers("/customer/register", "/register",
                                         "/service/generateBase").anonymous()
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/", "/webjars/**", "/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

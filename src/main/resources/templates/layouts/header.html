@@ -23,7 +23,7 @@
     <button class="button button--1">chat</button>
 
 <!--    <th:block th:each=""-->
-    <button class="button" th:if="${session.isAdmin}">
+    <button class="button" th:if="${session.isAdmin}" onclick="window.location.href = '/admin'" >
         admin page
     </button>
     <button class="button" th:if="${!session.isAdmin}" style="opacity: 0" disabled>
