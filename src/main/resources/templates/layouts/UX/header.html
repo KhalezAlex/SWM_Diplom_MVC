@@ -24,7 +24,7 @@
 
 <!--    <th:block th:each=""-->
     <button class="button" th:if="${isAdmin}" onclick="window.location.href = '/admin'" >
-        admin page
+       <a th:href="@{/admin_home/base}"> admin page </a>
     </button>
     <button class="button" th:if="${!isAdmin}" style="opacity: 0" disabled>
         admin page
