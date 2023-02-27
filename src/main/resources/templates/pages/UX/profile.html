@@ -13,11 +13,11 @@
     </th:block>
 
 <!--    Форма просмотра профиля другого пользователя    -->
-    <th:block th:if="${!isOwner}" th:insert="~{layouts/UX/profile/profile_view_form.html ::
-                                            layout_profile_view_form(${profile})}"></th:block>
+    <th:block th:if="${!isOwner}" th:insert="~{layouts/UX/profile/profile_view.html ::
+                                            layout_profile_view_div(${profile})}"></th:block>
 
-<!--    Форма просмотра своего профиля  -->
-    <th:block th:if="${isOwner}" th:insert="~{layouts/UX/profile/profile_update_form.html ::
+<!--    Форма просмотра/редактирования своего профиля  -->
+    <th:block th:if="${isOwner}" th:insert="~{layouts/UX/profile/profile_update.html ::
                                             layout_profile_update_form(${profile}, ${cities}, ${tags})}"></th:block>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
