@@ -95,7 +95,6 @@ public class ViewController {
         return tags;
     }
 
-
     @GetMapping("/new_event")
     public String newEvent(Model model, Authentication auth){
         setNewEventModelAttrs(model,auth);
@@ -114,6 +113,11 @@ public class ViewController {
         Event event = new Event(city, initiator);
         model.addAttribute("new_event", event);
         model.addAttribute("activities", activities);
+    }
+
+    @GetMapping("/admin")
+    public String adminPage(){
+        return "redirect:/admin_home/base";
     }
 
 
