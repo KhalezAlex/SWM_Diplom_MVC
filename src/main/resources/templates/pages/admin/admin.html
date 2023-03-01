@@ -26,7 +26,7 @@
                     <tr>
                         <th scope="row">[[${activity.id}]]</th>
                         <th scope="row" >[[${activity.name}]]</th>
-                        <th scope="row" ><a th:href="@{'/client/delete/' + ${activity.id}}" class="btn btn-danger">Delete</a></th>
+                        <th scope="row" ><a th:href="@{'/admin_home/deleteActivity/' + ${activity.id}}" class="btn btn-danger">Delete</a></th>
                         <th scope="row" ><a th:href="@{'/client/update/' + ${activity.id}}" class="btn btn-primary">Update</a></th>
                     </tr>
                 </th:block>
@@ -53,7 +53,7 @@
                         <th scope="row">[[${city.id}]]</th>
                         <th scope="row" >[[${city.name}]]</th>
                         <th scope="row" >[[${city.country.name}]]</th>
-                        <th scope="row" ><a th:href="@{'/client/delete/' + ${city.id}}" class="btn btn-danger">Delete</a></th>
+                        <th scope="row" ><a th:href="@{'/admin_home/deleteCity/' + ${city.id}}" class="btn btn-danger">Delete</a></th>
                         <th scope="row" ><a th:href="@{'/client/update/' + ${city.id}}" class="btn btn-primary">Update</a></th>
                     </tr>
                 </th:block>
@@ -78,7 +78,7 @@
                     <tr>
                         <th scope="row">[[${country.id}]]</th>
                         <th scope="row" >[[${country.name}]]</th>
-                        <th scope="row" ><a th:href="@{'/client/delete/' + ${country.id}}" class="btn btn-danger">Delete</a></th>
+                        <th scope="row" ><a th:href="@{'/admin_home/deleteCountry/' + ${country.id}}" class="btn btn-danger">Delete</a></th>
                         <th scope="row" ><a th:href="@{'/client/update/' + ${country.id}}" class="btn btn-primary">Update</a></th>
                     </tr>
                 </th:block>

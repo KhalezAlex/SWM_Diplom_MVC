@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.IDaoActivity;
@@ -69,4 +70,21 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @GetMapping("/deleteActivity/{id}")
+    public String deleteActivity(@PathVariable("id") Integer id){
+        iDaoActivity.delete(id);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/deleteCity/{id}")
+    public String deleteCity(@PathVariable("id") Integer id){
+        iDaoCity.delete(id);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/deleteCountry/{id}")
+    public String deleteCountry(@PathVariable("id") Integer id){
+        iDaoCountry.delete(id);
+        return "redirect:/admin";
+    }
 }
