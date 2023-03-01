@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/styles/log_reg_forms.css">
 </head>
 <body>
-<th:block th:insert="~{layouts/header.html :: layout_header}"></th:block>
+<th:block th:insert="~{layouts/UX/header.html ::
+                        layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${name})}"></th:block>
 <div class="container">
     <div class="modal_log_reg">
         <form class="form_login" th:method="post" th:action="@{/customer/register}">

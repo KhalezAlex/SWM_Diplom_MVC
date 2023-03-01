@@ -45,7 +45,7 @@ public class DBServiceCustomer implements IDaoCustomer {
 
     @Override
     public List<Customer> findAll() {
-        return null;
+        return (List<Customer>) customerRepo.findAll();
     }
 
     @Override
@@ -62,11 +62,16 @@ public class DBServiceCustomer implements IDaoCustomer {
 
     @Override
     public Customer update(Customer customer) {
+        if(customerRepo.findById(customer.getId()).isPresent()){
+            customerRepo.save(customer);
+        }
         return null;
     }
 
     @Override
     public Customer delete(Integer id) {
-        return null;
+        Customer customer = customerRepo.findById(id).get();
+        customerRepo.delete(customer);
+        return customer;
     }
 }

@@ -9,7 +9,7 @@
     <header th:insert="layouts/admin/admin-header.html :: header"></header>
   <h1 class="text-center">Admin page</h1>
 <!--    Форма тегов спорта-->
-    <div class="card" style="width: 40rem;">
+    <div class="card container-fluid" style="width: 40rem;" >
         <a class="btn btn-success" th:href="@{/admin_home/saveActivity}">Activity add</a>
         <div class="card-body">
             <table class="table table-bordered table-striped">
@@ -35,7 +35,7 @@
         </div>
     </div>
 <!--    Форма городов-->
-    <div class="card" style="width: 40rem;">
+    <div class="card container-fluid" style="width: 40rem;">
         <a th:href="@{/admin_home/saveCity}" class="btn btn-success">City add</a>
         <div class="card-body">
             <table class="table table-bordered table-striped">
@@ -62,7 +62,7 @@
         </div>
     </div>
 <!--    Форма для страны-->
-    <div class="card" style="width: 40rem;">
+    <div class="card container-fluid" style="width: 40rem;">
         <a th:href="@{/admin_home/saveCountry}" class="btn btn-success">Country add</a>
         <div class="card-body">
             <table class="table table-bordered table-striped">

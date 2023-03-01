@@ -28,6 +28,6 @@ public class CustomerController {
         Customer customer = new Customer(username, password);
         customerService.save(customer);
         session.setAttribute("isAuthenticated", auth != null);
-        return "pages/home";
+        return "pages/UX/home";
     }
 }

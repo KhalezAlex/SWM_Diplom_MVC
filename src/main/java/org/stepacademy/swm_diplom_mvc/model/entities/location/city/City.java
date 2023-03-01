@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
 
 import java.util.Set;
