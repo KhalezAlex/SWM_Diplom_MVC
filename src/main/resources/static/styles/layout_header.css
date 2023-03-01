@@ -1,7 +1,6 @@
 /*хедер и его компоненты*/
 header {
     z-index: 101;
-    margin: auto;
     border-radius: 14px;
     padding-right: 20px;
     height: 85px;
@@ -10,6 +9,8 @@ header {
     top: 0;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    left: 5%;
 }
 
 .div_emblem {

@@ -65,15 +65,15 @@ public class ViewController {
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
         setHomePageSessionAttrs(model, auth);
-        setProfileSessionAttrs(model, auth, name);
+        setProfileModelAttrs(model, auth, name);
         return "pages/UX/profile";
     }
-    private void setProfileSessionAttrs(Model model, Authentication auth, String name) {
-        setProfileCommonAttrs(model, auth, name);
+    private void setProfileModelAttrs(Model model, Authentication auth, String name) {
+        setProfileCommonModelAttrs(model, auth, name);
         if (Objects.equals(model.getAttribute("isOwner"), true))
-            setProfileOwnerAttrs(model, name);
+            setProfileOwnerModelAttrs(model, name);
     }
-    private void setProfileCommonAttrs(Model model, Authentication auth, String name) {
+    private void setProfileCommonModelAttrs(Model model, Authentication auth, String name) {
         Customer customer = aggregator.customerService.findCustomerByLogin(name);
         Profile profile = aggregator.profileService.findById(customer.getId()).get();
 //Профиль для отображения в окне профиля
@@ -82,7 +82,7 @@ public class ViewController {
         model.addAttribute("isOwner", auth.getName().equals(customer.getLogin()));
         System.out.println("*************" + model.getAttribute("isOwner"));
     }
-    private void setProfileOwnerAttrs(Model model, String name) {
+    private void setProfileOwnerModelAttrs(Model model, String name) {
 //Список городов для редактирования профиля
         model.addAttribute("cities", aggregator.cityService.findAll());
 //Список видов спорта - тегов для дальнейшего использования при выборе ивентов
