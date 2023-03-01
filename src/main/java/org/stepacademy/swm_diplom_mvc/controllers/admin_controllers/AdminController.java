@@ -15,6 +15,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin_home")
@@ -67,6 +68,44 @@ public class AdminController {
     @PostMapping("/saveCountry")
     public String saveCountry(Country country){
         iDaoCountry.save(country);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/updateActivity/{id}")
+    public String updateActivity(@PathVariable("id") Integer id, Model model){
+        Optional<Activity> activity = iDaoActivity.findById(id);
+        model.addAttribute("activity", activity);
+        return "pages/admin/update-service/activity-update";
+    }
+    @PostMapping("/updateActivity")
+    public String updateActivity(Activity activity){
+        iDaoActivity.update(activity);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/updateCity/{id}")
+    public String updateCity(@PathVariable("id") Integer id, Model model){
+        Optional<City> city = iDaoCity.findById(id);
+        List<Country> countries = iDaoCountry.findAll();
+        model.addAttribute("city", city);
+        model.addAttribute("countries", countries);
+        return "pages/admin/update-service/city-update";
+    }
+    @PostMapping("/updateCity")
+    public String updateCity(City city){
+        iDaoCity.update(city);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/updateCountry/{id}")
+    public String updateCountry(@PathVariable("id") Integer id, Model model){
+        Optional<Country> country = iDaoCountry.findById(id);
+        model.addAttribute("country", country);
+        return "pages/admin/update-service/country-update";
+    }
+    @PostMapping("/updateCountry")
+    public String updateCountry(Country country){
+        iDaoCountry.update(country);
         return "redirect:/admin";
     }
 

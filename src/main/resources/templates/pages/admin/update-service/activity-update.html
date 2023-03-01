@@ -7,8 +7,9 @@
 </head>
 <body>
 <header th:insert="layouts/admin/admin-header.html :: header"></header>
-<h1>Activity Add Form</h1>
-<form method="post" th:action="@{/admin_home/saveActivity}" th:object="${activity}">
+<h1>Activity Update Form</h1>
+<form method="post" th:action="@{/admin_home/updateActivity}" th:object="${activity}">
+    <input th:field=" *{id}" hidden/>
     <label for="activity-add" class="form-label">Sport: </label>
     <input th:type="text" th:field="*{name}" id="activity-add" class="form-control" aria-describedby="passwordHelpBlock"
            required minlength="1" maxlength="255">

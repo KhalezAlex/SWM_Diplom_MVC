@@ -29,6 +29,8 @@ public class DBServiceCountry implements IDaoCountry{
 
     @Override
     public Country update(Country country) {
+        if(countryRepo.findById(country.getId()).isPresent())
+            countryRepo.save(country);
         return null;
     }
 
