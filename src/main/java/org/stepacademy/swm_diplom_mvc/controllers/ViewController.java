@@ -61,7 +61,6 @@ public class ViewController {
         return "/pages/UX/registration";
     }
 
-
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
         setHomePageModelAttrs(model, auth);
@@ -118,6 +117,10 @@ public class ViewController {
     @GetMapping("/admin")
     public String adminPage(){
         return "redirect:/admin_home/base";
+    }
+    @GetMapping("/admin-customer")
+    public String aminCust(){
+        return "redirect:/admin_customer/all";
     }
 
 

@@ -8,7 +8,50 @@
 <body>
 <header th:insert="layouts/admin/admin-header.html :: header"></header>
 <h1 class="text-center">Customer page</h1>
-
+<div class="card container-fluid" style="width: auto;">
+    <p class="card-text text-center">Customers</p>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <thead>
+                <th scope="col">id</th>
+                <th scope="col">Login</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Age</th>
+                <th scope="col">City</th>
+                <th scope="col">Events organized</th>
+                <th scope="col">Strikes amount</th>
+                <th scope="col">Role</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+                </thead>
+            </tr>
+            <tbody class="table-group-divider">
+            <th:block th:each="customers:${customer}">
+                <tr>
+                    <th scope="row">[[${customers.id}]]</th>
+                    <th scope="row" >[[${customers.login}]]</th>
+                    <th scope="row" >[[${customers.profile.name}]]</th>
+                    <th scope="row" >[[${customers.profile.phone}]]</th>
+                    <th scope="row" >[[${customers.profile.age}]]</th>
+<!--                    Решение ошибки: если приходит не заполненный город, выкидываем пустую строку иначе выводим город-->
+                    <th:block th:if="${customers.profile.city != null}">
+                        <th scope="row" >[[${customers.profile.city.name}]]</th>
+                    </th:block>
+                    <th:block th:if="${customers.profile.city == null}">
+                        <th scope="row" ></th>
+                    </th:block>
+                    <th scope="row" >[[${customers.profile.events_organized}]]</th>
+                    <th scope="row" >[[${customers.profile.strikes_amount}]]</th>
+                    <th scope="row" >[[${customers.roles}]]</th>
+                    <th scope="row" ><a th:href="@{'/admin_customer/delete/' + ${customers.id}}" class="btn btn-danger">Delete</a></th>
+                    <th scope="row" ><a th:href="@{'/admin_customer/update/' + ${customers.id}}" class="btn btn-primary">Update</a></th>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</div>
 <footer th:insert="layouts/admin/admin-header.html :: footer"></footer>
 </body>
 </html>
