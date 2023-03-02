@@ -25,22 +25,21 @@ public class ViewController {
 
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
-        setHomePageSessionAttrs(model, auth);
+        setHomePageModelAttrs(model, auth);
         return "pages/UX/home";
     }
-    private void setHomePageSessionAttrs(Model model, Authentication auth) {
+    private void setHomePageModelAttrs(Model model, Authentication auth) {
 //Атрибуты, которые нужны, не зависимо от того, аутентифицирован пользователь, или нет
         model.addAttribute("isAuthenticated", auth != null);
-    //список городов для выгрузки в хедер для отображения случайных спортивных событий на сегодня при смене города (js)
+//список городов для выгрузки в хедер для отображения случайных спортивных событий на сегодня при смене города (js)
         model.addAttribute("cities", aggregator.cityService.findAll());
 //Атрибуты, зависящие от того, аутентифицирован ли пользователь
-        if (auth != null) {
-            setHomepageAuthSessionAttrs(model, auth);
-        } else {
-            setHomepageUnAuthSessionAttrs(model);
-        }
+        if (auth != null)
+            setHomepageAuthModelAttrs(model, auth);
+        else
+            setHomepageUnAuthModelAttrs(model);
     }
-    private void setHomepageAuthSessionAttrs(Model model, Authentication auth) {
+    private void setHomepageAuthModelAttrs(Model model, Authentication auth) {
 //Передаем Логин пользователя
         model.addAttribute("name", auth.getName());
 //Проверяем город в профиле пользователя
@@ -51,20 +50,20 @@ public class ViewController {
         model.addAttribute("isAdmin", auth.getAuthorities().toString()
                 .contains(aggregator.roleService.findById(1).get().getRole()));
     }
-    private void setHomepageUnAuthSessionAttrs(Model model) {
+    private void setHomepageUnAuthModelAttrs(Model model) {
         model.addAttribute("isAdmin",false);
     }
 
 
     @GetMapping("/register")
     public String register(Model model, Authentication auth) {
-        setHomePageSessionAttrs(model, auth);
+        setHomePageModelAttrs(model, auth);
         return "/pages/UX/registration";
     }
 
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
-        setHomePageSessionAttrs(model, auth);
+        setHomePageModelAttrs(model, auth);
         setProfileModelAttrs(model, auth, name);
         return "pages/UX/profile";
     }
@@ -80,7 +79,6 @@ public class ViewController {
         model.addAttribute("profile", profile);
 //Проверка на то, будет пользователь свой профиль просматривать, или нет, чтобы на фронте ограничить редактирование
         model.addAttribute("isOwner", auth.getName().equals(customer.getLogin()));
-        System.out.println("*************" + model.getAttribute("isOwner"));
     }
     private void setProfileOwnerModelAttrs(Model model, String name) {
 //Список городов для редактирования профиля
@@ -113,6 +111,7 @@ public class ViewController {
         Event event = new Event(city, initiator);
         model.addAttribute("new_event", event);
         model.addAttribute("activities", activities);
+        model.addAttribute("cities", aggregator.cityService.findAll());
     }
 
     @GetMapping("/admin")

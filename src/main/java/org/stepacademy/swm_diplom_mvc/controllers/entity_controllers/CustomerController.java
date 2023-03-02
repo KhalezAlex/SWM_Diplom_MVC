@@ -4,10 +4,11 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
-import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
 
@@ -19,15 +20,18 @@ public class CustomerController {
     @Autowired
     DBServiceProfile profileService;
 
-    @Autowired
-    private DBServiceCity cityService;
-
     @PostMapping("/register")
-    public String register(@RequestParam String username, @RequestParam String password, HttpSession session,
-                           Authentication auth) {
-        Customer customer = new Customer(username, password);
-        customerService.save(customer);
-        session.setAttribute("isAuthenticated", auth != null);
-        return "pages/UX/home";
+    public String register(@RequestParam String username, @RequestParam String password,
+                           @RequestParam String passRepeat, RedirectAttributes ra) {
+        if (!passRepeat.equals(password)){
+            ra.addFlashAttribute("error", "password");
+            return "redirect:/register";
+        }
+        if (customerService.findCustomerByLogin(username) != null) {
+            ra.addFlashAttribute("error", "login");
+            return "redirect:/register";
+        }
+        customerService.save(new Customer(username, password));
+        return "redirect:/";
     }
 }
