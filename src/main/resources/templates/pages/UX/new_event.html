@@ -10,13 +10,17 @@
 <!--    Выбор какое спортивное мероприятие будет проведено -->
     <label for="new_event_activity">Sports: </label>
     <select id="new_event_activity" th:field="*{activity}">
-        <th:block th:each="tags: ${activities}">
-            <option th:value="${tags.id}">[[${tags.name}]]</option>
+        <th:block th:each="tag: ${activities}">
+            <option th:value="${tag.id}">[[${tag.name}]]</option>
         </th:block>
     </select>
 <!--    Подгрузка города из БД по организатору, если так не нужно сделать селект-->
     <label for="new_event_city">City: </label>
-    <input id="new_event_city" th:type="number" th:field="*{city.id}" hidden readonly>[[*{city.name}]]
+    <select id="new_event_city" th:field="*{city}">
+        <option th:each="city: ${cities}" th:value="${city.id}">
+            [[${city.name}]]
+        </option>
+    </select>
 <!--    Заполнение адреса места проведения-->
     <label for="new_event_address">Address: </label>
     <input id="new_event_address" th:type="text" th:field="*{address}">
@@ -25,9 +29,10 @@
     <input id="new_event_date" type="datetime-local" th:field="*{dateTime}">
 <!--    Берём данные из БД инициатора который заходит в создание ивента-->
     <label for="new_event_initiator">Initiator event: </label>
-    <input id="new_event_initiator" th:type="number" th:field="*{initiator.id}" hidden readonly>[[*{initiator.login}]]
+    <input id="new_event_initiator" th:type="number" th:field="*{initiator.id}" hidden readonly>
+        [[*{initiator.login}]]
     <button>Add</button>
- </form>
+</form>
 <a th:href="@{/}">Cancel</a>
 </body>
 </html>

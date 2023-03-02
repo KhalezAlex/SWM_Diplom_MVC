@@ -34,9 +34,9 @@ public class GenerateBaseController {
         rolesTableInit();
         countryInit();
         cityInit();
-        adminInit();
+        testUsersInit();
         activityInit();
-        return "pages/home";
+        return "pages/UX/home";
     }
 
     private void rolesTableInit() {
@@ -47,7 +47,7 @@ public class GenerateBaseController {
         }
     }
 
-    public void adminInit() {
+    public void testUsersInit() {
         if (customerService.findCustomerByLogin("admin") == null) {
             customerService.saveAdmin(new Customer("admin", "admin"));
             customerService.save(new Customer("user", "user"));
