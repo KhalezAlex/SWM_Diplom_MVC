@@ -30,7 +30,7 @@
   <label for="event-date" class="form-label">Date and Time: </label>
   <input id="event-date" type="datetime-local" th:field="*{dateTime}">
 
-  <label for="event-customer" class="form-label">City: </label>
+  <label for="event-customer" class="form-label">Customer: </label>
   <select id="event-customer" th:field="*{initiator}" >
     <th:block th:each="customer: ${customers}">
       <option th:value="${customer.id}">[[${customer.login}]]</option>
