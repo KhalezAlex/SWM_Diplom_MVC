@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+</head>
+<body>
+<wrapper th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name)">
+    <header>
+        <button onclick="window.location.href = '/'">
+            HOME
+        </button>
+        <select>
+            <th:block th:each="city: ${cities}">
+                <option th:if="${isAuthenticated && (city.name == cityOfPresence.getName())}" selected>
+                    [[${city.name}]]
+                </option>
+                <option th:if="${!(isAuthenticated && (city.name == cityOfPresence.getName()))}">
+                    [[${city.name}]]
+                </option>
+            </th:block>
+        </select>
+        <button onclick="window.location.href = '/new_event'" >
+            new event
+        </button>
+        <button>
+            chat
+        </button>
+        <button th:if="${isAdmin}" onclick="window.location.href = '/admin'" >
+            admin page
+        </button>
+        <button th:if="${!isAdmin}" style="opacity: 0" disabled>
+            admin page
+        </button>
+        <button th:if="${!isAuthenticated}" onclick="window.location.href = '/login'">
+            sign in
+        </button>
+        <a th:if="${isAuthenticated}" th:href="@{'/profile/' + ${name}}"
+           th:text="${name}"></a>
+    </header>
+</wrapper>
+
+</body>
+</html>

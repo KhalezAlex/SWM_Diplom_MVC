@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" href="/styles/profile.css">
-    <link rel="stylesheet" href="/styles/layout_header.css">
+    <link rel="stylesheet" href="/styles/header/layout_header.css">
 </head>
 <body>
 <!--    Хедер   -->
-    <th:block th:insert="~{layouts/UX/header.html ::
+    <th:block th:insert="~{layouts/UX/header/layout_header.html ::
                             layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${name})}">
     </th:block>
 

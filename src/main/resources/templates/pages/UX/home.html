@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Home_page</title>
-<!--    обнуляющий стиль    -->
-    <link rel="stylesheet" href="/styles/null.css">
+    <link rel="stylesheet" href="/styles/header/layout_header.css">
     <link media="all" rel="stylesheet" href="/styles/home.css">
-    <link rel="stylesheet" href="/styles/layout_header.css">
 </head>
 <body>
-    <th:block th:insert="~{layouts/UX/header.html ::
+    <th:block th:insert="~{layouts/UX/header/layout_header.html ::
                             layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${name})}"></th:block>
 
     <th:block th:insert="~{layouts/UX/home/homeContent.html :: layout_home_content}"></th:block>
