@@ -119,9 +119,12 @@ public class ViewController {
         return "redirect:/admin_home/base";
     }
     @GetMapping("/admin-customer")
-    public String aminCust(){
+    public String adminCustomer(){
         return "redirect:/admin_customer/all";
     }
+
+    @GetMapping("/admin-event")
+    public String adminEvent(){ return "redirect:/admin_event/all";}
 
 
     @GetMapping("/logout")
