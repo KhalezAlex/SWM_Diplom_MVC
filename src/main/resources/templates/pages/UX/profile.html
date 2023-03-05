@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="/styles/profile.css">
+<!--    <link rel="stylesheet" href="/styles/profile.css">-->
+    <link rel="stylesheet" href="/styles/profile/templates/user_data_form.css">
     <link rel="stylesheet" href="/styles/header/layout_header.css">
 </head>
 <body>
 <!--    Хедер   -->
     <th:block th:insert="~{layouts/UX/header/layout_header.html ::
-                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${name})}">
+                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}">
     </th:block>
 
 <!--    Форма просмотра профиля другого пользователя    -->

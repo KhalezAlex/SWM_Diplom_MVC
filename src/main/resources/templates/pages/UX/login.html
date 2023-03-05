@@ -9,7 +9,7 @@
 </head>
 <body>
     <th:block th:insert="~{layouts/UX/header/layout_header.html ::
-                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${name})}"></th:block>
+                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}"></th:block>
     <div class="container">
         <div class="modal_log_reg">
             <form class="form_login" method="post" th:action="@{/login}">

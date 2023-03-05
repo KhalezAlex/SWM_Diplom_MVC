@@ -39,11 +39,12 @@ public class HomePageAttrsFilter implements Filter {
             else
                 setHomepageUnAuthModelAttrs(request);
         }
+        System.out.println(request.getAttributeNames().toString());
     }
 
     private void setHomepageAuthModelAttrs(ServletRequest request, Authentication auth) {
 //Передаем Логин пользователя
-        request.setAttribute("name", auth.getName());
+        request.setAttribute("userName", auth.getName());
 //Проверяем город в профиле пользователя
         City city = aggregator.customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
 //Если город не указан, показываем Москву, не устанавливая атрибут селекта
