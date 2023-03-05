@@ -23,7 +23,8 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/styles/header/*.css", "/styles/profile/templates/*.css",
+        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/styles/header/*.css",
+                "/styles/profile/*.css",
                 "/images/*", "/scripts/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
