@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../../static/styles/profile/profile_view.css">
+</head>
+<body>
+    <wrapper th:fragment="layout_profile_view_div(profile)" >
+        <div th:object="${profile}">
+            <div>
+                <div>
+                    <table style="width: 100%">
+                        <tr>
+                            <td>Name</td>
+                            <td><input type="text" th:field="*{name}" disabled/></td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td><input type="text" th:field="*{phone}" disabled/></td>
+                        </tr>
+                        <tr>
+                            <td>Age</td>
+                            <td><input type="number" th:field="*{age}" disabled/></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td><input type="text" th:field="*{city.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Initiated</td>
+                            <td><input type="text" th:field="*{events_organized}" disabled></td>
+                        </tr>
+                    </table>
+                </div>
+      
+                <div>
+                    <img src="">
+                    <div>
+                        <span th:text="${profile.customer.login}"></span>
+                    </div>
+                </div>
+            </div>                
+        </div>
+    </wrapper>
+</body>
+</html>

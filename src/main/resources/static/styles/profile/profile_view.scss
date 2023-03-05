@@ -1,0 +1,9 @@
+@import "../container/container.scss";
+@import "../profile/templates/user_data_form.scss";
+
+wrapper{
+    @extend %tpl_container;
+    >div {
+        @extend %tpl_user_data_form;
+    }
+}
