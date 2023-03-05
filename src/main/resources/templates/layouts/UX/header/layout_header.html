@@ -5,8 +5,7 @@
     <title>Header</title>
 </head>
 <body>
-<wrapper th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name)">
-    <header>
+    <header  th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name)">
         <button onclick="window.location.href = '/'">
             HOME
         </button>
@@ -38,7 +37,6 @@
         <a th:if="${isAuthenticated}" th:href="@{'/profile/' + ${name}}"
            th:text="${name}"></a>
     </header>
-</wrapper>
 
 </body>
 </html>

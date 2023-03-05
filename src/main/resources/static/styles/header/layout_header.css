@@ -1,5 +1,5 @@
 @import "../null.css";
-wrapper header :nth-child(6), wrapper header :nth-child(2), wrapper header button {
+header :nth-child(6), header :nth-child(2), header button {
   height: 59.5px;
   margin: 0 auto;
   border-radius: 9px;
@@ -9,42 +9,38 @@ wrapper header :nth-child(6), wrapper header :nth-child(2), wrapper header butto
   text-align: center;
 }
 
-wrapper {
+header {
   top: 0;
+  left: 5%;
   height: 85px;
   width: 90%;
   position: fixed;
-  left: 5%;
-}
-wrapper header {
   z-index: 10;
-  border-radius: 15px;
   background-color: #b1d8e3;
-  top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  height: 85px;
   padding-top: 12.75px;
+  border-radius: 15px;
 }
-wrapper header :nth-child(1) {
+header :nth-child(1) {
   width: 15%;
 }
-wrapper header :nth-child(2) {
+header :nth-child(2) {
   width: 17%;
 }
-wrapper header :nth-child(3) {
+header :nth-child(3) {
   width: 9%;
 }
-wrapper header :nth-child(4) {
+header :nth-child(4) {
   width: 9%;
 }
-wrapper header :nth-child(5) {
+header :nth-child(5) {
   width: 9%;
 }
-wrapper header :nth-child(6) {
+header :nth-child(6) {
   width: 9%;
   border-radius: 9px;
   background-color: white;

@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.controllers;
+package org.stepacademy.swm_diplom_mvc.controllers.legacy;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
@@ -17,24 +19,49 @@ import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 import java.util.List;
 import java.util.Objects;
 
-@Controller
-@RequestMapping(path = "/")
 public class ViewController {
     @Autowired
     DBServiceAggregator aggregator;
 
-    @GetMapping("/")
-    public String home() {
+    public String home(Model model, Authentication auth) {
+//        setHomePageModelAttrs(model, auth);
         return "pages/UX/home";
     }
+    private void setHomePageModelAttrs(Model model, Authentication auth) {
+//Атрибуты, которые нужны, не зависимо от того, аутентифицирован пользователь, или нет
+        model.addAttribute("isAuthenticated", auth != null);
+//список городов для выгрузки в хедер для отображения случайных спортивных событий на сегодня при смене города (js)
+        model.addAttribute("cities", aggregator.cityService.findAll());
+//Атрибуты, зависящие от того, аутентифицирован ли пользователь
+        if (auth != null)
+            setHomepageAuthModelAttrs(model, auth);
+        else
+            setHomepageUnAuthModelAttrs(model);
+    }
+    private void setHomepageAuthModelAttrs(Model model, Authentication auth) {
+//Передаем Логин пользователя
+        model.addAttribute("name", auth.getName());
+//Проверяем город в профиле пользователя
+        City city = aggregator.customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
+//Если город не указан, показываем Москву, не устанавливая атрибут селекта
+        model.addAttribute("city", city == null ? aggregator.cityService.findById(1).get() : city);
+//Проверка пользователя на наличие роли ADMIN
+        model.addAttribute("isAdmin", auth.getAuthorities().toString()
+                .contains(aggregator.roleService.findById(1).get().getRole()));
+    }
+    private void setHomepageUnAuthModelAttrs(Model model) {
+        model.addAttribute("isAdmin",false);
+    }
 
-    @GetMapping("/register")
-    public String register() {
+
+
+    public String register(Model model, Authentication auth) {
+//        setHomePageModelAttrs(model, auth);
         return "/pages/UX/registration";
     }
 
-    @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth){
+//        setHomePageModelAttrs(model, auth);
         setProfileModelAttrs(model, auth, name);
         return "pages/UX/profile";
     }
@@ -64,7 +91,6 @@ public class ViewController {
         return tags;
     }
 
-    @GetMapping("/new_event")
     public String newEvent(Model model, Authentication auth){
         setNewEventModelAttrs(model,auth);
         return "pages/UX/new_event";
@@ -85,17 +111,15 @@ public class ViewController {
         model.addAttribute("cities", aggregator.cityService.findAll());
     }
 
-    @GetMapping("/admin")
     public String adminPage(){
         return "redirect:/admin_home/base";
     }
-    @GetMapping("/admin-customer")
+
     public String aminCust(){
         return "redirect:/admin_customer/all";
     }
 
 
-    @GetMapping("/logout")
     public  String logout(HttpServletRequest request) {
         if (SecurityContextHolder.getContext().getAuthentication() != null)
             request.getSession().invalidate();

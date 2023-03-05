@@ -9,8 +9,6 @@
     <!--Форма редактирования профиля-->
     <form class="modal_profile" method="post"
           th:action="@{/profile/update}" th:object="${profile}">
-        <input id="profileId" th:field="*{id}" hidden>
-        <input th:field="*{customer.id}" hidden>
         <div class="form_user_data">
             <div class="div_column_user_data">
                 <label class="label_user_data">
@@ -54,6 +52,8 @@
                 </div>
             </div>
         </div>
+        <input id="profileId" th:field="*{id}" hidden>
+        <input th:field="*{customer.id}" hidden>
         <button class="button_submit_profile_changes">Save</button>
     </form>
     <a th:href="@{/}">Cancel</a>
