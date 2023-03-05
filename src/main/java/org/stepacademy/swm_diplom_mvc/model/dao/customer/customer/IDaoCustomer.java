@@ -12,4 +12,7 @@ public interface IDaoCustomer extends IDaoDB<Customer> {
 
     @Transactional
     Customer addRole(Integer customerId, Integer roleId);
+
+//    @Transactional
+//    Customer deleteRole(Integer customerId, Integer roleId);
 }

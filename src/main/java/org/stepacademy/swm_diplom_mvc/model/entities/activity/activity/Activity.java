@@ -23,7 +23,7 @@ public class Activity {
     @OneToMany(mappedBy = "activity",cascade = CascadeType.ALL)
     private Set<Event> events;
 
-    @ManyToMany(mappedBy = "activityTags")
+    @ManyToMany(mappedBy = "activityTags", cascade = CascadeType.ALL)
     private Set<Profile> profiles;
 
     public Activity() {}
