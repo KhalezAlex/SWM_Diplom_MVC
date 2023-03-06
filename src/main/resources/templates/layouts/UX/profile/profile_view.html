@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../../static/styles/profile/profile_view.css">
 </head>
 <body>
     <wrapper th:fragment="layout_profile_view_div(profile)" >
@@ -27,7 +26,7 @@
                         </tr>
                         <tr>
                             <td>City</td>
-                            <td><input type="text" th:field="*{city.name}"></td>
+                            <td><input type="text" th:field="*{city.name}" disabled></td>
                         </tr>
                         <tr>
                             <td>Initiated</td>

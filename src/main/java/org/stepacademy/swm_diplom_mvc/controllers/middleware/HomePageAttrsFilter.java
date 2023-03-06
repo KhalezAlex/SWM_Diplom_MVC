@@ -39,7 +39,6 @@ public class HomePageAttrsFilter implements Filter {
             else
                 setHomepageUnAuthModelAttrs(request);
         }
-        System.out.println(request.getAttributeNames().toString());
     }
 
     private void setHomepageAuthModelAttrs(ServletRequest request, Authentication auth) {
