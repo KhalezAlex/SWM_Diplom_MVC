@@ -35,6 +35,7 @@ public class AdminEventController {
     @GetMapping("/all")
     public String all(Model model){
         model.addAttribute("all", iDaoEvent.findAll());
+        model.addAttribute("navSelected", "event");
         return "pages/admin/admin-event";
     }
 
@@ -54,6 +55,7 @@ public class AdminEventController {
         model.addAttribute("activities", activities);
         model.addAttribute("cities", cities);
         model.addAttribute("customers", customers);
+        model.addAttribute("navSelected", "event");
         return "pages/admin/update-service/admin-event-update";
     }
 

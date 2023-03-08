@@ -25,6 +25,7 @@ public class AdminCustomerController {
     @GetMapping("/all")
     public String all(Model model){
         model.addAttribute("customer", iDaoCustomer.findAll());
+        model.addAttribute("navSelected", "customer");
         return "pages/admin/admin-customer";
     }
 
@@ -40,6 +41,7 @@ public class AdminCustomerController {
         List<Role> roles = iDaoRole.findAll();
         model.addAttribute("customer", customer);
         model.addAttribute("roles", roles);
+        model.addAttribute("navSelected", "customer");
         return "pages/admin/update-service/admin-customer-update";
     }
     @PostMapping("/update")

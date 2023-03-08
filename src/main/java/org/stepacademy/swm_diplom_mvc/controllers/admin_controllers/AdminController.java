@@ -32,6 +32,7 @@ public class AdminController {
         model.addAttribute("all", iDaoActivity.findAll());
         model.addAttribute("allCity", iDaoCity.findAll());
         model.addAttribute("allCountry", iDaoCountry.findAll());
+        model.addAttribute("navSelected", "admin");
         return "pages/admin/admin";
     }
 
@@ -39,6 +40,7 @@ public class AdminController {
     public String saveActivity(Model model){
         model.addAttribute("activity", new Activity());
         model.addAttribute("city", new City());
+        model.addAttribute("navSelected", "admin");
         return "pages/admin/save-service/activity-save";
     }
     @PostMapping("/saveActivity")
@@ -52,6 +54,7 @@ public class AdminController {
         List<Country> country = iDaoCountry.findAll();
         model.addAttribute("city", new City());
         model.addAttribute("country", country);
+        model.addAttribute("navSelected", "admin");
         return "pages/admin/save-service/city-save";
     }
     @PostMapping("/saveCity")
@@ -63,6 +66,7 @@ public class AdminController {
     @GetMapping("/saveCountry")
     public String saveCountry(Model model){
         model.addAttribute("country", new Country());
+        model.addAttribute("navSelected", "admin");
         return "pages/admin/save-service/country-save";
     }
     @PostMapping("/saveCountry")
@@ -75,6 +79,7 @@ public class AdminController {
     public String updateActivity(@PathVariable("id") Integer id, Model model){
         Optional<Activity> activity = iDaoActivity.findById(id);
         model.addAttribute("activity", activity);
+        model.addAttribute("navSelected", "admin");
         return "pages/admin/update-service/activity-update";
     }
     @PostMapping("/updateActivity")
@@ -89,6 +94,7 @@ public class AdminController {
         List<Country> countries = iDaoCountry.findAll();
         model.addAttribute("city", city);
         model.addAttribute("countries", countries);
+        model.addAttribute("navSelected", "admin");
         return "pages/admin/update-service/city-update";
     }
     @PostMapping("/updateCity")
@@ -101,6 +107,7 @@ public class AdminController {
     public String updateCountry(@PathVariable("id") Integer id, Model model){
         Optional<Country> country = iDaoCountry.findById(id);
         model.addAttribute("country", country);
+        model.addAttribute("navSelected", "admin");
         return "pages/admin/update-service/country-update";
     }
     @PostMapping("/updateCountry")
