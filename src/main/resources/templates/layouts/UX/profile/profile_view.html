@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile_view</title>
 </head>
 <body>
-    <wrapper th:fragment="layout_profile_view_div(profile)" >
+    <wrapper th:fragment="layout_profile_view_div(profile)">
         <div th:object="${profile}">
             <div>
                 <div>
@@ -39,6 +39,12 @@
                     <img src="">
                     <div>
                         <span th:text="${profile.customer.login}"></span>
+                    </div>
+                    <div style="margin-left: 7px">
+                        <input id="tag_1" type="text" disabled>
+                        <input id="tag_2" type="text" disabled>
+                        <input id="tag_3" type="text" disabled>
+                        <input id="tag_4" type="text" disabled>
                     </div>
                 </div>
             </div>                

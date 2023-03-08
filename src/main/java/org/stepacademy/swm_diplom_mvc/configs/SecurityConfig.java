@@ -25,7 +25,7 @@ public class SecurityConfig {
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/styles/header/*.css",
                 "/styles/profile/*.css",
-                "/images/*", "/scripts/*.js",
+                "/images/*", "/scripts/profile/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
 

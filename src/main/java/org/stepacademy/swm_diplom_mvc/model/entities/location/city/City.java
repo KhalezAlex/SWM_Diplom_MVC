@@ -27,9 +27,13 @@ public class City {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @OneToMany(mappedBy = "city",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Event> events;
+
+    @OneToMany(mappedBy = "city")
+    @JsonIgnore
+    private Set<Profile> citizens;
 
     public City() {}
 

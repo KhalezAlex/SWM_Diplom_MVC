@@ -6,4 +6,7 @@ wrapper{
     >div {
         @extend %tpl_user_data_form;
     }
+    >form {
+        @extend %tpl_user_data_form;
+    }
 }

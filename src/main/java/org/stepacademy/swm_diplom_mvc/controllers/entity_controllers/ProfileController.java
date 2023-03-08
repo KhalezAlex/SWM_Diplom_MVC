@@ -21,6 +21,7 @@ public class ProfileController {
 
     @PostMapping("/update")
     public String update(Profile profile){
+        System.out.println("сюда сунулся");
         profileService.update(profile);
         return "redirect:/";
     }

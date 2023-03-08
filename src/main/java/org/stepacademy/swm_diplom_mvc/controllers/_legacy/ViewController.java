@@ -94,18 +94,18 @@ public class ViewController {
     }
     private void setNewEventModelAttrs(Model model, Authentication auth) {
 //Находим в БД инициатора, по логину(тот кто сейчас авторизован)
-        Customer initiator = aggregator.customerService.findCustomerByLogin(auth.getName());
-//Грузим теги активностей
-        List<Activity> activities = aggregator.activityService.findAll();
-//Находим в БД город, по логину
-        City city = aggregator.customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
-//Создаём экземпляр для передачи в модель, с данными города и кастомера
-        if (city == null)
-            city = aggregator.cityService.findById(1).get();
-        Event event = new Event(city, initiator);
-        model.addAttribute("new_event", event);
-        model.addAttribute("activities", activities);
-        model.addAttribute("cities", aggregator.cityService.findAll());
+//        Customer initiator = aggregator.customerService.findCustomerByLogin(auth.getName());
+////Грузим теги активностей
+//        List<Activity> activities = aggregator.activityService.findAll();
+////Находим в БД город, по логину
+//        City city = aggregator.customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
+////Создаём экземпляр для передачи в модель, с данными города и кастомера
+//        if (city == null)
+//            city = aggregator.cityService.findById(1).get();
+//        Event event = new Event(city, initiator);
+//        model.addAttribute("new_event", event);
+//        model.addAttribute("activities", activities);
+//        model.addAttribute("cities", aggregator.cityService.findAll());
     }
 
     public String adminPage(){
