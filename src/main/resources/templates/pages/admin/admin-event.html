@@ -30,6 +30,8 @@
                     <th scope="row">[[${events.id}]]</th>
                     <th scope="row" >[[${events.activity.name}]]</th>
                     <th scope="row" >[[${events.city.name}]]</th>
+<!--                    <th scope="row" th:if="${events.city != null}" >[[${events.city.name}]]</th>-->
+<!--                    <th scope="row" th:if="${events.city == null}" ></th>-->
                     <th scope="row" >[[${events.address}]]</th>
                     <th scope="row" >[[${events.dateTime}]]</th>
                     <th scope="row" >[[${events.initiator.login}]]</th>

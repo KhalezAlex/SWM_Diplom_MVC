@@ -57,8 +57,9 @@
                         <a href="/logout">logout</a>
                     </div>
                     <div id="div_tags_list" style="margin-left: 7px">
-                        <th:block th:each="tag: ${profile.activityTags}">
-                            <input th:value="${tag.name}" readonly>
+                        <th:block th:each="tag, counter: ${profile.activityTags}">
+                            <input th:id="${'activity_tag_' + counter.count}" th:value="${tag.name}"
+                                   onclick="tagsDeleteListener(this.getAttribute('id'))" readonly>
                         </th:block>
                     </div>
                 </div>
