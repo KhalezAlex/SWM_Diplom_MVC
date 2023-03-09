@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-<!--    <link rel="stylesheet" href="/styles/profile.css">-->
     <link rel="stylesheet" href="/styles/profile/profile_form_div.css">
     <link rel="stylesheet" href="/styles/header/layout_header.css">
 </head>
@@ -15,11 +14,14 @@
 
 <!--    Форма просмотра профиля другого пользователя    -->
     <th:block th:if="${!isOwner}" th:insert="~{layouts/UX/profile/profile_view.html ::
-                                            layout_profile_view_div(${profile})}"></th:block>
+                                            layout_profile_view_div(${profile})}">
+    </th:block>
 
 <!--    Форма просмотра/редактирования своего профиля  -->
     <th:block th:if="${isOwner}" th:insert="~{layouts/UX/profile/profile_update.html ::
-                                            layout_profile_update_form(${profile}, ${cities}, ${tags})}"></th:block>
+                                            layout_profile_update_form(${profile}, ${cities}, ${tags})}">
+    </th:block>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
 <script th:src="@{/scripts/profile/profile_add_activity.js}"></script>
 <th:block th:if="${isOwner}">

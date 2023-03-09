@@ -1,4 +1,4 @@
-function formClickListener() {
+function profileUpdateActivation() {
     $("#input_name").removeAttr("disabled");
     $("#input_age").removeAttr("disabled");
     $("#input_phone").removeAttr("disabled");

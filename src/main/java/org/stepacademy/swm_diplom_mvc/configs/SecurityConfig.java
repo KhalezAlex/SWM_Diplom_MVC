@@ -36,7 +36,8 @@ public class SecurityConfig {
                         .requestMatchers("/admin", "/admin_customer/*", "/admin_profile/*", "/admin_event/*",
                                 "/admin_home/*").hasRole("ADMIN")
                         .requestMatchers("/new_event", "/event/save").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers("/profile", "/profile/update", "/logout").authenticated()
+                        .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/add",
+                                "profile/activity/delete").authenticated()
                         .requestMatchers("/customer/register", "/register",
                                         "/service/generateBase").anonymous()
                         .requestMatchers("/", "/webjars/**", "/*").permitAll()

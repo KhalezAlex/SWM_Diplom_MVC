@@ -11,8 +11,8 @@ $("#profile_activities").on('change', () => {
                 tag: $("#profile_activities").val()},
             success: function(data) {
                 deleteTagFormSelect(data);
-                tagsAmount++;
                 drawNewActivity(data);
+                tagsAmount++;
             }
         })
 })
@@ -28,9 +28,9 @@ function drawNewActivity(activityTag) {
     input.style.marginTop = '10px';
     input.style.marginBottom = '10px';
     input.style.marginLeft = '4px';
+    input.addEventListener('click', function() {tagsDeleteListener(input)});
     document.getElementById("div_tags_list").appendChild(input);
 }
-
 
 function deleteTagFormSelect(tag) {
     $('#profile_activities option:contains(' + tag + ')').remove();
