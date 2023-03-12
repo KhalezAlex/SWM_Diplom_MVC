@@ -36,9 +36,6 @@ public class Profile {
     private Integer strikes_amount;
 
     @Lob
-//    @Column(columnDefinition="LONGBLOB")
-//    @Column(columnDefinition="bytea")
-//    private byte[] upic;
     private String upic;
 
     @OneToOne(mappedBy = "profile")

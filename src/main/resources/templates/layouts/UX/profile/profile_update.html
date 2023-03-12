@@ -53,11 +53,9 @@
 
                 <div class="div_column">
                     <div>
-<!--                        Вытягиваем изображение из БД-->
-                        <th:block th:each="profiles: ${profile}">
-                            <img th:src="@{'data:image/png;base64,' + ${profiles.upic}}">
-                        </th:block>
-<!--                        Загружаем в БД изобрадение-->
+<!--                    Вытягиваем изображение из БД-->
+                        <img th:src="@{'data:image/png;base64,' + *{upic}}">
+<!--                    Загружаем в БД изобрадение-->
                         <label for="upic">Upload your photo:</label>
                         <input th:type="file" id="upic" accept="image/png" name="upicData">
                     </div>
