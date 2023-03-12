@@ -2,13 +2,17 @@ package org.stepacademy.swm_diplom_mvc.controllers.entity_controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Objects;
 import java.util.Set;
 
 @Controller
@@ -20,8 +24,11 @@ public class ProfileController {
     private DBServiceCustomer customerService;
 
     @PostMapping("/update")
-    public String update(Profile profile){
-        System.out.println("сюда сунулся");
+    public String update(@ModelAttribute Profile profile,
+                         @RequestParam("upicData") MultipartFile upic) throws IOException {
+        //Преобразование полученных данных в формат бд
+        String upicAsString = Base64.getEncoder().encodeToString(upic.getBytes());
+        profile.setUpic(upicAsString);
         profileService.update(profile);
         return "redirect:/";
     }
