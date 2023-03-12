@@ -7,7 +7,8 @@
 <body>
     <wrapper th:fragment="layout_profile_update_form(profile, cities, tags)">
         <form onclick="profileUpdateActivation()"
-              method="post" th:action="@{/profile/update}" th:object="${profile}">
+              method="post" th:action="@{/profile/update}" th:object="${profile}"
+              enctype="multipart/form-data">
             <div>
                 <div>
                     <table style="width: 100%">
@@ -51,7 +52,15 @@
                 </div>
 
                 <div class="div_column">
-                    <img src="">
+                    <div>
+<!--                        Вытягиваем изображение из БД-->
+                        <th:block th:each="profiles: ${profile}">
+                            <img th:src="@{'data:image/png;base64,' + ${profiles.upic}}">
+                        </th:block>
+<!--                        Загружаем в БД изобрадение-->
+                        <label for="upic">Upload your photo:</label>
+                        <input th:type="file" id="upic" accept="image/png" name="upicData">
+                    </div>
                     <div>
                         <span th:text="${profile.customer.login}"></span>
                         <a href="/logout">logout</a>

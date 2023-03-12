@@ -35,6 +35,12 @@ public class Profile {
     @Column(name = "strikes_amount", nullable = false)
     private Integer strikes_amount;
 
+    @Lob
+//    @Column(columnDefinition="LONGBLOB")
+//    @Column(columnDefinition="bytea")
+//    private byte[] upic;
+    private String upic;
+
     @OneToOne(mappedBy = "profile")
     private Customer customer;
 
@@ -77,7 +83,7 @@ public class Profile {
                 ", events_organized=" + events_organized +
                 ", strikes_amount=" + strikes_amount +
                 ", customer=" + customer +
-                ", city=" + city +
+                ", city=" + city + ", upic=" + upic +
                 '}';
     }
 }
