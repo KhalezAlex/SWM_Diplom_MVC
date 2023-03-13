@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
+
+import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -19,6 +24,8 @@ public class ProfileActivityUpdateController {
     DBServiceActivity activityService;
     @Autowired
     DBServiceProfile profileService;
+    @Autowired
+    DBServiceCity cityService;
 
 
     @GetMapping("/activity/add")

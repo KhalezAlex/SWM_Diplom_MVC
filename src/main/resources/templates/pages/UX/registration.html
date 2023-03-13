@@ -14,13 +14,11 @@
     <div class="modal_log_reg">
         <form class="form_login" th:method="post" th:action="@{/customer/register}">
             <input type="text" class="input_reg_log_data" placeholder="login" name="username">
-            <th:block th:if="${error != null && error == 'login'}">
-                <span>Login уже используется</span>
-            </th:block>
+            <span th:if="${error != null && error == 'login'}">Login уже используется</span>
+
             <input type="password" class="input_reg_log_data" placeholder="password" name="password">
-            <th:block th:if="${error != null && error == 'password'}">
-                <span>Пароли не совпадают</span>
-            </th:block>
+            <span th:if="${error != null && error == 'password'}">Пароли не совпадают</span>
+
             <input type="password" class="input_reg_log_data" placeholder="repeat password" name="passRepeat">
             <button class="input_reg_log_submit">register</button>
         </form>

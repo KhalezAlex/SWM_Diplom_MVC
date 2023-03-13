@@ -27,7 +27,8 @@
                         <tr>
                             <td>City</td>
                             <td>
-                                <input th:if="${profile.city != null}" id="input_city" type="text" th:value="${profile.city.name}" disabled>
+                                <input th:if="${profile.city != null}" id="input_city" type="text"
+                                                                            th:value="${profile.city.name}" disabled>
                                 <input th:if="${profile.city == null}" id="input_city" type="text" value="" disabled>
                                 <select id="select_city" th:field="*{city}" hidden>
                                     <th:block th:each="location: ${cities}">
@@ -64,7 +65,7 @@
                         <a href="/logout">logout</a>
                     </div>
                     <div id="div_tags_list" style="margin-left: 7px">
-                        <th:block th:each="tag, counter: ${profile.activityTags}">
+                        <th:block th:each="tag: ${profile.activityTags}">
                             <input th:value="${tag.name}" onclick="tagsDeleteListener(this)" readonly>
                         </th:block>
                     </div>

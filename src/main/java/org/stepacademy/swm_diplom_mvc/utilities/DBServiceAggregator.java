@@ -8,6 +8,7 @@ import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCusto
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.country.DBServiceCountry;
 
 @Service
 public class DBServiceAggregator {
@@ -16,6 +17,9 @@ public class DBServiceAggregator {
 
     @Autowired
     public DBServiceProfile profileService;
+
+    @Autowired
+    public DBServiceCountry countryService;
 
     @Autowired
     public DBServiceCity cityService;
