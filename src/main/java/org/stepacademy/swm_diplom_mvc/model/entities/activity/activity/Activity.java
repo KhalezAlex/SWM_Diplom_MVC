@@ -2,6 +2,7 @@ package org.stepacademy.swm_diplom_mvc.model.entities.activity.activity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "activity_t")
+@NoArgsConstructor
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +27,6 @@ public class Activity {
 
     @ManyToMany(mappedBy = "activityTags", cascade = CascadeType.ALL)
     private Set<Profile> profiles;
-
-    public Activity() {}
 
     public Activity(String name) {
         this.name = name;
