@@ -3,6 +3,7 @@ package org.stepacademy.swm_diplom_mvc.model.entities.location.city;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "city_t")
+@NoArgsConstructor
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +36,6 @@ public class City {
     @OneToMany(mappedBy = "city")
     @JsonIgnore
     private Set<Profile> citizens;
-
-    public City() {}
 
     public City(String name) {
         this.name = name;

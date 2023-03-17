@@ -3,6 +3,7 @@ package org.stepacademy.swm_diplom_mvc.model.entities.customer.role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "role_t")
+@NoArgsConstructor
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +27,6 @@ public class Role implements GrantedAuthority {
 
     @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
     Set<Customer> customer = new HashSet<>();
-
-
-    public Role() {
-    }
 
     public Role(Integer id, String role) {
         this.id = id;

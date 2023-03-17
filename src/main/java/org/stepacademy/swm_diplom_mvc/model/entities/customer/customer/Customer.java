@@ -3,6 +3,7 @@ package org.stepacademy.swm_diplom_mvc.model.entities.customer.customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "customer_t")
+@NoArgsConstructor
 public class Customer implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,9 +51,6 @@ public class Customer implements UserDetails {
     @JoinTable(name = "event_customers_t", joinColumns = @JoinColumn(name = "customer_id"),
                 inverseJoinColumns = @JoinColumn(name = "event_id"))
     Set<Event> eventsIn;
-
-    public Customer() {
-    }
 
     public Customer(String login, String password) {
         this.login = login;

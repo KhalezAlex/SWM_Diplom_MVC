@@ -2,6 +2,7 @@ package org.stepacademy.swm_diplom_mvc.model.entities.activity.event;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "event_t")
+@NoArgsConstructor
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,8 +46,6 @@ public class Event {
 //участники события
     @ManyToMany(mappedBy = "eventsIn", cascade = CascadeType.ALL)
     private Set<Customer> participants;
-
-    public Event() {}
 
     public Event(City city, Customer initiator) {
         this.city = city;
