@@ -60,4 +60,7 @@ public class DBServiceProfile implements IDaoProfile {
         return profileRepo.findByCustomer_Login(login);
     }
 
+    public List<Profile> findByCity(City city) {
+        return profileRepo.findProfilesByCity(city);
+    }
 }

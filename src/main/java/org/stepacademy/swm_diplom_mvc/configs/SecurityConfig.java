@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/add",
                                 "profile/activity/delete").authenticated()
                         .requestMatchers("/customer/register", "/register",
-                                        "/service/generateBase").anonymous()
+                                        "/service/generateBase", "/service/generateEvents").anonymous()
                         .requestMatchers("/", "/webjars/**", "/*").permitAll()
                         .anyRequest().authenticated()
                 )

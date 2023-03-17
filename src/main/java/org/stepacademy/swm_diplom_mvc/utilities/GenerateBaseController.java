@@ -11,6 +11,7 @@ import org.stepacademy.swm_diplom_mvc.model.dao.location.country.DBServiceCountr
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
@@ -21,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,21 +71,21 @@ public class GenerateBaseController {
     }
 
     public void addUsers(LinkedList<String> names) {
-        String fname;
-        String sname;
+        String fName;
+        String sName;
         String nickname;
         for (String name : names) {
-            fname = name.split(" ")[0];
-            sname = name.split(" ")[1];
+            fName = name.split(" ")[0];
+            sName = name.split(" ")[1];
             nickname = Transliterator.getInstance("Russian-Latin/BGN").
-                        transliterate(sname).substring(0, 3).
+                        transliterate(sName).substring(0, 3).
                         concat(Transliterator.getInstance("Russian-Latin/BGN").
-                        transliterate(fname).substring(0, 3));
+                        transliterate(fName).substring(0, 3));
             aggregator.customerService.save(new Customer(nickname, "user"));
             Profile profile = aggregator.profileService.findByLogin(nickname);
             profile.setCity(aggregator.cityService.findById( (int) (Math.random() * 15) + 1).get());
             if (Math.random() > 0.3)
-                profile.setName(sname + " " + fname);
+                profile.setName(sName + " " + fName);
         }
     }
 
@@ -138,5 +140,30 @@ public class GenerateBaseController {
         if (aggregator.activityService.findAll().isEmpty())
             for (String act : activity)
                 aggregator.activityService.save(new Activity(act));
+    }
+
+    @GetMapping("/generateEvents")
+    public String generateEvents() {
+        generateEvents(aggregator.cityService.findAll());
+        return "redirect:/";
+    }
+
+    private void generateEvents(List<City> cities) {
+        cities.forEach(city -> {
+            generateEventsForCity(aggregator.profileService.findByCity(city));
+        });
+    }
+
+    private void generateEventsForCity(List<Profile> profiles) {
+        for (int i = 0; i < 3; i++)
+            generateEvent(profiles.remove(0));
+    }
+
+    private void generateEvent(Profile profile) {
+        Activity activity = aggregator.activityService.findById((int) (Math.random() * 11) + 1).get();
+        LocalDateTime date = LocalDateTime.now().plusDays((int) (Math.random() * 30)).
+                                                plusHours((int) (Math.random() * 24));
+        aggregator.eventService.save(new Event(activity, profile.getCity(), "", date,
+                profile.getCustomer(), (int) (Math.random() * 5 + 5), (int) (Math.random() * 5 + 1)));
     }
 }

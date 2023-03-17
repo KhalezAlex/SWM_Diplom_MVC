@@ -2,7 +2,10 @@ package org.stepacademy.swm_diplom_mvc.model.dao.activity.event;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IRepoProfile;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +14,8 @@ import java.util.Optional;
 public class DBServiceEvent implements IDaoEvent{
     @Autowired
     private IRepoEvent eventRepo;
+    @Autowired
+    private IRepoProfile profileRepo;
 
     @Override
     public List<Event> findAll() {
@@ -24,14 +29,12 @@ public class DBServiceEvent implements IDaoEvent{
 
     @Override
     public Event save(Event event) {
-        System.out.println("DB " + event);
-        Event saveEvent = new Event();
-        saveEvent.setActivity(event.getActivity());
-        saveEvent.setCity(event.getCity());
-        saveEvent.setAddress(event.getAddress());
-        saveEvent.setDateTime(event.getDateTime());
-        saveEvent.setInitiator(event.getInitiator());
-        return eventRepo.save(saveEvent);
+//Находим мероприятие по логину инициатора
+        Profile profile = profileRepo.findProfileByCustomer_Id(event.getInitiator().getId());
+//при создании ивента прибавляем к счётчику ивентов +1
+        profile.setEvents_organized(profile.getEvents_organized() + 1);
+        profileRepo.save(profile);
+        return eventRepo.save(event);
     }
 
     @Override

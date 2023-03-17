@@ -27,12 +27,6 @@ public class EventController {
     @PostMapping("/save")
     @Transactional
     public String save(Event event){
-//Находим мероприятие по логину инициатора
-        Profile profile = profileService.findByLogin(customerService.findById(
-                                                        event.getInitiator().getId()).get().getLogin());
-//при создании ивента прибавляем к счётчику +1
-        profile.setEvents_organized(profile.getEvents_organized() + 1);
-//        profileService.update(profile);
         eventService.save(event);
         return "redirect:/";
     }
