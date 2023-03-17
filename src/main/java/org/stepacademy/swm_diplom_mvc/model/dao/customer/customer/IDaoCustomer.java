@@ -7,10 +7,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 @Transactional
 public interface IDaoCustomer extends IDaoDB<Customer> {
     Customer findCustomerByLogin(String login);
-    @Transactional
     Customer saveAdmin(Customer customer);
-
-    @Transactional
     Customer addRole(Integer customerId, Integer roleId);
 
 //    @Transactional

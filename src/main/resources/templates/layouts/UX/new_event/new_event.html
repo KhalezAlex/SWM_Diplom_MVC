@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<wrapper  th:fragment="layout_new_event_form(new_event, activities, cities)">
+    <h2>;asdofigha;sdlfokkhl;askfhdg;lokj</h2>
+    <form method="post"  th:action="@{/event/save}" th:object="${new_event}">
+        <div>
+            <div>
+                <table>
+                    <!--    Выбор какое спортивное мероприятие будет проведено -->
+                    <tr>
+                        <td>Sports:</td>
+                        <td>
+                            <select id="new_event_activity" th:field="*{activity}">
+                                <th:block th:each="tag: ${activities}">
+                                    <option th:value="${tag.id}">[[${tag.name}]]</option>
+                                </th:block>
+                            </select>
+                        </td>
+                    </tr>
+                    <!--    Подгрузка города из БД по организатору, если так не нужно сделать селект-->
+                    <tr>
+                        <td>City:</td>
+                        <td>
+                            <select id="new_event_city" th:field="*{city}">
+                                <option th:each="city: ${cities}" th:value="${city.id}">
+                                    [[${city.name}]]
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <!--    Заполнение адреса места проведения-->
+                    <tr>
+                        <td>Address:</td>
+                        <td>
+                            <input type="text" th:field="*{address}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <!--    Установить дату и время проведения-->
+                    <tr>
+                        <td>Date:</td>
+                        <td>
+                            <input type="datetime-local" th:field="*{dateTime}">
+                        </td>
+                    </tr>
+                    <!--    Сколько народу есть-->
+                    <tr>
+                        <td>Will come:</td>
+                        <td>
+                            <input type="number" th:field="*{willCome}">
+                        </td>
+                    </tr>
+                    <!--    Сколько народу нужно-->
+                    <tr>
+                        <td>Needed:</td>
+                        <td>
+                            <input type="number" th:field="*{needed}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <button>Create</button>
+        <a th:href="@{/}">Cancel</a>
+        <input id="new_event_initiator" th:field="*{initiator.id}" hidden readonly>
+    </form>
+</wrapper>
+</body>
+</html>

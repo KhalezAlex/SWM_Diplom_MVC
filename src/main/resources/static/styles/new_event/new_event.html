@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="new_event.css">
+</head>
+<body>
+    <wrapper>
+        <form method="post">
+            <div>
+                <div>
+                    <table>
+    <!--    Выбор какое спортивное мероприятие будет проведено -->
+                        <tr>
+                            <td>Sports:</td>
+                            <td>
+                                <select>
+                                    <option>Выбор события<option>
+                                </select>
+                            </td>
+                        </tr>
+    <!--    Подгрузка города из БД по организатору, если так не нужно сделать селект-->
+                        <tr>
+                            <td>City: </td>
+                            <td>
+                                <select id="new_event_city" th:field="*{city}">
+                                    <option>Город</option>
+                                </select>
+                            </td>
+                        </tr>
+    <!--    Заполнение адреса места проведения-->
+                        <tr>
+                            <td>Address: </td>
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>             
+                    </table>
+                </div>
+                <div>
+                    <table>
+    <!--    Установить дату и время проведения-->
+                        <tr>
+                            <td>Date: </td>
+                            <td>
+                                <input type="datetime-local">
+                            </td>
+                        </tr>
+    <!--    Сколько народу есть-->
+                        <tr>
+                            <td>Will come: </td>
+                            <td>
+                                <input type="number">
+                            </td>
+                        </tr>
+    <!--    Сколько народу нужно-->
+                        <tr>
+                            <td>Needed: </td>
+                            <td>
+                                <input type="number">
+                            </td>
+                        </tr>   
+                    </table>
+                </div>
+            </div>
+            
+<!--    Берём данные из БД инициатора который заходит в создание ивента-->                        
+            <input id="new_event_initiator" hidden readonly>
+            <button>Create</button>
+            <a th:href="@{/}">Cancel</a>
+        </form>
+    </wrapper>
+</body>
+</html>

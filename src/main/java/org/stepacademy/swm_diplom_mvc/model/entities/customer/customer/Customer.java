@@ -34,6 +34,7 @@ public class Customer implements UserDetails {
 //Связь с таблицей личных данных
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
+//    @OneToOne
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private Profile profile;
 
@@ -55,6 +56,7 @@ public class Customer implements UserDetails {
     public Customer(String login, String password) {
         this.login = login;
         this.password = password;
+//автоматом в базу заносится и профиль
         this.profile = new Profile();
     }
 

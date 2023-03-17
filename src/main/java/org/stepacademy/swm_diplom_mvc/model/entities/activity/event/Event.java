@@ -9,6 +9,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -25,9 +26,6 @@ public class Event {
     @JoinColumn(name = "activity_id")
     private Activity activity;
 
-//    @Column(name = "eventName", nullable = false)
-//    private String eventName;
-//Используем Merge для корректной передачи Event из html
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
     private City city;
@@ -45,25 +43,27 @@ public class Event {
 
 //участники события
     @ManyToMany(mappedBy = "eventsIn", cascade = CascadeType.ALL)
-    private Set<Customer> participants;
+    private Set<Customer> participants = new HashSet<>();
 
-    public Event(City city, Customer initiator) {
-        this.city = city;
-        this.initiator = initiator;
-    }
+    @Column(name = "needed")
+    private Integer needed;
 
-    public Event(Activity activity, City city, String address, LocalDateTime dateTime, Customer initiator) {
+    @Column(name = "will_come")
+    private Integer willCome;
+
+
+
+    public Event(Activity activity, City city, String address, LocalDateTime dateTime,
+                 Customer initiator, int needed, int willCome) {
         this.activity = activity;
         this.city = city;
         this.address = address;
         this.dateTime = dateTime;
         this.initiator = initiator;
+        this.needed = needed;
+        this.willCome = willCome;
     }
 
-    public Event(String address, LocalDateTime dateTime) {
-        this.address = address;
-        this.dateTime = dateTime;
-    }
 
     @Override
     public String toString() {

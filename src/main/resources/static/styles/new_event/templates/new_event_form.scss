@@ -1,0 +1,40 @@
+$tpl_width: 100%;
+$tpl_height: 100%;
+
+%tpl_input {
+    height: 32px;
+    width: 110px;
+    border-radius: 9px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+%tpl_form {
+    z-index: 100;
+    margin: auto;
+    padding-bottom: 20px;
+    width: $tpl_width * 0.5;
+    min-width: 530px;
+    height: fit-content;
+    overflow: auto;    
+    border-radius: 10px;
+    background-color: rgb(227, 227, 227);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    >div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    table {
+        width: fit-content;
+    }
+    input {
+        @extend %tpl_input;
+    }
+    select {
+        @extend %tpl_input;
+    }
+}

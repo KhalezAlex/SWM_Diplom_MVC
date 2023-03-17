@@ -6,9 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
@@ -16,8 +14,6 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 
-import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
@@ -83,7 +79,7 @@ public class ViewController {
 //Создаём экземпляр для передачи в модель, с данными города и кастомера
         if (city == null)
             city = aggregator.cityService.findById(1).get();
-        Event event = new Event(city, initiator);
+        Event event = new Event(null, city, "", null, initiator, 0, 0);
         model.addAttribute("new_event", event);
         model.addAttribute("activities", activities);
         model.addAttribute("cities", aggregator.cityService.findAll());

@@ -55,7 +55,7 @@
                 <div class="div_column">
                     <div>
 <!--                    Вытягиваем изображение из БД-->
-                        <img th:src="@{'data:image/png;base64,' + *{upic}}">
+                        <img th:src="@{'data:image/png;base64,' + *{upic}}" alt="Облом">
 <!--                    Загружаем в БД изобрадение-->
                         <label for="upic">Upload your photo:</label>
                         <input th:type="file" id="upic" accept="image/png" name="upicData">
