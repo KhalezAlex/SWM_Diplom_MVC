@@ -48,6 +48,8 @@ public class ViewController {
         Profile profile = aggregator.profileService.findById(customer.getId()).get();
 //Профиль для отображения в окне профиля
         model.addAttribute("profile", profile);
+        model.addAttribute("organized", profile.getCustomer().getEventsOrganized().size());
+        System.out.println("*****" + model.getAttribute("organized") + "*****");
 //Проверка на то, будет пользователь свой профиль просматривать, или нет, чтобы на фронте ограничить редактирование
         model.addAttribute("isOwner", auth.getName().equals(customer.getLogin()));
     }

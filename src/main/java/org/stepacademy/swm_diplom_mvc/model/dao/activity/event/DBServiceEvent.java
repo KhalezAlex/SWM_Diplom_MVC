@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IRepoProfile;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,11 +30,6 @@ public class DBServiceEvent implements IDaoEvent{
 
     @Override
     public Event save(Event event) {
-//Находим мероприятие по логину инициатора
-        Profile profile = profileRepo.findProfileByCustomer_Id(event.getInitiator().getId());
-//при создании ивента прибавляем к счётчику ивентов +1
-        profile.setEvents_organized(profile.getEvents_organized() + 1);
-        profileRepo.save(profile);
         return eventRepo.save(event);
     }
 
@@ -50,5 +46,10 @@ public class DBServiceEvent implements IDaoEvent{
         Event event = eventRepo.findById(id).get();
         eventRepo.delete(event);
         return event;
+    }
+
+    @Override
+    public List<Event> findEventsByCity(City city) {
+        return eventRepo.findEventsByCity(city);
     }
 }

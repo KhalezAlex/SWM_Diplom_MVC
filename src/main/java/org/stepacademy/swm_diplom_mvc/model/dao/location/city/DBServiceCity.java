@@ -41,4 +41,9 @@ public class DBServiceCity implements IDaoCity{
         cityRepo.delete(city);
         return city;
     }
+
+    @Override
+    public City findByName(String name) {
+        return cityRepo.findByName(name);
+    }
 }

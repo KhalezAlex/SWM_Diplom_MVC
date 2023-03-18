@@ -12,7 +12,8 @@
 
     <th:block th:insert="~{layouts/UX/home/homeContent.html :: layout_home_content}"></th:block>
 
-    <a th:href="@{/service/generateBase}">Сгенерировать базу</a>
-    <a th:href="@{/service/generateEvents}">Сгенерировать события</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+    <script th:src="@{/scripts/home/onLoad.js}"></script>
+<!--    <a th:href="@{/service/generateBase}">Сгенерировать базу</a>-->
 </body>
 </html>

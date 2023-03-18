@@ -14,12 +14,12 @@
 
 <!--    Форма просмотра профиля другого пользователя    -->
     <th:block th:if="${!isOwner}" th:insert="~{layouts/UX/profile/profile_view.html ::
-                                            layout_profile_view_div(${profile})}">
+                                            layout_profile_view_div(${profile}, ${organized})}">
     </th:block>
 
 <!--    Форма просмотра/редактирования своего профиля  -->
     <th:block th:if="${isOwner}" th:insert="~{layouts/UX/profile/profile_update.html ::
-                                            layout_profile_update_form(${profile}, ${cities}, ${tags})}">
+                                            layout_profile_update_form(${profile}, ${cities}, ${tags}, ${organized})}">
     </th:block>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>

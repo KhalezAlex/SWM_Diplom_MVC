@@ -29,9 +29,6 @@ public class Profile {
     @Column(name = "age", length = 2)
     private Integer age;
 
-    @Column(name = "events_organized", nullable = false)
-    private Integer events_organized;
-
     @Column(name = "strikes_amount", nullable = false)
     private Integer strikes_amount;
 
@@ -55,7 +52,6 @@ public class Profile {
         this.name = "";
         this.phone = "+7";
         this.age = 0;
-        this.events_organized = 0;
         this.strikes_amount = 0;
         this.city = null;
     }
@@ -64,7 +60,6 @@ public class Profile {
         this.name = "";
         this.phone = "+7";
         this.age = 0;
-        this.events_organized = 0;
         this.strikes_amount = 0;
         this.customer = customer;
         this.city = null;
@@ -77,10 +72,10 @@ public class Profile {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", age=" + age +
-                ", events_organized=" + events_organized +
                 ", strikes_amount=" + strikes_amount +
                 ", customer=" + customer +
                 ", city=" + city + ", upic=" + upic +
+                ", events_organized=" + customer.getEventsOrganized().size() +
                 '}';
     }
 }

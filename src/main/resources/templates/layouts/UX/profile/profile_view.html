@@ -7,7 +7,7 @@
     <title>Profile_view</title>
 </head>
 <body>
-    <wrapper th:fragment="layout_profile_view_div(profile)">
+    <wrapper th:fragment="layout_profile_view_div(profile, organized)">
         <div th:object="${profile}">
             <div>
                 <div>
@@ -30,7 +30,7 @@
                         </tr>
                         <tr>
                             <td>Initiated</td>
-                            <td><input type="text" th:field="*{events_organized}" disabled></td>
+                            <td><input type="text" th:value="${organized}" disabled></td>
                         </tr>
                     </table>
                 </div>

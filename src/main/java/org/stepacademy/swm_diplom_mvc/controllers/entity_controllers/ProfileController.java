@@ -20,13 +20,11 @@ import java.util.Set;
 public class ProfileController {
     @Autowired
     private DBServiceProfile profileService;
-    @Autowired
-    private DBServiceCustomer customerService;
 
     @PostMapping("/update")
     public String update(@ModelAttribute Profile profile,
                          @RequestParam("upicData") MultipartFile upic) throws IOException {
-        //Преобразование полученных данных в формат бд
+//Преобразование полученных данных в формат бд
         String upicAsString = Base64.getEncoder().encodeToString(upic.getBytes());
         profile.setUpic(upicAsString);
         profileService.update(profile);

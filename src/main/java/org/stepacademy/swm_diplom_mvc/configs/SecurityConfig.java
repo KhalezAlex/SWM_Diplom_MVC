@@ -23,9 +23,10 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/styles/*.css", "/styles/header/*.css",
-                "/styles/profile/*.css",
-                "/images/*", "/scripts/profile/*.js",
+        return (web) -> web.ignoring().requestMatchers(
+                "/styles/*.css", "/styles/header/*.css", "/styles/profile/*.css",
+                "/images/*",
+                "/scripts/profile/*.js", "/scripts/home/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
 
@@ -39,8 +40,8 @@ public class SecurityConfig {
                         .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/add",
                                 "profile/activity/delete").authenticated()
                         .requestMatchers("/customer/register", "/register",
-                                        "/service/generateBase", "/service/generateEvents").anonymous()
-                        .requestMatchers("/", "/webjars/**", "/*").permitAll()
+                                        "/service/generateBase", "/service/tags").anonymous()
+                        .requestMatchers("/", "/webjars/**", "/*", "/home/onLoad").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
