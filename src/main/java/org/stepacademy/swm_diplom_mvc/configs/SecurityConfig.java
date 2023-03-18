@@ -40,8 +40,8 @@ public class SecurityConfig {
                         .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/add",
                                 "profile/activity/delete").authenticated()
                         .requestMatchers("/customer/register", "/register",
-                                        "/service/generateBase", "/service/tags").anonymous()
-                        .requestMatchers("/", "/webjars/**", "/*", "/home/onLoad").permitAll()
+                                        "/service/generateBase", "/service/tags", "/service/events").anonymous()
+                        .requestMatchers("/", "/webjars/**", "/*", "/home/events/onLoadEvents").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

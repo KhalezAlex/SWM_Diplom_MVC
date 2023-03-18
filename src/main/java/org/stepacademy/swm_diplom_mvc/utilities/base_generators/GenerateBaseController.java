@@ -38,7 +38,6 @@ public class GenerateBaseController {
         testUsersInit();
         activityTableInit();
         usersBaseInit();
-        eventTableInit();
         return "pages/UX/home";
     }
 
@@ -156,8 +155,10 @@ public class GenerateBaseController {
             aggregator.activityService.save(new Activity(act));
     }
 
-    private void eventTableInit() {
+    @GetMapping("/events")
+    private String eventTableInit() {
         generateEvents(aggregator.cityService.findAll());
+        return "pages/UX/home";
     }
 
     private void generateEvents(List<City> cities) {
@@ -174,8 +175,10 @@ public class GenerateBaseController {
                 (int) (Math.random() * aggregator.activityService.findAll().size()) + 1).get();
         LocalDateTime date = LocalDateTime.now().plusDays((int) (Math.random() * 30))
                 .plusHours((int) (Math.random() * 24));
-        aggregator.eventService.save(new Event(activity, profile.getCity(), "", date,
-                profile.getCustomer(), (int) (Math.random() * 5 + 5), (int) (Math.random() * 5 + 1)));
+        Event event = new Event(activity, profile.getCity(), "", date,
+                profile.getCustomer(), (int) (Math.random() * 5 + 5), (int) (Math.random() * 5 + 1));
+        System.out.println(event);
+        aggregator.eventService.save(event);
     }
 
 

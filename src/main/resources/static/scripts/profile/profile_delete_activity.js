@@ -1,13 +1,13 @@
-function tagsDeleteListener(component) {
+function tagsDeleteListener(input) {
     $.ajax({
         url: "/profile/activity/delete",
         method: "get",
         dataType: "html",
         data: {
             profileId: $("#profileId").val(),
-            tag: component.getAttribute("value")},
+            tag: input.getAttribute("value")},
         success: function(data) {
-            component.remove();
+            input.remove();
             addTagToSelect(data);
             tagsAmount--;
         }

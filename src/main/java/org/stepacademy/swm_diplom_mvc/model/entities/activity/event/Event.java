@@ -1,5 +1,6 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.activity.event;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Event {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
+    @JsonIgnore
     private City city;
 
     @Column(name = "address", nullable = false)
@@ -39,10 +41,12 @@ public class Event {
 //инициатор события. Используем Merge для корректной передачи Event из html
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "initiator_id")
+    @JsonIgnore
     private Customer initiator;
 
 //участники события
     @ManyToMany(mappedBy = "eventsIn", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Customer> participants = new HashSet<>();
 
     @Column(name = "needed")
@@ -69,11 +73,11 @@ public class Event {
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", activity=" + activity +
-                ", city=" + city +
+                ", activity=" + activity.getId() +
+                ", city=" + city.getId() +
                 ", address='" + address + '\'' +
                 ", dateTime=" + dateTime +
-                ", initiator=" + initiator +
+                ", initiator=" + initiator.getId() +
                 '}';
     }
 }

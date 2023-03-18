@@ -1,5 +1,6 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.activity.activity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,9 +24,11 @@ public class Activity {
     private String name;
 
     @OneToMany(mappedBy = "activity",cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Event> events;
 
     @ManyToMany(mappedBy = "activityTags", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Profile> profiles;
 
     public Activity(String name) {

@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.controllers.restcontrollers;
+package org.stepacademy.swm_diplom_mvc.controllers.restcontrollers.profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

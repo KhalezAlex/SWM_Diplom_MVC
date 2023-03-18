@@ -9,7 +9,7 @@
         <button onclick="window.location.href = '/'">
             HOME
         </button>
-        <select>
+        <select id="select_city">
             <th:block th:each="city: ${cities}">
                 <option th:if="${isAuthenticated && (city.name == cityOfPresence.getName())}" selected>
                     [[${city.name}]]
