@@ -7,5 +7,5 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import java.util.List;
 
 public interface IRepoEvent extends CrudRepository<Event, Integer> {
-    List<Event> findEventsByCity(City city);
+    List<Event> findEventsByCity_Name(String cityName);
 }

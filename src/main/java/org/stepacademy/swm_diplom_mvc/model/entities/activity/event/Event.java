@@ -29,7 +29,6 @@ public class Event {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
-    @JsonIgnore
     private City city;
 
     @Column(name = "address", nullable = false)
@@ -41,7 +40,6 @@ public class Event {
 //инициатор события. Используем Merge для корректной передачи Event из html
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "initiator_id")
-    @JsonIgnore
     private Customer initiator;
 
 //участники события

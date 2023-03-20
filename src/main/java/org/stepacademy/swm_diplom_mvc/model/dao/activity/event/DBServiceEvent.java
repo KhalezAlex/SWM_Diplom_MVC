@@ -49,7 +49,7 @@ public class DBServiceEvent implements IDaoEvent{
     }
 
     @Override
-    public List<Event> findEventsByCity(City city) {
-        return eventRepo.findEventsByCity(city);
+    public List<Event> findEventsByCity_Name(String city) {
+        return eventRepo.findEventsByCity_Name(city);
     }
 }

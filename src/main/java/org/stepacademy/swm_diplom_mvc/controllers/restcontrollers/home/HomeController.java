@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.stepacademy.swm_diplom_mvc.model.dto.EventDTO;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 
@@ -20,10 +19,9 @@ public class HomeController {
     DBServiceAggregator aggregator;
 
     @GetMapping("events/onLoadEvents")
-    public List<Event> onLoadEventIds(@RequestParam String cityName) {
-        City city = aggregator.cityService.findByName(cityName);
-        List<Event> events = new LinkedList<>();
-        aggregator.eventService.findEventsByCity(city).forEach(event -> events.add(event));
+    public List<EventDTO> onLoadEventIds(@RequestParam String cityName) {
+        List<EventDTO> events = new LinkedList<>();
+        aggregator.eventService.findEventsByCity_Name(cityName).forEach(event -> events.add(new EventDTO(event)));
         return events;
     }
 }

@@ -30,11 +30,9 @@ public class City {
     private Country country;
 
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<Event> events;
 
     @OneToMany(mappedBy = "city")
-    @JsonIgnore
     private Set<Profile> citizens;
 
     public City(String name) {
