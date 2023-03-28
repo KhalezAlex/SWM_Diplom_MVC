@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<header th:insert="layouts/admin/admin-header.html :: header(${navSelected})"></header>
+<!--<h1 class="text-center">Event page</h1>-->
+<div class="card container-fluid" style="width: auto;">
+    <h1 class="card-text text-center">Events</h1>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <thead>
+                <th scope="col">id</th>
+                <th scope="col">Sport</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Date and Time</th>
+                <th scope="col">Initiator</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+                </thead>
+            </tr>
+            <tbody class="table-group-divider">
+            <th:block th:each="events:${all}">
+                <tr>
+                    <th scope="row">[[${events.id}]]</th>
+                    <th scope="row" >[[${events.activity.name}]]</th>
+                    <th scope="row" >[[${events.city.name}]]</th>
+<!--                    <th scope="row" th:if="${events.city != null}" >[[${events.city.name}]]</th>-->
+<!--                    <th scope="row" th:if="${events.city == null}" ></th>-->
+                    <th scope="row" >[[${events.address}]]</th>
+                    <th scope="row" >[[${events.dateTime}]]</th>
+                    <th scope="row" >[[${events.initiator.login}]]</th>
+                    <th scope="row" ><a th:href="@{'/admin_event/delete/' + ${events.id}}" class="btn btn-danger">Delete</a></th>
+                    <th scope="row" ><a th:href="@{'/admin_event/update/' + ${events.id}}" class="btn btn-primary">Update</a></th>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</div>
+<footer th:insert="layouts/admin/admin-header.html :: footer"></footer>
+</body>
+</html>

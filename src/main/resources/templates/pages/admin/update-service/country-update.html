@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Country</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<header th:insert="layouts/admin/admin-header.html :: header(${navSelected})"></header>
+<h1>Country Update Form</h1>
+<form method="post" th:action="@{/admin_home/updateCountry}" th:object="${country}">
+  <input th:field=" *{id}" hidden/>
+  <label for="activity-add" class="form-label">Country: </label>
+  <input th:type="text" th:field="*{name}" id="activity-add" class="form-control" aria-describedby="passwordHelpBlock"
+         required minlength="1" maxlength="255">
+  <button class="btn btn-success">Add</button>
+  <a th:href="@{/admin_home/base}" class="btn btn-danger">Cancel</a>
+</form>
+<footer th:insert="layouts/admin/admin-header.html :: footer"></footer>
+</body>
+</html>

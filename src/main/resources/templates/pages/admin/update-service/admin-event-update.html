@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Update</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<header th:insert="layouts/admin/admin-header.html :: header(${navSelected})"></header>
+<h1>Event Update Form</h1>
+<form method="post" th:action="@{/admin_event/update}" th:object="${event}">
+  <input th:field=" *{id}" hidden/>
+  <label for="event-activity" class="form-label">Sport: </label>
+  <select id="event-activity" th:field="*{activity}" >
+    <th:block th:each="activity: ${activities}">
+      <option th:value="${activity.id}">[[${activity.name}]]</option>
+    </th:block>
+  </select>
+
+  <label for="event-city" class="form-label">City: </label>
+  <select id="event-city" th:field="*{city}" >
+    <th:block th:each="city: ${cities}">
+      <option th:value="${city.id}">[[${city.name}]]</option>
+    </th:block>
+  </select>
+
+  <label for="event-address" class="form-label">Address: </label>
+  <input id="event-address" th:type="text" th:field="*{address}" required maxlength="255" minlength="1">
+
+  <label for="event-date" class="form-label">Date and Time: </label>
+  <input id="event-date" type="datetime-local" th:field="*{dateTime}">
+
+  <label for="event-customer" class="form-label">Customer: </label>
+  <select id="event-customer" th:field="*{initiator}" >
+    <th:block th:each="customer: ${customers}">
+      <option th:value="${customer.id}">[[${customer.login}]]</option>
+    </th:block>
+  </select>
+
+  <button class="btn btn-success" >Add</button>
+  <a th:href="@{/admin_event/all}" class="btn btn-danger">Cancel</a>
+</form>
+<footer th:insert="layouts/admin/admin-header.html :: footer"></footer>
+</body>
+</html>

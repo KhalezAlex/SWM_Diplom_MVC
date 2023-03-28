@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Update</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<header th:insert="layouts/admin/admin-header.html :: header(${navSelected})"></header>
+<h1>Customer Update Form</h1>
+<form method="post" th:action="@{/admin_customer/update}" th:object="${customer}">
+  <input th:field=" *{id}" hidden/>
+  <label for="customer-up" class="form-label">Role: </label>
+  <select id="customer-up"  name="roleId" >
+    <th:block th:each="role: ${roles}">
+      <option th:value="${role.id}">[[${role.role}]]</option>
+    </th:block>
+  </select>
+
+  <button class="btn btn-success" >Add</button>
+  <a th:href="@{/admin_customer/all}" class="btn btn-danger">Cancel</a>
+</form>
+<footer th:insert="layouts/admin/admin-header.html :: footer"></footer>
+</body>
+</html>

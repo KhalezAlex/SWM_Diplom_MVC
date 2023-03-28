@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <header th:insert="layouts/admin/admin-header.html :: header(${navSelected})"></header>
+  <h1 class="text-center">Admin page</h1>
+<!--    Форма тегов спорта-->
+    <div class="card container-fluid" style="width: 40rem;" >
+        <a class="btn btn-success" th:href="@{/admin_home/saveActivity}">Activity add</a>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <thead>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Update</th>
+                    </thead>
+                </tr>
+                <tbody class="table-group-divider">
+                <th:block th:each="activity:${all}">
+                    <tr>
+                        <th scope="row">[[${activity.id}]]</th>
+                        <th scope="row" >[[${activity.name}]]</th>
+                        <th scope="row" ><a th:href="@{'/admin_home/deleteActivity/' + ${activity.id}}"
+                                            class="btn btn-danger" >Delete</a></th>
+                        <th scope="row" ><a th:href="@{'/admin_home/updateActivity/' + ${activity.id}}" class="btn btn-primary">Update</a></th>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+<!--    Форма городов-->
+    <div class="card container-fluid" style="width: 40rem;">
+        <a th:href="@{/admin_home/saveCity}" class="btn btn-success">City add</a>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <thead>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Update</th>
+                    </thead>
+                </tr>
+                <tbody class="table-group-divider">
+                <th:block th:each="city:${allCity}">
+                    <tr>
+                        <th scope="row">[[${city.id}]]</th>
+                        <th scope="row" >[[${city.name}]]</th>
+                        <th scope="row" >[[${city.country.name}]]</th>
+                        <th scope="row" ><a th:href="@{'/admin_home/deleteCity/' + ${city.id}}" class="btn btn-danger">Delete</a></th>
+                        <th scope="row" ><a th:href="@{'/admin_home/updateCity/' + ${city.id}}" class="btn btn-primary">Update</a></th>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+<!--    Форма для страны-->
+    <div class="card container-fluid" style="width: 40rem;">
+        <a th:href="@{/admin_home/saveCountry}" class="btn btn-success">Country add</a>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <thead>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Update</th>
+                    </thead>
+                </tr>
+                <tbody class="table-group-divider">
+                <th:block th:each="country:${allCountry}">
+                    <tr>
+                        <th scope="row">[[${country.id}]]</th>
+                        <th scope="row" >[[${country.name}]]</th>
+                        <th scope="row" ><a th:href="@{'/admin_home/deleteCountry/' + ${country.id}}" class="btn btn-danger">Delete</a></th>
+                        <th scope="row" ><a th:href="@{'/admin_home/updateCountry/' + ${country.id}}" class="btn btn-primary">Update</a></th>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+
+<footer th:insert="layouts/admin/admin-header.html :: footer"></footer>
+</body>
+</html>
