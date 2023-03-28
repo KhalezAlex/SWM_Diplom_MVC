@@ -19,6 +19,7 @@ public class HomeController {
 
     @GetMapping("events/onLoadEvents")
     public List<EventDTO> onLoadEventIds(@RequestParam String cityName) {
+        System.out.println("******************" + cityName);
         List<EventDTO> events = new LinkedList<>();
         aggregator.eventService.findEventsByCity_Name(cityName).forEach(event -> events.add(new EventDTO(event)));
         return events;

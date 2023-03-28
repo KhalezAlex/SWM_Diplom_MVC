@@ -1,0 +1,89 @@
+@import "../variables/colors.scss";
+@import "../variables/components.scss";
+@import "../variables/fonts.scss";
+
+$body_minwidth: $container_width;
+$body_height: 800px;
+
+wrapper {
+    @extend %wrapper_tpl;
+    margin: 0.06 * $body_minwidth auto 10px;
+    background: url("../../images/Friends2Test.jpg") center top/cover no-repeat;
+    height: $body_height;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-size: 100%, 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    .form {
+        @extend %form_profile_tpl;
+        z-index: 100;
+        margin: 10% auto;
+        padding: 25px 20px 20px;
+        height: fit-content;
+        overflow: auto;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        background-color: rgb(216, 214, 214);
+        opacity: 70%;
+        .div_profile_fields_inputs {
+            .div_image {
+                img {
+                    display: flex;
+                    width: 100px;
+                    height: 100px;
+                    background-color: aqua;
+                }
+            }
+            .div_username_logout {
+                input {
+                    width: fit-content;
+                    background-color: inherit;
+                    font-weight: 500;
+                    border-style: none;
+                    font-family: "Lato-Bold", Arial, sans-serif;
+                }
+            }
+            .div_tags_list {
+                font-family: inherit;
+                display: grid;
+                grid-template-columns: 40% 40%;
+                input {
+                    width: fit-content;
+                    background-color: inherit;
+                    font-weight: 500;
+                    border-style: none;
+                }
+            }
+        }
+        .div_profile_fields_inputs_table {
+            >table {
+                input, select {
+                    font-family: "Lato-Bold", Arial, sans-serif;
+                    @extend %input_tpl;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .div_buttons {
+            display: flex;
+            margin-top: 18px;
+            justify-content: space-around;
+            button {
+                @extend %button_tpl;
+                border-radius: 10px;
+                background-color: $green;
+                font-family: "Lato-Bold", Arial, sans-serif;
+                font-size: larger;
+                color: $white;
+            }    
+        }
+    }
+}

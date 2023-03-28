@@ -1,12 +1,12 @@
-let select_city = $("#select_city");
+let current_city = $("#current_city");
 
-console.log(select_city.val());
+console.log(current_city.val());
 
 $.ajax({
     url: "/home/events/onLoadEvents",
     method: "get",
     contentType: "application/json",
-    data: {cityName: select_city.val()},
+    data: {cityName: current_city.val()},
     success: function(data) {
         for (let i = 0; i < data.length; i++)
             console.log(data[i]);

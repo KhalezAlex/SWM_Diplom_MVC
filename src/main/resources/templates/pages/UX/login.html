@@ -3,24 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link media="all" rel="stylesheet" href="/styles/home.css">
-    <link rel="stylesheet" href="/styles/header/layout_header.css">
-    <link rel="stylesheet" href="/styles/log_reg_forms.css">
+    <link rel="stylesheet" href="/styles/templates/header.css">
+    <link rel="stylesheet" href="/styles/templates/login_content.css">
 </head>
 <body>
-    <th:block th:insert="~{layouts/UX/header/layout_header.html ::
-                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}"></th:block>
-    <div class="container">
-        <div class="modal_log_reg">
-            <form class="form_login" method="post" th:action="@{/login}">
-                <input type="text" class="input_reg_log_data"
-                       placeholder="login" name="username">
-                <input type="password" class="input_reg_log_data"
-                       placeholder="password" name="password">
-                <a class="a_registration_link" th:href="@{/register}">Do not have an account yet?</a>
-                <button class="input_reg_log_submit">sign in</button>
-            </form>
-        </div>
-    </div>
+    <th:block th:insert="~{layouts/UX/header/header.html ::
+                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}">
+    </th:block>
+
+    <th:block th:insert="~{layouts/UX/login/login_content.html :: layout_login_content}"></th:block>
 </body>
 </html>

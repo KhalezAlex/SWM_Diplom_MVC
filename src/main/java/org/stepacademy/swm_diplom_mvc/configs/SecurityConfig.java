@@ -24,9 +24,10 @@ import javax.sql.DataSource;
 public class SecurityConfig {
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers(
-                "/styles/*.css", "/styles/header/*.css", "/styles/profile/*.css",
+                "/styles/templates/*.css",
+//                "/styles/*.css", "/styles/header/*.css", "/styles/profile/*.css",
                 "/images/*",
-                "/scripts/profile/*.js", "/scripts/home/*.js",
+                "/scripts/*.js", "/scripts/profile/*.js", "/scripts/home/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
 
@@ -37,8 +38,8 @@ public class SecurityConfig {
                         .requestMatchers("/admin", "/admin_customer/*", "/admin_profile/*", "/admin_event/*",
                                 "/admin_home/*").hasRole("ADMIN")
                         .requestMatchers("/new_event", "/event/save").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/add",
-                                "profile/activity/delete").authenticated()
+                        .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/*",
+                                "profile/activity/*").authenticated()
                         .requestMatchers("/customer/register", "/register",
                                         "/service/generateBase", "/service/tags", "/service/events").anonymous()
                         .requestMatchers("/", "/webjars/**", "/*", "/home/events/onLoadEvents").permitAll()

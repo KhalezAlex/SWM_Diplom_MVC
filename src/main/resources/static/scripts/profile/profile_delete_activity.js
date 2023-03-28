@@ -4,8 +4,8 @@ function tagsDeleteListener(input) {
         method: "get",
         dataType: "html",
         data: {
-            profileId: $("#profileId").val(),
-            tag: input.getAttribute("value")},
+            profileId: $("#input_profile_id").val(),
+            tag: input.getAttribute("value").substring(1)},
         success: function(data) {
             input.remove();
             addTagToSelect(data);

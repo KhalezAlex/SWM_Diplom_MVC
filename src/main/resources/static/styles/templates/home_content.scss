@@ -1,0 +1,45 @@
+@import "../variables/colors.scss";
+@import "../variables/components.scss";
+@import "../variables/fonts.scss";
+
+$body_minwidth: $container_width;
+$body_height: 800px;
+
+wrapper {
+    @extend %wrapper_tpl;
+    margin: 0.06 * $body_minwidth auto 10px;
+    background: url("../../images/Friends2Test.jpg") center top/cover no-repeat;
+    height: $body_height;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-size: 100%, 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    .event {
+        width: 90%;
+        margin: 0 auto 20px;
+        height: 0.46 * $body_height;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .event:nth-child(2) {
+        opacity: 20%;
+        background-color: white;
+    }
+    .event .customer_event {
+        border-radius: 10px;
+        width: 48%;
+        height: 90%;
+        background-color: white;
+        opacity: 20%;
+    }
+}

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Home_page</title>
-    <link rel="stylesheet" href="/styles/header/layout_header.css">
-    <link media="all" rel="stylesheet" href="/styles/home.css">
+    <title>Home</title>
+    <link rel="stylesheet" href="/styles/templates/header.css">
+    <link rel="stylesheet" href="/styles/templates/home_content.css">
 </head>
 <body>
-    <th:block th:insert="~{layouts/UX/header/layout_header.html ::
-                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}"></th:block>
+<!--Хедер-->
+    <th:block th:insert="~{layouts/UX/header/header.html ::
+                        layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}"></th:block>
+<!--Контент-->
+    <th:block th:insert="~{layouts/UX/home/home_content.html :: layout_home_content}"></th:block>
+<!--Сервисная ссылка для генерации базы-->
+    <input id="current_city" th:value="${city}" hidden>
+    <a th:href="@{/service/generateBase}">Сгенерировать базу</a>
 
-    <th:block th:insert="~{layouts/UX/home/homeContent.html :: layout_home_content}"></th:block>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+    <script th:src="@{/scripts/jquery_1_7.js}"></script>
     <script th:src="@{/scripts/home/onLoad.js}"></script>
-
-<!--    <a th:href="@{/service/generateBase}">Сгенерировать базу</a>-->
 </body>
 </html>

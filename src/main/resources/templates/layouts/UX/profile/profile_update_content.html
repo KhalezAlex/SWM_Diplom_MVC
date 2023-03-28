@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile_update_form</title>
+</head>
+<body>
+  <wrapper th:fragment="layout_profile_update_form(profile, cities, tags, organized)">
+    <form class="form" method="post" th:action="@{/profile/update}" th:object="${profile}"
+          enctype="multipart/form-data" onclick="profileUpdateActivation()">
+      <div class="div_profile_fields_inputs">
+        <div class="div_image">
+          <img src="" alt="">
+        </div>
+        <div class="div_username_logout ">
+          <span th:text="${profile.customer.login}"></span>
+          <a href="/logout">logout</a>
+        </div>
+        <div class="div_tags_list" id="div_tags_list">
+          <th:block th:each="tag: ${profile.activityTags}">
+            <input th:value="${'#' + tag.name}" onclick="tagsDeleteListener(this)" readonly>
+          </th:block>
+        </div>
+      </div>
+      <div class="div_profile_fields_inputs_table">
+        <table>
+          <tr>
+            <td>Name: </td>
+            <td><input type="text" id="input_name" th:field="*{name}" disabled></td>
+          </tr>
+          <tr>
+            <td>Phone: </td>
+            <td><input type="text" id="input_phone" th:field="*{phone}" disabled></td>
+          </tr>
+          <tr>
+            <td>Age: </td>
+            <td><input type="number" id="input_age" th:field="*{age}" disabled></td>
+          </tr>
+          <tr>
+            <td>City: </td>
+            <td>
+              <input th:if="${profile.city != null}" id="input_city" type="text"
+                     th:value="${profile.city.name}" disabled>
+              <input th:if="${profile.city == null}" id="input_city" type="text" value="" disabled>
+              <select id="select_city" th:field="*{city}" hidden>
+                <th:block th:each="location: ${cities}">
+                  <option th:value="${location.id}">[[${location.name}]]</option>
+                </th:block>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Initiated: </td>
+            <td><input type="text" th:value="${organized}" disabled></td>
+          </tr>
+          <tr id="tags_row" hidden>
+            <td>tags</td>
+            <td>
+              <select id="profile_activities" disabled>
+                <option>Choose activity</option>
+                <option th:each="activity: ${tags}">[[${activity.name}]]</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <input id="input_profile_id" th:field="*{id}" hidden>
+      <div class="div_buttons">
+        <button id="button_submit">Save</button>
+        <button id="button_cancel" onclick="window.location.href = '/'">Cancel</button>
+      </div>
+    </form>
+  </wrapper>
+</body>
+</html>

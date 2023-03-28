@@ -32,6 +32,7 @@ public class GenerateBaseController {
 
     @GetMapping("/generateBase")
     public String generate() throws IOException {
+        System.out.println("******************началось выполнение");
         roleTableInit();
         countryTableInit();
         cityTableInit();
@@ -152,7 +153,8 @@ public class GenerateBaseController {
         String[] activity = {"Виды спорта: ", "Футбол", "Баскетбол", "Волейбол", "Хоккей", "Пробежка", "Коньки", "Лыжи",
                 "Сноуборд", "Кросс Фит", "Тренажёрный зал", "Йога", "Единоборства"};
         for (String act : activity)
-            aggregator.activityService.save(new Activity(act));
+            if (!act.equals(activity[0]))
+                aggregator.activityService.save(new Activity(act));
     }
 
     @GetMapping("/events")
@@ -176,7 +178,7 @@ public class GenerateBaseController {
         LocalDateTime date = LocalDateTime.now().plusDays((int) (Math.random() * 30))
                 .plusHours((int) (Math.random() * 24));
         Event event = new Event(activity, profile.getCity(), "", date,
-                profile.getCustomer(), (int) (Math.random() * 5 + 5), (int) (Math.random() * 5 + 1));
+                profile.getCustomer(), (int) (Math.random() * 5 + 1), (int) (Math.random() * 5 + 5));
         System.out.println(event);
         aggregator.eventService.save(event);
     }

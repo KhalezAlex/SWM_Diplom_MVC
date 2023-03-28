@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile_view_div</title>
+</head>
+<body>
+    <wrapper th:fragment="layout_profile_view_div(profile, organized)">
+        <form class="form" th:object="${profile}">
+            <div class="div_profile_fields_inputs">
+                <div class="div_image">
+                    <img src="" alt="">
+                </div>
+                <div class="div_username_logout">
+                    <span th:text="${profile.customer.login}"></span>
+                </div>
+                <div class="div_tags_list" id="div_tags_list">
+                    <th:block th:each="tag: ${profile.activityTags}">
+                      <input th:value="${'#' + tag.name}" readonly>
+                    </th:block>
+                </div>
+            </div>
+            <div class="div_profile_fields_inputs_table">
+                <table>
+                    <tr>
+                        <td>Name: </td>
+                        <td><input type="text" th:field="*{name}" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>Phone: </td>
+                        <td><input type="text" th:field="*{phone}" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>Age: </td>
+                        <td><input type="number" th:field="*{age}" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>City: </td>
+                        <td>
+                            <input type="text" th:field="*{city.name}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Initiated: </td>
+                        <td><input type="text" th:value="${organized}" disabled></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </wrapper>
+</body>
+</html>

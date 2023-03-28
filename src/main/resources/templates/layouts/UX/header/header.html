@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Header_layout</title>
+</head>
+<body>
+  <header th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name)">
+    <div><img src="" alt=""></div>
+    <nav>
+      <ul>
+        <li><button onclick="window.location.href = '/'">home</button></li>
+        <li><button onclick="window.location.href = 'new_event'">new event</button></li>
+        <li><button onclick="window.location.href = '/search'">search</button></li>
+        <li><button>alerts</button></li>
+        <li>
+          <button th:if="${isAdmin}" onclick="window.location.href = '/admin'" >
+            admin page
+          </button>
+          <button th:if="${!isAdmin}" style="opacity: 0" disabled>
+            admin page
+          </button>
+        </li>
+        <li>
+          <button th:if="${!isAuthenticated}" onclick="window.location.href = '/login'">
+            sign in
+          </button>
+          <a th:if="${isAuthenticated}" th:href="@{'/profile/' + ${name}}"
+             th:text="${name}"></a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</body>
+</html>

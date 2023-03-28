@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration_content</title>
+</head>
+<body>
+<wrapper th:fragment="registration_content_layout(error)">
+    <div>
+        <form class="form_login" th:method="post" th:action="@{/customer/register}">
+            <input type="text" placeholder="login" name="username">
+            <span th:if="${error != null && error == 'login'}">
+                Login is already in use</span>
+
+            <input type="password" placeholder="password" name="password">
+            <span th:if="${error != null && error == 'password'}">
+                Passwords do not match</span>
+
+            <input type="password" placeholder="repeat password" name="passRepeat">
+            <button>register</button>
+        </form>
+    </div>
+</wrapper>
+</body>
+</html>

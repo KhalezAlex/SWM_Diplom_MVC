@@ -2,31 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
-    <link rel="stylesheet" href="/styles/profile/profile_form_div.css">
-    <link rel="stylesheet" href="/styles/header/layout_header.css">
+    <title>[[${profile.name}]]</title>
+    <link rel="stylesheet" href="/styles/templates/header.css">
+    <link rel="stylesheet" href="/styles/templates/profile_content.css">
 </head>
 <body>
-<!--    Хедер   -->
-    <th:block th:insert="~{layouts/UX/header/layout_header.html ::
+<!--Хедер-->
+  <th:block th:insert="~{layouts/UX/header/header.html ::
                             layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}">
-    </th:block>
+  </th:block>
+<!--Просмотр  чужого профиля-->
+  <th:block th:if="${!isOwner}"
+            th:insert="~{layouts/UX/profile/profile_view_content.html ::
+                            layout_profile_view_div(${profile}, ${organized})}">
+  </th:block>
+<!--Просмотр своего профиля-->
+  <th:block th:if="${isOwner}"
+            th:insert="~{layouts/UX/profile/profile_update_content.html ::
+                            layout_profile_update_form(${profile}, ${cities}, ${tags}, ${organized})}">
+  </th:block>
 
-<!--    Форма просмотра профиля другого пользователя    -->
-    <th:block th:if="${!isOwner}" th:insert="~{layouts/UX/profile/profile_view.html ::
-                                            layout_profile_view_div(${profile}, ${organized})}">
-    </th:block>
-
-<!--    Форма просмотра/редактирования своего профиля  -->
-    <th:block th:if="${isOwner}" th:insert="~{layouts/UX/profile/profile_update.html ::
-                                            layout_profile_update_form(${profile}, ${cities}, ${tags}, ${organized})}">
-    </th:block>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
-<script th:src="@{/scripts/profile/profile_add_activity.js}"></script>
-<th:block th:if="${isOwner}">
-    <script th:src="@{/scripts/profile/profile_update_activation.js}"></script>
-</th:block>
-<script th:src="@{/scripts/profile/profile_delete_activity.js}"></script>
+<!--Реактив нужен только для просмотра и редактирования своего профиля-->
+  <th:block th:if="${isOwner}">
+      <script th:src="@{/scripts/jquery_1_7.js}"></script>
+      <script th:src="@{/scripts/profile/profile_update_activation.js}"></script>
+      <script th:src="@{/scripts/profile/profile_delete_activity.js}"></script>
+      <script th:src="@{/scripts/profile/profile_add_activity.js}"></script>
+  </th:block>
 </body>
 </html>

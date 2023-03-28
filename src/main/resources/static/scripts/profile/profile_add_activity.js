@@ -7,7 +7,7 @@ $("#profile_activities").on('change', () => {
             method: "GET",
             dataType: "html",
             data: {
-                profileId: $("#profileId").val(),
+                profileId: $("#input_profile_id").val(),
                 tag: $("#profile_activities").val()},
             success: function(data) {
                 deleteTagFormSelect(data);
@@ -20,14 +20,8 @@ $("#profile_activities").on('change', () => {
 function drawNewActivity(activityTag) {
     let input = document.createElement("input");
     input.readOnly = true;
-    input.setAttribute("value", activityTag);
+    input.setAttribute("value", '#' + activityTag);
     input.setAttribute("id", "activity_tag_" + tagsAmount);
-    input.style.height = '32px';
-    input.style.width = '110px';
-    input.style.borderRadius = '9px';
-    input.style.marginTop = '10px';
-    input.style.marginBottom = '10px';
-    input.style.marginLeft = '4px';
     input.addEventListener('click', function() {tagsDeleteListener(input)});
     document.getElementById("div_tags_list").appendChild(input);
 }

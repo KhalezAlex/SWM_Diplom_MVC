@@ -1,0 +1,90 @@
+body header nav ul li > a, body header nav ul li button {
+  height: 100%;
+  text-align: center;
+  font-family: "Lato-Bold", Arial, sans-serif;
+  font-size: x-large;
+  font-weight: 700;
+  border-radius: 10px;
+  border-style: none;
+}
+
+@font-face {
+  font-family: "Lato-Regular";
+  src: url(../../fonts/Lato-Regular.ttf) format("ttf");
+}
+@font-face {
+  font-family: "Lato-Bold";
+  src: url(../../fonts/Lato-Bold.ttf) format("ttf");
+}
+body {
+  padding: 0;
+  margin: 0;
+  min-width: 1100px;
+  background-color: #bec3c7;
+}
+body header {
+  position: fixed;
+  z-index: 10;
+  left: 10%;
+  top: 0;
+  width: 80%;
+  min-width: 880px;
+  height: 66px;
+  background-color: #1bbc9b;
+  margin: 0 auto;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+body header nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style: none;
+}
+body header nav ul li {
+  margin: 10px 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin-top: 0;
+  margin-right: 30px;
+}
+body header nav ul li button {
+  background-color: #1bbc9b;
+  color: #e5eee3;
+}
+body header nav ul li :last-child button {
+  margin-right: 0;
+}
+body header nav ul li > a {
+  color: #e5eee3;
+  background-color: #1bbc9b;
+  text-decoration: none;
+  margin-right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.active {
+  background-color: #2ba990;
+  border-radius: 10px;
+}

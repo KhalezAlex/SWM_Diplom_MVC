@@ -3,26 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
-    <link media="all" rel="stylesheet" href="/styles/home.css">
-    <link rel="stylesheet" href="/styles/header/layout_header.css">
-    <link rel="stylesheet" href="/styles/log_reg_forms.css">
+    <link rel="stylesheet" href="/styles/templates/header.css">
+    <link rel="stylesheet" href="/styles/templates/login_content.css">
 </head>
 <body>
-<th:block th:insert="~{layouts/UX/header/layout_header.html :: layout_header
-                                            (${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}"></th:block>
-<div class="container">
-    <div class="modal_log_reg">
-        <form class="form_login" th:method="post" th:action="@{/customer/register}">
-            <input type="text" class="input_reg_log_data" placeholder="login" name="username">
-            <span th:if="${error != null && error == 'login'}">Login уже используется</span>
+    <th:block th:insert="~{layouts/UX/header/header.html ::
+                                layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}">
+    </th:block>
 
-            <input type="password" class="input_reg_log_data" placeholder="password" name="password">
-            <span th:if="${error != null && error == 'password'}">Пароли не совпадают</span>
-
-            <input type="password" class="input_reg_log_data" placeholder="repeat password" name="passRepeat">
-            <button class="input_reg_log_submit">register</button>
-        </form>
-    </div>
-</div>
+    <th:block th:insert="~{layouts/UX/registration/registration_content.html ::
+                                registration_content_layout(${error})}">
+    </th:block>
 </body>
 </html>

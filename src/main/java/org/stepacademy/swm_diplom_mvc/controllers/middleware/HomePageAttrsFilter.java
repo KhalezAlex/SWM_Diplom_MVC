@@ -47,7 +47,7 @@ public class HomePageAttrsFilter implements Filter {
 //Проверяем город в профиле пользователя
         City city = aggregator.customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
 //Если город не указан, показываем Москву, не устанавливая атрибут селекта
-        request.setAttribute("city", city == null ? aggregator.cityService.findById(1).get() : city);
+        request.setAttribute("city", city == null ? aggregator.cityService.findById(1).get().getName() : city.getName());
 //Проверка пользователя на наличие роли ADMIN
         request.setAttribute("isAdmin", auth.getAuthorities().toString()
                 .contains(aggregator.roleService.findById(1).get().getRole()));
@@ -55,5 +55,6 @@ public class HomePageAttrsFilter implements Filter {
     }
     private void setHomepageUnAuthModelAttrs(ServletRequest request) {
         request.setAttribute("isAdmin",false);
+        request.setAttribute("city", "Москва");
     }
 }
