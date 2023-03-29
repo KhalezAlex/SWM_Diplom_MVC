@@ -11,7 +11,11 @@
 <div class="card container-fluid" style="width: auto;">
     <h1 class="card-text text-center">Customers</h1>
     <div class="card-body">
-        <table class="table table-bordered table-striped">
+        <input id="input_search">
+        <button id="button_search" class="btn btn-success"> Search </button>
+    </div>
+    <div class="card-body">
+        <table id="table_search" class="table table-bordered table-striped">
             <tr>
                 <thead>
                 <th scope="col">id</th>
@@ -20,7 +24,6 @@
                 <th scope="col">Phone</th>
                 <th scope="col">Age</th>
                 <th scope="col">City</th>
-                <th scope="col">Events organized</th>
                 <th scope="col">Strikes amount</th>
                 <th scope="col">Role</th>
                 <th scope="col">Delete</th>
@@ -42,7 +45,6 @@
                     <th:block th:if="${customers.profile.city == null}">
                         <th scope="row" ></th>
                     </th:block>
-                    <th scope="row" >[[${customers.profile.events_organized}]]</th>
                     <th scope="row" >[[${customers.profile.strikes_amount}]]</th>
                     <th scope="row" >[[${customers.roles}]]</th>
                     <th scope="row" ><a th:href="@{'/admin_customer/delete/' + ${customers.id}}" class="btn btn-danger">Delete</a></th>
@@ -54,4 +56,6 @@
 </div>
 <footer th:insert="layouts/admin/admin-header.html :: footer"></footer>
 </body>
+<script th:src="@{/scripts/jquery_1_7.js}"></script>
+<script th:src="@{/scripts/admin/search-customer.js}"></script>
 </html>
