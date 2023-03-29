@@ -20,7 +20,6 @@
                 <th scope="col">Phone</th>
                 <th scope="col">Age</th>
                 <th scope="col">City</th>
-                <th scope="col">Events organized</th>
                 <th scope="col">Strikes amount</th>
                 <th scope="col">Role</th>
                 <th scope="col">Delete</th>
@@ -42,7 +41,6 @@
                     <th:block th:if="${customers.profile.city == null}">
                         <th scope="row" ></th>
                     </th:block>
-                    <th scope="row" >[[${customers.profile.events_organized}]]</th>
                     <th scope="row" >[[${customers.profile.strikes_amount}]]</th>
                     <th scope="row" >[[${customers.roles}]]</th>
                     <th scope="row" ><a th:href="@{'/admin_customer/delete/' + ${customers.id}}" class="btn btn-danger">Delete</a></th>

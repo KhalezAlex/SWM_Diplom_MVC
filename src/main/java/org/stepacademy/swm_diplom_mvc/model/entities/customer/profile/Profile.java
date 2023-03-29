@@ -1,8 +1,6 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.customer.profile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
