@@ -8,7 +8,7 @@
 </head>
 <body>
     <th:block th:insert="~{layouts/UX/header/header.html ::
-                                layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}">
+                        layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
     </th:block>
 
     <th:block th:insert="~{layouts/UX/registration/registration_content.html ::

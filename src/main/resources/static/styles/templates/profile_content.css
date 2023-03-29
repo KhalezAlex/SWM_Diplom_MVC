@@ -90,6 +90,8 @@ wrapper .form .div_profile_fields_inputs .div_tags_list {
   font-family: inherit;
   display: -ms-grid;
   display: grid;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -ms-grid-columns: 40% 40%;
   grid-template-columns: 40% 40%;
 }

@@ -54,6 +54,7 @@ wrapper {
             .div_tags_list {
                 font-family: inherit;
                 display: grid;
+                justify-content: space-around;
                 grid-template-columns: 40% 40%;
                 input {
                     width: fit-content;

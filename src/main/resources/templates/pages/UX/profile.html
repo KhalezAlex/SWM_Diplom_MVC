@@ -9,7 +9,7 @@
 <body>
 <!--Хедер-->
   <th:block th:insert="~{layouts/UX/header/header.html ::
-                            layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}">
+                        layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
   </th:block>
 <!--Просмотр  чужого профиля-->
   <th:block th:if="${!isOwner}"

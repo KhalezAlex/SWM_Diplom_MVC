@@ -24,18 +24,21 @@ public class ViewController {
     DBServiceAggregator aggregator;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("activePage", "home");
         return "pages/UX/home";
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("activePage", "registration");
         return "/pages/UX/registration";
     }
 
     @GetMapping("/profile/{name}")
     public String profile(@PathVariable("name") String name, Model model, Authentication auth) {
         setProfileModelAttrs(model, auth, name);
+        model.addAttribute("activePage", "profile");
         return "pages/UX/profile";
     }
     private void setProfileModelAttrs(Model model, Authentication auth, String name) {

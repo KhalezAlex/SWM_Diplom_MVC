@@ -5,13 +5,25 @@
     <title>Header_layout</title>
 </head>
 <body>
-  <header th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name)">
+  <header th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name, activePage)">
     <div><img src="" alt=""></div>
     <nav>
       <ul>
-        <li><button onclick="window.location.href = '/'">home</button></li>
-        <li><button onclick="window.location.href = 'new_event'">new event</button></li>
-        <li><button onclick="window.location.href = '/search'">search</button></li>
+        <li>
+          <button th:class="${activePage == 'home'} ? active" onclick="window.location.href = '/'">
+            home
+          </button>
+        </li>
+        <li>
+          <button th:class="${activePage == 'new_event'} ? active" onclick="window.location.href = 'new_event'">
+            new event
+          </button>
+        </li>
+        <li>
+          <button th:class="${activePage == 'search'} ? active" onclick="window.location.href = '/search'">
+            search
+          </button>
+        </li>
         <li><button>alerts</button></li>
         <li>
           <button th:if="${isAdmin}" onclick="window.location.href = '/admin'" >
@@ -22,11 +34,13 @@
           </button>
         </li>
         <li>
-          <button th:if="${!isAuthenticated}" onclick="window.location.href = '/login'">
-            sign in
+          <button th:if="${!isAuthenticated}" th:text="${activePage == 'registration'} ? 'registration' : 'sign in'"
+                  th:class="${activePage == 'registration' || activePage == 'login'} ? active"
+                  onclick="window.location.href = '/login'">
+<!--            sign in-->
           </button>
-          <a th:if="${isAuthenticated}" th:href="@{'/profile/' + ${name}}"
-             th:text="${name}"></a>
+          <a th:class="${activePage == 'profile'} ? active" th:if="${isAuthenticated}"
+             th:href="@{'/profile/' + ${name}}" th:text="${name}"></a>
         </li>
       </ul>
     </nav>

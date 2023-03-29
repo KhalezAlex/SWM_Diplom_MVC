@@ -10,6 +10,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 
 import java.io.IOException;
+import java.util.Collections;
 
 @Component
 @Order(100)
@@ -20,6 +21,7 @@ public class HomePageAttrsFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
+        System.out.println(servletRequest.getAttributeNames());
         setHomePageModelAttrs(servletRequest);
         filterChain.doFilter(servletRequest, servletResponse);
     }
@@ -50,8 +52,7 @@ public class HomePageAttrsFilter implements Filter {
         request.setAttribute("city", city == null ? aggregator.cityService.findById(1).get().getName() : city.getName());
 //Проверка пользователя на наличие роли ADMIN
         request.setAttribute("isAdmin", auth.getAuthorities().toString()
-                .contains(aggregator.roleService.findById(1).get().getRole()));
-        System.out.println(request);
+                                .contains(aggregator.roleService.findById(1).get().getRole()));
     }
     private void setHomepageUnAuthModelAttrs(ServletRequest request) {
         request.setAttribute("isAdmin",false);

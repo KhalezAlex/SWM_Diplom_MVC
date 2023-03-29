@@ -9,7 +9,8 @@
 <body>
 <!--Хедер-->
     <th:block th:insert="~{layouts/UX/header/header.html ::
-                        layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName})}"></th:block>
+                        layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
+    </th:block>
 <!--Контент-->
     <th:block th:insert="~{layouts/UX/home/home_content.html :: layout_home_content}"></th:block>
 <!--Сервисная ссылка для генерации базы-->
