@@ -12,7 +12,7 @@
                         layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
     </th:block>
 <!--Контент-->
-    <th:block th:insert="~{layouts/UX/home/home_content.html :: layout_home_content}"></th:block>
+    <th:block th:insert="~{layouts/UX/home/home_content.html :: layout_home_content(${eventsSuggested})}"></th:block>
 <!--Сервисная ссылка для генерации базы-->
     <input id="current_city" th:value="${city}" hidden>
     <a th:href="@{/service/generateBase}">Сгенерировать базу</a>

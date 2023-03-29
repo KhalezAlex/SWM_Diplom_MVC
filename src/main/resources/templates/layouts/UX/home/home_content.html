@@ -5,9 +5,16 @@
     <title>Home_content</title>
 </head>
 <body>
-  <wrapper th:fragment="layout_home_content">
+  <wrapper th:fragment="layout_home_content(eventsSuggested)">
     <div class="event">
-      <div class="customer_event"></div>
+      <div class="customer_event">
+          <ul>
+              <li th:each="event: ${eventsSuggested}">
+                  <span>[[${event.dateTime}]]</span>
+                  <span>[[${event.city}]]</span>
+              </li>
+          </ul>
+      </div>
       <div class="customer_event"></div>
     </div>
     <div class="event">

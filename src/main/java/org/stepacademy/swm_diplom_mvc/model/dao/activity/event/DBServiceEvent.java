@@ -36,7 +36,7 @@ public class DBServiceEvent implements IDaoEvent{
     @Override
     public Event update(Event event) {
         if(eventRepo.findById(event.getId()).isPresent()){
-            eventRepo.save(event);
+            return eventRepo.save(event);
         }
         return null;
     }

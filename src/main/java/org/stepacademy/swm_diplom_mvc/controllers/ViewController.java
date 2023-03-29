@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.stepacademy.swm_diplom_mvc.model.dto.EventDTO;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
@@ -14,6 +15,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +28,25 @@ public class ViewController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("activePage", "home");
+        setSuggestedEvents(model);
         return "pages/UX/home";
+    }
+
+    private void setSuggestedEvents(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Profile profile = aggregator.profileService.findByLogin(username);
+        if (profile != null)
+            if (profile.getCity() != null) {
+                model.addAttribute("eventsSuggested", getEventsSuggested(profile.getCity().getName()));
+                return;
+            }
+        model.addAttribute("eventsSuggested", getEventsSuggested("Москва"));
+    }
+
+    private List<EventDTO> getEventsSuggested(String cityName) {
+        List<EventDTO> events = new LinkedList<>();
+        aggregator.eventService.findEventsByCity_Name(cityName).forEach(event -> events.add(new EventDTO(event)));
+        return events;
     }
 
     @GetMapping("/register")
