@@ -38,6 +38,7 @@ public class DBServiceProfile implements IDaoProfile {
     }
 
     @Override
+    @Transactional
     public Profile update(Profile profile) {
         Profile updated = profileRepo.findById(profile.getId()).orElse(null);
         if (updated == null){

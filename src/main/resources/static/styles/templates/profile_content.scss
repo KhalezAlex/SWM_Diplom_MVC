@@ -34,6 +34,8 @@ wrapper {
         background-color: rgb(216, 214, 214);
         opacity: 70%;
         .div_profile_fields_inputs {
+            display: flex;
+            justify-content: space-around;
             .div_image {
                 img {
                     display: flex;
@@ -53,9 +55,12 @@ wrapper {
             }
             .div_tags_list {
                 font-family: inherit;
-                display: grid;
-                justify-content: space-around;
-                grid-template-columns: 40% 40%;
+                width: fit-content;
+                display: flex;
+                flex-direction: column;
+                // display: grid;
+                // justify-content: space-around;
+                // grid-template-columns: 40% 40%;
                 input {
                     width: fit-content;
                     background-color: inherit;

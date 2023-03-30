@@ -35,7 +35,7 @@
         </li>
         <li>
           <button th:if="${!isAuthenticated}" th:text="${activePage == 'registration'} ? 'registration' : 'sign in'"
-                  th:class="${activePage == 'registration' || activePage == 'login'} ? active"
+                  th:class="${activePage == 'registration' || activePage == null} ? active"
                   onclick="window.location.href = '/login'">
 <!--            sign in-->
           </button>

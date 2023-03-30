@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @Component
 @Order(100)
-public class HomePageAttrsFilter implements Filter {
+public class HeaderAttributesFilter implements Filter {
     @Autowired
     DBServiceAggregator aggregator;
 

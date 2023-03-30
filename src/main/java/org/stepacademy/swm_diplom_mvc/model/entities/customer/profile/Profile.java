@@ -21,7 +21,7 @@ public class Profile {
     @Column(name = "name", length = 20)
     private String name;
 
-    @Column(name = "phone", length = 11)
+    @Column(name = "phone", length = 12)
     private String phone;
 
     @Column(name = "age", length = 2)
