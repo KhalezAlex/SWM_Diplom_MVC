@@ -8,4 +8,5 @@ function profileUpdateActivation() {
     $("#profile_activities").removeAttr("disabled");
     $("#button_submit").show();
     $("#button_cancel").show();
+    document.getElementById('form').removeAttribute("onclick");
 }
