@@ -5,6 +5,21 @@
 $body_minwidth: $container_width;
 $body_height: 800px;
 
+%form_buttons_tpl {
+    border-radius: 10px;
+    background-color: $green;
+    font-family: "Lato-Bold", Arial, sans-serif;
+    font-size: larger;
+    color: $white;
+}
+%input_as_label_tpl {
+    width: fit-content;
+    background-color: inherit;
+    font-weight: 500;
+    border-style: none;
+    font-family: "Lato-Bold", Arial, sans-serif;
+}
+
 wrapper {
     @extend %wrapper_tpl;
     margin: 0.06 * $body_minwidth auto 10px;
@@ -35,8 +50,9 @@ wrapper {
         opacity: 70%;
         .div_profile_fields_inputs {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             .div_image {
+                margin-right: 30px;
                 img {
                     display: flex;
                     width: 100px;
@@ -46,11 +62,7 @@ wrapper {
             }
             .div_username_logout {
                 input {
-                    width: fit-content;
-                    background-color: inherit;
-                    font-weight: 500;
-                    border-style: none;
-                    font-family: "Lato-Bold", Arial, sans-serif;
+                    @extend %input_as_label_tpl;
                 }
             }
             .div_tags_list {
@@ -58,14 +70,8 @@ wrapper {
                 width: fit-content;
                 display: flex;
                 flex-direction: column;
-                // display: grid;
-                // justify-content: space-around;
-                // grid-template-columns: 40% 40%;
                 input {
-                    width: fit-content;
-                    background-color: inherit;
-                    font-weight: 500;
-                    border-style: none;
+                    @extend %input_as_label_tpl;
                 }
             }
         }
@@ -83,13 +89,16 @@ wrapper {
             margin-top: 18px;
             justify-content: space-around;
             button {
-                @extend %button_tpl;
-                border-radius: 10px;
-                background-color: $green;
-                font-family: "Lato-Bold", Arial, sans-serif;
-                font-size: larger;
-                color: $white;
+                @extend %button_tpl, %form_buttons_tpl;
             }    
+            a {
+                @extend %button_tpl, %form_buttons_tpl;
+                text-decoration: none;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 }

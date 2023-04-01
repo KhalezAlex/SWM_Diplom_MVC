@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>New_event</title>
+</head>
+<body>
+<!--Хедер-->
+  <th:block th:insert="~{layouts/UX/header/header.html ::
+                          layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
+  </th:block>
+
+</body>
+</html>

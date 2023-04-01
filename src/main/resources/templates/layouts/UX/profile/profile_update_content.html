@@ -16,7 +16,8 @@
         </div>
         <div class="div_tags_list" id="div_tags_list">
           <th:block th:each="tag: ${profile.activityTags}">
-            <input th:value="${'#' + tag.name}" onclick="tagsDeleteListener(this)" readonly>
+            <label onclick="tagsDeleteListener(this)">[[${'#' + tag.name}]]</label>
+<!--            <input th:value="${'#' + tag.name}" onclick="tagsDeleteListener(this)" readonly>-->
           </th:block>
         </div>
       </div>
@@ -65,7 +66,7 @@
       <input id="input_profile_id" th:field="*{id}" hidden>
       <div class="div_buttons">
         <button id="button_submit" hidden>Save</button>
-        <button id="button_cancel" onclick="window.location.href = '/'" hidden>Cancel</button>
+<!--        <a id="button_cancel" href="/" hidden>Cancel</a>-->
       </div>
     </form>
   </wrapper>

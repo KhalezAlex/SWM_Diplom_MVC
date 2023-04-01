@@ -18,12 +18,11 @@ $("#profile_activities").on('change', () => {
 })
 
 function drawNewActivity(activityTag) {
-    let input = document.createElement("input");
-    input.readOnly = true;
-    input.setAttribute("value", '#' + activityTag);
-    input.setAttribute("id", "activity_tag_" + tagsAmount);
-    input.addEventListener('click', function() {tagsDeleteListener(input)});
-    document.getElementById("div_tags_list").appendChild(input);
+    let label = document.createElement("label");
+    label.innerHTML = '#' + activityTag;
+    label.setAttribute("id", "activity_tag_" + tagsAmount);
+    label.addEventListener('click', function() {tagsDeleteListener(label)});
+    document.getElementById("div_tags_list").appendChild(label);
 }
 
 function deleteTagFormSelect(tag) {

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>New_event</title>
+    <link rel="stylesheet" href="../../../../static/styles/templates/new_event.css">
+</head>
+<body>
+  <wrapper th:fragment="new_event_layout(event)">
+    <form method="post" th:action="@{/event/save}" th:object="${event}">
+      <table>
+        <tr>
+          <td>Activity:</td>
+          <td>
+            <select th:field="*{activity.name}">
+              <option value="">Choose</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>City:</td>
+          <td>
+            <select th:field="*{city.name}">
+              <opton>
+                Select city
+              </opton>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Address: </td>
+          <td><input type="text" th:field="*{address}"></td>
+        </tr>
+        <tr>
+          <td>Date/time:</td>
+          <td><input type="datetime-local" th:field="*{dateTime}"></td>
+        </tr>
+        <tr hidden>
+          <td></td>
+          <td th:field="*{initiator.id}">[[${initiator.id}]]</td>
+        </tr>
+        <tr>
+          <td>Needed: </td>
+          <td><input type="number" th:field="*{needed}"></td>
+        </tr>
+        <tr>
+          <td>Will come: </td>
+          <td><input type="number" th:field="*{willCome}"></td>
+        </tr>
+      </table>
+      <div class="button_div">
+        <button>
+          register  
+        </button>
+        <a href="/">Cancel</a>
+      </div>
+    </form>
+  </wrapper>
+</body>
+</html>
