@@ -17,6 +17,9 @@
 <h3>Мероприятия</h3>
 <h3>Административный интерфейс</h3>
 
+<h2>MVP2</h2>
+<h3>Ведётся сбор требований</h3>
+
 <h3>Стек технологий</h3>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Spring/Springboot+Security+Thymeleaf)](https://git.io/typing-svg)
