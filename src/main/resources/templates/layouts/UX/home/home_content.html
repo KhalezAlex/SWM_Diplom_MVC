@@ -10,8 +10,13 @@
       <div class="customer_event">
           <ul>
               <li th:each="event: ${eventsSuggested}">
+                  <span>[[${event.initiatorId}]]</span>
+                  <span>[[${event.activity}]]</span>
+                  <span>[[${event.address}]]</span>
                   <span>[[${event.dateTime}]]</span>
                   <span>[[${event.city}]]</span>
+                  <span>[[${event.needed}]]</span>
+                  <span>[[${event.willCome}]]</span>
               </li>
           </ul>
       </div>

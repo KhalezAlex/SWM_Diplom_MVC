@@ -15,8 +15,6 @@ import java.util.Optional;
 public class DBServiceEvent implements IDaoEvent{
     @Autowired
     private IRepoEvent eventRepo;
-    @Autowired
-    private IRepoProfile profileRepo;
 
     @Override
     public List<Event> findAll() {
@@ -52,4 +50,9 @@ public class DBServiceEvent implements IDaoEvent{
     public List<Event> findEventsByCity_Name(String city) {
         return eventRepo.findEventsByCity_Name(city);
     }
+
+//    @Override
+//    public Event findEventByCityName(String cityName) {
+//        return eventRepo.findEventByCityName(cityName);
+//    }
 }

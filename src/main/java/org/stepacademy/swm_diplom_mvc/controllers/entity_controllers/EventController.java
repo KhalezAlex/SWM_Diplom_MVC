@@ -14,16 +14,10 @@ public class EventController {
     @Autowired
     private DBServiceEvent eventService;
 
-
     @PostMapping("/save")
     @Transactional
     public String save(Event event){
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println(event);
-//        eventService.save(event);
+        eventService.save(event);
         return "redirect:/";
     }
 }
