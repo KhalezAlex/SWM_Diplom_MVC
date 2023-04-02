@@ -17,7 +17,6 @@
         <div class="div_tags_list" id="div_tags_list">
           <th:block th:each="tag: ${profile.activityTags}">
             <label onclick="tagsDeleteListener(this)">[[${'#' + tag.name}]]</label>
-<!--            <input th:value="${'#' + tag.name}" onclick="tagsDeleteListener(this)" readonly>-->
           </th:block>
         </div>
       </div>

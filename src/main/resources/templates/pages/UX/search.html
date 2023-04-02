@@ -2,17 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
+    <title>Search</title>
     <link rel="stylesheet" href="/styles/templates/header.css">
-    <link rel="stylesheet" href="/styles/templates/login_content.css">
+
 </head>
 <body>
     <th:block th:insert="~{layouts/UX/header/header.html ::
                         layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
     </th:block>
 
-    <th:block th:insert="~{layouts/UX/registration/registration_content.html ::
-                        registration_content_layout(${error})}">
-    </th:block>
 </body>
 </html>
