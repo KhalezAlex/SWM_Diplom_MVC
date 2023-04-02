@@ -3,33 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>New_event</title>
-    <link rel="stylesheet" href="../../../../static/styles/templates/new_event.css">
 </head>
 <body>
-  <wrapper th:fragment="new_event_layout(event)">
-    <form method="post" th:action="@{/event/save}" th:object="${event}">
+  <wrapper th:fragment="new_event_layout(new_event, cities, activities)">
+    <form method="post" th:action="@{/event/save}" th:object="${new_event}">
       <table>
         <tr>
           <td>Activity:</td>
           <td>
-            <select th:field="*{activity.name}">
-              <option value="">Choose</option>
+            <select th:field="*{activity}">
+<!--              <option>Choose activity</option>-->
+              <th:block th:each="activity: ${activities}">
+                <option th:value="${activity.id}">[[${activity.name}]]</option>
+              </th:block>
             </select>
           </td>
         </tr>
         <tr>
           <td>City:</td>
           <td>
-            <select th:field="*{city.name}">
-              <opton>
-                Select city
-              </opton>
+            <select th:field="*{city}">
+<!--              <option>Choose city</option>-->
+              <th:block th:each="location: ${cities}">
+                <option th:value="${location.id}">[[${location.name}]]</option>
+              </th:block>
             </select>
           </td>
         </tr>
         <tr>
           <td>Address: </td>
-          <td><input type="text" th:field="*{address}"></td>
+          <td><input type="text" th:field="*{address}" minlength="10"></td>
         </tr>
         <tr>
           <td>Date/time:</td>
@@ -37,15 +40,15 @@
         </tr>
         <tr hidden>
           <td></td>
-          <td th:field="*{initiator.id}">[[${initiator.id}]]</td>
+          <td> <input th:field="*{initiator}"></td>
         </tr>
         <tr>
           <td>Needed: </td>
-          <td><input type="number" th:field="*{needed}"></td>
+          <td><input type="number" th:field="*{needed}" min="1" max="1000"></td>
         </tr>
         <tr>
           <td>Will come: </td>
-          <td><input type="number" th:field="*{willCome}"></td>
+          <td><input type="number" th:field="*{willCome}" min="1"></td>
         </tr>
       </table>
       <div class="button_div">

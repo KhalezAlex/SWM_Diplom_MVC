@@ -1,0 +1,46 @@
+@import "../variables/colors.scss";
+@import "../variables/components.scss";
+@import "../variables/fonts.scss";
+
+$body_minwidth: $container_width;
+$body_height: 800px;
+
+wrapper {
+    @extend %wrapper_tpl;
+    margin: 0.06 * $body_minwidth auto 10px;
+    background: url("../../images/Friends2Test.jpg") center top/cover no-repeat;
+    height: $body_height;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-size: 100%, 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    form {
+        @extend %form_profile_tpl;
+        z-index: 100;
+        margin: 10% auto;
+        padding: 25px 20px 20px;
+        height: fit-content;
+        overflow: auto;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        background-color: rgb(216, 214, 214);
+        opacity: 70%;
+        table {
+            tr {
+                td {
+                    input, select {
+                        @extend %input_tpl;
+                    }
+                }
+            }
+        }
+    }
+}

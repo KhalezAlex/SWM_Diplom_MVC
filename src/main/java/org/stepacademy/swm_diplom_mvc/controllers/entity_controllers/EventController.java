@@ -18,7 +18,12 @@ public class EventController {
     @PostMapping("/save")
     @Transactional
     public String save(Event event){
-        eventService.save(event);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(event);
+//        eventService.save(event);
         return "redirect:/";
     }
 }

@@ -15,6 +15,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -79,9 +80,9 @@ public class ViewController {
 //Список городов для редактирования профиля
         model.addAttribute("cities", aggregator.cityService.findAll());
 //Список видов спорта - тегов для дальнейшего использования при выборе ивентов
-        model.addAttribute("tags", activitiesList(name));
+        model.addAttribute("tags", profileActivitiesList(name));
     }
-    private List<Activity> activitiesList(String name) {
+    private List<Activity> profileActivitiesList(String name) {
         List<Activity> tags = aggregator.activityService.findAll();
         Profile profile = aggregator.profileService.findByLogin(name);
         tags.removeAll(profile.getActivityTags());
@@ -96,17 +97,16 @@ public class ViewController {
     private void setNewEventModelAttrs(Model model, Authentication auth) {
 //Находим в БД инициатора, по логину(тот кто сейчас авторизован)
         Customer initiator = aggregator.customerService.findCustomerByLogin(auth.getName());
-//Грузим теги активностей
-        List<Activity> activities = aggregator.activityService.findAll();
 //Находим в БД город, по логину
         City city = aggregator.customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
 //Создаём экземпляр для передачи в модель, с данными города и кастомера
         if (city == null)
             city = aggregator.cityService.findById(1).get();
-        Event event = new Event(null, city, "", null, initiator, 0, 0);
+        Event event = new Event(null, city, "", LocalDateTime.now(), initiator, 0, 0);
         model.addAttribute("new_event", event);
-        model.addAttribute("activities", activities);
+        model.addAttribute("activities", aggregator.activityService.findAll());
         model.addAttribute("cities", aggregator.cityService.findAll());
+        model.addAttribute("activePage", "new_event");
     }
 
     @GetMapping("/admin")

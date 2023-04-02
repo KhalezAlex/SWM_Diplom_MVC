@@ -1,0 +1,65 @@
+wrapper {
+  width: 1100px;
+  background-color: #e5efd5;
+  width: 80%;
+  height: 700px;
+  min-width: 880px;
+  margin: auto;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+wrapper form {
+  width: 330px;
+  height: 500px;
+  background-color: #ffffff;
+}
+
+wrapper form table tr td input, wrapper form table tr td select {
+  width: 240px;
+  height: 35px;
+  background-color: #ffffff;
+  border: 2px solid #16a086;
+}
+
+@font-face {
+  font-family: "Lato-Regular";
+  src: url(../../fonts/Lato-Regular.ttf) format("ttf");
+}
+@font-face {
+  font-family: "Lato-Bold";
+  src: url(../../fonts/Lato-Bold.ttf) format("ttf");
+}
+wrapper {
+  margin: 66px auto 10px;
+  background: url("../../images/Friends2Test.jpg") center top/cover no-repeat;
+  height: 800px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-size: 100%, 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+wrapper form {
+  z-index: 100;
+  margin: 10% auto;
+  padding: 25px 20px 20px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow: auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background-color: rgb(216, 214, 214);
+  opacity: 70%;
+}

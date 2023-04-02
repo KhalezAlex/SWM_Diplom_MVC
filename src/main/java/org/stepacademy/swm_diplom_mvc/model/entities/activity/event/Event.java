@@ -35,12 +35,7 @@ public class Event {
   private String address;
 
   @Column(name = "dateTime", nullable = false)
-  private LocalDateTime dateTime;
-
-  public LocalDateTime getDateTime() {
-    return LocalDateTime.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth(), dateTime.getHour(),
-            dateTime.getMinute());
-  }
+  private LocalDateTime dateTime = LocalDateTime.now();
 
   //инициатор события. Используем Merge для корректной передачи Event из html
   @ManyToOne(cascade = CascadeType.MERGE)
@@ -69,6 +64,10 @@ public class Event {
     this.willCome = willCome;
   }
 
+  public LocalDateTime getDateTime() {
+    return LocalDateTime.of(dateTime.getYear(), dateTime.getMonth(), dateTime.getDayOfMonth(), dateTime.getHour(),
+            dateTime.getMinute());
+  }
 
   @Override
   public String toString() {
