@@ -14,7 +14,7 @@ public class EventDTO {
     private String city;
     private String address;
     private LocalDateTime dateTime;
-    private int initiatorId;
+    private String initiatorId;
     private int participants;
     private int needed;
     private int willCome;
@@ -25,7 +25,7 @@ public class EventDTO {
         this.city = event.getCity().getName();
         this.address = event.getAddress();
         this.dateTime = event.getDateTime();
-        this.initiatorId = event.getInitiator().getId();
+        this.initiatorId = event.getInitiator().getLogin();
         this.participants = event.getParticipants().size();
         this.needed = event.getNeeded();
         this.willCome = event.getWillCome();

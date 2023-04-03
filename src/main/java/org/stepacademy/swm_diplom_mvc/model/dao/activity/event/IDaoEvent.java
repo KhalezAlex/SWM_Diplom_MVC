@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IDaoEvent extends IDaoDB<Event> {
     List<Event> findEventsByCity_Name(String city);
+//    Event findEventByCityName(String cityName);
 }

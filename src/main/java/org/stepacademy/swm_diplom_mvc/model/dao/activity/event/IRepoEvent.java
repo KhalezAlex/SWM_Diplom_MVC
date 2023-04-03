@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface IRepoEvent extends CrudRepository<Event, Integer> {
     List<Event> findEventsByCity_Name(String cityName);
+
+//    Event findEventByCityName(String cityName);
 }
