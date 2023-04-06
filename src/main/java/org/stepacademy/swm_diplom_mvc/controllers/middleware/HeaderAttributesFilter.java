@@ -10,7 +10,6 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
 @Order(100)

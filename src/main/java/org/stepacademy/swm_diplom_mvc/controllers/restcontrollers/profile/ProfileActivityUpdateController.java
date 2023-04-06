@@ -11,10 +11,7 @@ import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfil
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
-import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -29,18 +26,19 @@ public class ProfileActivityUpdateController {
 
 
     @GetMapping("/activity/add")
-    public String add(@RequestParam int profileId, @RequestParam String tag) {
+    public Activity add(@RequestParam int profileId, @RequestParam String tag) {
         Activity activity = activityService.findByName(tag);
         Profile profile = profileService.findById(profileId).get();
         profile.getActivityTags().add(activity);
         profileService.save(profile);
-        return tag;
+        return activity;
     }
 
     @Transactional
     @GetMapping("/activity/delete")
-    public String delete(@RequestParam int profileId, @RequestParam String tag) {
-        Activity activity = activityService.findByName(tag);
+    public String delete(@RequestParam int profileId, @RequestParam int tagId) {
+        Activity activity = activityService.findById(tagId).get();
+        String tag = activity.getName();
         Profile profile = profileService.findById(profileId).orElse(null);
         assert profile != null;
         profile.getActivityTags().remove(activity);

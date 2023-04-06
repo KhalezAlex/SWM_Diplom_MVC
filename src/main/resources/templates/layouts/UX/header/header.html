@@ -37,7 +37,6 @@
           <button th:if="${!isAuthenticated}" th:text="${activePage == 'registration'} ? 'registration' : 'sign in'"
                   th:class="${activePage == 'registration' || activePage == null} ? active"
                   onclick="window.location.href = '/login'">
-<!--            sign in-->
           </button>
           <a th:class="${activePage == 'profile'} ? active" th:if="${isAuthenticated}"
              th:href="@{'/profile/' + ${name}}" th:text="${name}"></a>

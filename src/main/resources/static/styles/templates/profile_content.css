@@ -74,6 +74,12 @@ wrapper {
   align-content: center;
 }
 wrapper .form {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   z-index: 100;
   margin: 10% auto;
   padding: 25px 20px 20px;
@@ -102,22 +108,23 @@ wrapper .form .div_profile_fields_inputs .div_image img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100px;
-  height: 100px;
-  background-color: aqua;
+  width: 150px;
+  height: 150px;
+}
+wrapper .form .div_profile_fields_inputs .div_username_logout input {
+  margin: 5px;
 }
 wrapper .form .div_profile_fields_inputs .div_tags_list {
   font-family: inherit;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 170px;
+}
+wrapper .form .div_profile_fields_inputs_table {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 wrapper .form .div_profile_fields_inputs_table > table input, wrapper .form .div_profile_fields_inputs_table > table select {
   font-family: "Lato-Bold", Arial, sans-serif;
@@ -143,4 +150,9 @@ wrapper .form .div_buttons a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.img_tags {
+  margin: 5px;
+  border-radius: 5px;
 }

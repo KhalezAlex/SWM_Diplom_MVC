@@ -10,17 +10,24 @@
           enctype="multipart/form-data" onclick="profileUpdateActivation()">
       <div class="div_profile_fields_inputs">
         <div class="div_image">
-            <!--                        Вытягиваем изображение из БД-->
-              <img th:src="@{'data:image/png;base64,' + *{upic}}">
-            <!--                        Загружаем в БД изобрадение-->
-            <input th:type="file" id="upic" accept="image/png" name="upicData" style="color: transparent; width: 120px"
-                   value=" "/><br>
+          <th:block th:if="*{upic == null}">
+            <img id="img_upic" th:src="@{/images/userpictures/anon.png}" onclick="img_click_listener()">
+          </th:block>
+<!--Вытягиваем изображение из БД-->
+          <th:block th:if="*{upic != null}">
+            <img id="img_upic" th:src="@{'data:image/png;base64,' + *{upic}}" onclick="img_click_listener()">
+          </th:block>
+<!--Загружаем в БД изобрадение-->
+          <input th:type="file" id="upic" accept="image/png" name="upicData"
+                          style="color: transparent; width: 120px" value=" " hidden/><br>
           <span th:text="${profile.customer.login}"></span>
           <a href="/logout">logout</a>
         </div>
         <div class="div_tags_list" id="div_tags_list">
           <th:block th:each="tag: ${profile.activityTags}">
-            <label onclick="tagsDeleteListener(this)">[[${'#' + tag.name}]]</label>
+<!--            <label onclick="tagsDeleteListener(this)">[[${'#' + tag.name}]]</label>-->
+            <img th:src="@{'/images/activity_pics/' + ${tag.id} + '.png'}" class="img_tags"
+                 onclick="tagsDeleteListener(this)">
           </th:block>
         </div>
       </div>

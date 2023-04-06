@@ -26,7 +26,7 @@ public class SecurityConfig {
         return (web) -> web.ignoring().requestMatchers(
                 "/styles/templates/*.css",
 //                "/styles/*.css", "/styles/header/*.css", "/styles/profile/*.css",
-                "/images/*",
+                "/images/*", "/images/activity_pics/*",
                 "/scripts/*.js", "/scripts/profile/*.js", "/scripts/home/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
@@ -38,10 +38,10 @@ public class SecurityConfig {
                         .requestMatchers("/admin", "/admin_customer/*", "/admin_profile/*", "/admin_event/*",
                                 "/admin_home/*").hasRole("ADMIN")
                         .requestMatchers("/new_event", "/event/save").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/*",
-                                "profile/activity/*").authenticated()
+                        .requestMatchers("/profile", "/profile/update", "/logout",
+                                "/profile/activity/*").authenticated()
                         .requestMatchers("/customer/register", "/register",
-                                        "/service/generateBase", "/service/tags", "/service/events").anonymous()
+                                "/service/generateBase", "/service/tags", "/service/events").anonymous()
                         .requestMatchers("/", "/webjars/**", "/*", "/home/events/onLoadEvents").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -49,7 +49,6 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .failureUrl("/login?error=true")
                                 .permitAll()
-//                        .failureUrl("/")
                         .defaultSuccessUrl("/")
                 );
         return http.build();
@@ -58,7 +57,8 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(); // стандартный кодировщик Spring
+// стандартный кодировщик Spring
+        return new BCryptPasswordEncoder();
     }
 
 

@@ -1,4 +1,4 @@
-let tagsAmount = document.getElementById("div_tags_list").querySelectorAll("input").length;
+let tagsAmount = document.getElementById("div_tags_list").querySelectorAll("img").length;
 
 $("#profile_activities").on('change', () => {
     if (tagsAmount < 4)
@@ -10,6 +10,7 @@ $("#profile_activities").on('change', () => {
                 profileId: $("#input_profile_id").val(),
                 tag: $("#profile_activities").val()},
             success: function(data) {
+                data = JSON.parse(data);
                 deleteTagFormSelect(data);
                 drawNewActivity(data);
                 tagsAmount++;
@@ -17,14 +18,15 @@ $("#profile_activities").on('change', () => {
         })
 })
 
-function drawNewActivity(activityTag) {
-    let label = document.createElement("label");
-    label.innerHTML = '#' + activityTag;
-    label.setAttribute("id", "activity_tag_" + tagsAmount);
-    label.addEventListener('click', function() {tagsDeleteListener(label)});
-    document.getElementById("div_tags_list").appendChild(label);
+function drawNewActivity(activity) {
+    // label.addEventListener('click', function() {tagsDeleteListener(label)});
+    let img = document.createElement('img');
+    img.setAttribute('src', "/images/activity_pics/" + activity.id + ".png");
+    img.setAttribute('class', 'img_tags');
+    img.addEventListener('click', function () {tagsDeleteListener(img)});
+    document.getElementById("div_tags_list").appendChild(img);
 }
 
-function deleteTagFormSelect(tag) {
-    $('#profile_activities option:contains(' + tag + ')').remove();
+function deleteTagFormSelect(activity) {
+    $('#profile_activities option:contains(' + activity.name + ')').remove();
 }
