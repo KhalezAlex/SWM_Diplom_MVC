@@ -13,11 +13,10 @@
           <th:block th:if="*{upic == null}">
             <img id="img_upic" th:src="@{/images/userpictures/anon.png}" onclick="img_click_listener()">
           </th:block>
-<!--Вытягиваем изображение из БД-->
           <th:block th:if="*{upic != null}">
             <img id="img_upic" th:src="@{'data:image/png;base64,' + *{upic}}" onclick="img_click_listener()">
           </th:block>
-<!--Загружаем в БД изобрадение-->
+<!--Загружаем в БД изображение-->
           <input th:type="file" id="upic" accept="image/png" name="upicData"
                           style="color: transparent; width: 120px" value=" " hidden/><br>
           <span th:text="${profile.customer.login}"></span>

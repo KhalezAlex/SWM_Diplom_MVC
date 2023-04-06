@@ -43,6 +43,14 @@ public class ViewController {
     }
 
     private List<EventDTO> getEventsSuggested(String cityName) {
+        List<EventDTO> events = getAllFutureEvents(cityName);
+        for (int i = 0; i < events.size(); i++)
+            if (i > 4)
+                events.remove(i--);
+        return events;
+    }
+
+    private List<EventDTO> getAllFutureEvents(String cityName) {
         List<EventDTO> events = new LinkedList<>();
         aggregator.eventService.findEventsByCity_Name(cityName).forEach(event -> {
             if(!event.getDateTime().isBefore(LocalDateTime.now()))
@@ -51,6 +59,7 @@ public class ViewController {
         events.sort(Comparator.comparing(EventDTO::getDateTime));
         return events;
     }
+
 
     @GetMapping("/register")
     public String register(Model model) {
