@@ -32,7 +32,6 @@ public class GenerateBaseController {
 
     @GetMapping("/generateBase")
     public String generate() throws IOException {
-        System.out.println("******************началось выполнение");
         roleTableInit();
         countryTableInit();
         cityTableInit();
