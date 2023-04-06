@@ -25,7 +25,6 @@
         </div>
         <div class="div_tags_list" id="div_tags_list">
           <th:block th:each="tag: ${profile.activityTags}">
-<!--            <label onclick="tagsDeleteListener(this)">[[${'#' + tag.name}]]</label>-->
             <img th:src="@{'/images/activity_pics/' + ${tag.id} + '.png'}" class="img_tags"
                  onclick="tagsDeleteListener(this)">
           </th:block>

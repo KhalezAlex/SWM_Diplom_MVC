@@ -9,14 +9,17 @@
         <form class="form" th:object="${profile}">
             <div class="div_profile_fields_inputs">
                 <div class="div_image">
-                    <img src="" alt="">
-                </div>
-                <div class="div_username_logout">
+                    <th:block th:if="*{upic == null}">
+                        <img id="img_upic" th:src="@{/images/userpictures/anon.png}">
+                    </th:block>
+                    <th:block th:if="*{upic != null}">
+                        <img id="img_upic" th:src="@{'data:image/png;base64,' + *{upic}}">
+                    </th:block>
                     <span th:text="${profile.customer.login}"></span>
                 </div>
                 <div class="div_tags_list" id="div_tags_list">
                     <th:block th:each="tag: ${profile.activityTags}">
-                      <input th:value="${'#' + tag.name}" readonly>
+                        <img th:src="@{'/images/activity_pics/' + ${tag.id} + '.png'}" class="img_tags">
                     </th:block>
                 </div>
             </div>
