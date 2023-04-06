@@ -10,7 +10,11 @@
           enctype="multipart/form-data" onclick="profileUpdateActivation()">
       <div class="div_profile_fields_inputs">
         <div class="div_image">
-          <img src="" alt="">
+            <!--                        Вытягиваем изображение из БД-->
+              <img th:src="@{'data:image/png;base64,' + *{upic}}">
+            <!--                        Загружаем в БД изобрадение-->
+            <input th:type="file" id="upic" accept="image/png" name="upicData" style="color: transparent; width: 120px"
+                   value=" "/><br>
           <span th:text="${profile.customer.login}"></span>
           <a href="/logout">logout</a>
         </div>
