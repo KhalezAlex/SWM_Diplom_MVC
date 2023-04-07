@@ -1,11 +1,9 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.location.country;
+package org.stepacademy.swm_diplom_mvc.model.entities.location;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 
 import java.util.Set;
 

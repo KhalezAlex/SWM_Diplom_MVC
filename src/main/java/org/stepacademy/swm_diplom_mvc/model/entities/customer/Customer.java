@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.customer.customer;
+package org.stepacademy.swm_diplom_mvc.model.entities.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 
 import java.util.Collection;
 import java.util.HashSet;

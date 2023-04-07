@@ -11,10 +11,10 @@ import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.IDaoActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.IDaoEvent;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IDaoCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.IDaoCity;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 import java.util.List;
 import java.util.Optional;

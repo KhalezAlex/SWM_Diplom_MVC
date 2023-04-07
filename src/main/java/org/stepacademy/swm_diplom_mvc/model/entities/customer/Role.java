@@ -1,14 +1,11 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.customer.role;
+package org.stepacademy.swm_diplom_mvc.model.entities.customer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
-import javax.management.ConstructorParameters;
 import java.util.HashSet;
 import java.util.Set;
 

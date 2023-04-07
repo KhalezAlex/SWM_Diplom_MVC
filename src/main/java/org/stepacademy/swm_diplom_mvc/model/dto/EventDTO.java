@@ -2,7 +2,7 @@ package org.stepacademy.swm_diplom_mvc.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 
 import java.time.LocalDateTime;
 

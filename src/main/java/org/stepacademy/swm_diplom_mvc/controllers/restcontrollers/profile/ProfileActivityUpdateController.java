@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
 
 
 

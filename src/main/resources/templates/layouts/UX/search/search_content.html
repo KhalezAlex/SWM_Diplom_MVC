@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search_content</title>
+</head>
+<body>
+    <wrapper th:fragment="search_content(cities, activities, currentDate, error)">
+        <form method="post" th:action="@{/event/filter}">
+            <table>
+                <tr>
+                    <td>City:</td>
+                    <td>
+                        <select name="city">
+                            <option>Select city</option>
+                            <th:block th:each="city: ${cities}">
+                                <option th:value="${city.id}">[[${city.name}]]</option>
+                            </th:block>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Activity</td>
+                    <td>
+                        <select name="activity">
+                            <option>Select activity</option>
+                            <th:block th:each="activity: ${activities}">
+                                <option th:value="${activity.id}">[[${activity.name}]]</option>
+                            </th:block>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date from:</td>
+                    <td>
+                        <input type="datetime-local" name="startDate" th:value="${currentDate}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date to:</td>
+                    <td>
+                        <input type="datetime-local" name="endDate">
+                        <span th:if="${error}" style="color: #e84c3d">Enter the correct dates</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button>Search</button>
+                    </td>
+                    <td>
+                        <a href="/">Cancel</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </wrapper>
+</body>
+</html>

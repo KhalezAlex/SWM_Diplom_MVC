@@ -6,10 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IDaoCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.IDaoRole;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.role.Role;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Role;
 
 import java.util.List;
 import java.util.Optional;

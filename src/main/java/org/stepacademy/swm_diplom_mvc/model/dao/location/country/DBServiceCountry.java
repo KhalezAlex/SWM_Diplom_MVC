@@ -2,7 +2,7 @@ package org.stepacademy.swm_diplom_mvc.model.dao.location.country;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.Country;
 
 import java.util.List;
 import java.util.Optional;

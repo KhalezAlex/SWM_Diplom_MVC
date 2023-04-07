@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
 
 
 @Controller

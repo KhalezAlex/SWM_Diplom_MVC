@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Error</title>
     <link rel="stylesheet" href="/styles/templates/header.css">
+    <link rel="stylesheet" href="/styles/templates/error.css">
 </head>
 <body>
 <!--Хедер-->
@@ -12,7 +13,7 @@
 </th:block>
 
 <!--Контент-->
-<th:block th:insert="~{layouts/error/error.html}"></th:block>
+<th:block th:insert="~{layouts/error/error.html :: error_layout(${error})}"></th:block>
 
 </body>
 </html>

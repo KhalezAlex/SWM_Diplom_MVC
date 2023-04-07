@@ -2,8 +2,7 @@ package org.stepacademy.swm_diplom_mvc.model.dao.location.city;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 import java.util.List;
 import java.util.Optional;

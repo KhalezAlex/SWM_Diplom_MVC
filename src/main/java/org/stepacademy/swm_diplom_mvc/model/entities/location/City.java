@@ -1,13 +1,11 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.location.city;
+package org.stepacademy.swm_diplom_mvc.model.entities.location;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
 
 import java.util.Set;
 

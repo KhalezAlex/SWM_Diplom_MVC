@@ -1,4 +1,4 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.activity.event;
+package org.stepacademy.swm_diplom_mvc.model.entities.activity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -11,9 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 
 @Getter

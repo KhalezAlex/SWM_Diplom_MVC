@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
 
 import java.io.IOException;
 import java.util.Base64;

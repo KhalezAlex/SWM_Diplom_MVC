@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.IDaoActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.city.IDaoCity;
 import org.stepacademy.swm_diplom_mvc.model.dao.location.country.IDaoCountry;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.country.Country;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.Country;
 
 import java.util.List;
 import java.util.Optional;

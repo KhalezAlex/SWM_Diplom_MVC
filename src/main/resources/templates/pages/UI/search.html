@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>Search</title>
     <link rel="stylesheet" href="/styles/templates/header.css">
-
+    <link rel="stylesheet" href="/styles/templates/search_content.css">
 </head>
 <body>
     <th:block th:insert="~{layouts/UX/header/header.html ::
                         layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
     </th:block>
-
+    <th:block th:insert="~{layouts/UX/search/search_content.html ::
+                        search_content(${cities}, ${activities}, ${currentDate}, ${error})}">
+    </th:block>
 </body>
 </html>

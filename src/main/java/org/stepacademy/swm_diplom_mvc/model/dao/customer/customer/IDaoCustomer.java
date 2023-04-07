@@ -2,7 +2,7 @@ package org.stepacademy.swm_diplom_mvc.model.dao.customer.customer;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.stepacademy.swm_diplom_mvc.model.dao.IDaoDB;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
 
 @Transactional
 public interface IDaoCustomer extends IDaoDB<Customer> {

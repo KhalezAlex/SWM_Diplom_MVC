@@ -1,11 +1,10 @@
-package org.stepacademy.swm_diplom_mvc.model.entities.customer.profile;
+package org.stepacademy.swm_diplom_mvc.model.entities.customer;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 import java.util.Set;
 

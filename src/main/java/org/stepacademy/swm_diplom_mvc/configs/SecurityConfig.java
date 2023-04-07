@@ -37,9 +37,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/admin", "/admin_customer/*", "/admin_profile/*", "/admin_event/*",
                                 "/admin_home/*").hasRole("ADMIN")
-                        .requestMatchers("/event/save").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/event/save", "/new_event").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/*",
-                                "/event/participate", "/event/roastOut").authenticated()
+                                "/event/participate", "/event/roastOut", "event/filter").authenticated()
                         .requestMatchers("/customer/register", "/register",
                                 "/service/generateBase", "/service/tags", "/service/events").anonymous()
                         .requestMatchers("/", "/webjars/**", "/*", "/home/events/onLoadEvents").permitAll()
