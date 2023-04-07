@@ -9,6 +9,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.profile.Profile;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Objects;
 
 
 @Controller
@@ -20,10 +21,12 @@ public class ProfileController {
     @PostMapping("/update")
     public String update(@ModelAttribute Profile profile, @RequestParam(value = "upicData", required = false)
                             MultipartFile upic) throws IOException {
-        if (upic != null) {
-//Преобразование полученных данных в формат бд
+        if (!Objects.equals(Base64.getEncoder().encodeToString(upic.getBytes()), "")) {
             String upicAsString = Base64.getEncoder().encodeToString(upic.getBytes());
             profile.setUpic(upicAsString);
+        }
+        else {
+            profile.setUpic(profileService.findById(profile.getId()).get().getUpic());
         }
         profileService.update(profile);
         return "redirect:/";

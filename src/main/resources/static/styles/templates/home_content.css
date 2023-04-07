@@ -52,13 +52,13 @@ wrapper .event {
           align-items: center;
 }
 wrapper .event:nth-child(2) {
-  opacity: 20%;
-  background-color: white;
+  opacity: 50%;
+  background-color: #bec3c7;
 }
 wrapper .event .customer_event {
   border-radius: 10px;
   width: 48%;
   height: 90%;
-  background-color: white;
-  opacity: 20%;
+  background-color: #bec3c7;
+  opacity: 50%;
 }

@@ -27,11 +27,11 @@ public class ViewController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("activePage", "home");
-        setSuggestedEvents(model);
+        setEventsSuggested(model);
         return "pages/UX/home";
     }
 
-    private void setSuggestedEvents(Model model) {
+    private void setEventsSuggested(Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Profile profile = aggregator.profileService.findByLogin(username);
         if (profile != null)
@@ -45,7 +45,7 @@ public class ViewController {
     private List<EventDTO> getEventsSuggested(String cityName) {
         List<EventDTO> events = getAllFutureEvents(cityName);
         for (int i = 0; i < events.size(); i++)
-            if (i > 4)
+            if (i > 4 || events.get(i).getNeeded() == 0)
                 events.remove(i--);
         return events;
     }

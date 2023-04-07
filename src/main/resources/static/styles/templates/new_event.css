@@ -66,8 +66,8 @@ wrapper form {
   border-radius: 10px;
   -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
           box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  background-color: rgb(216, 214, 214);
-  opacity: 70%;
+  background-color: #bec3c7;
+  opacity: 80%;
 }
 wrapper form input, wrapper form select {
   border-radius: 5px;

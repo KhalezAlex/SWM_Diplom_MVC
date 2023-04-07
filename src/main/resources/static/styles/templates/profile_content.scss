@@ -48,8 +48,8 @@ wrapper {
         overflow: auto;
         border-radius: 10px;
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-        background-color: rgb(216, 214, 214);
-        opacity: 70%;
+        background-color: $grey;
+        opacity: 80%;
         .div_profile_fields_inputs {
             display: flex;
             justify-content: center;
@@ -70,8 +70,6 @@ wrapper {
             .div_tags_list {
                 font-family: inherit;
                 width: 170px;
-                // display: flex;
-                // flex-direction: column;
                 input {
                     @extend %input_as_label_tpl;
                 }
