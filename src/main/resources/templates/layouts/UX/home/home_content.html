@@ -8,15 +8,25 @@
   <wrapper th:fragment="layout_home_content(eventsSuggested)">
     <div class="event">
       <div class="customer_event">
-          <ul>
+          <ul style="list-style: none">
               <li th:each="event: ${eventsSuggested}">
-                  <span>[[${event.initiatorId}]]</span>
-                  <span>[[${event.activity}]]</span>
-                  <span>[[${event.address}]]</span>
-                  <span>[[${event.dateTime}]]</span>
-                  <span>[[${event.city}]]</span>
-                  <span>[[${event.needed}]]</span>
-                  <span>[[${event.willCome}]]</span>
+                  <div style="display: flex; justify-content: space-between; margin: 7px">
+                      <div>
+                          <img th:src="@{'/images/activity_pics/' + ${event.activityId} + '.png'}"
+                               style="height: 52px; border-radius: 5px">
+                      </div>
+                      <div>
+                          <span>[[${event.date}]]</span><br>
+                          <span>[[${event.time}]]</span>
+                      </div>
+                      <div>
+                          <span th:text="${'will come: ' + event.willCome}"></span> <br>
+                          <span th:text="${'needed: ' + event.needed}"></span>
+                      </div>
+                      <div>
+                          <button> I'm in! </button>
+                      </div>
+                  </div>
               </li>
           </ul>
       </div>
