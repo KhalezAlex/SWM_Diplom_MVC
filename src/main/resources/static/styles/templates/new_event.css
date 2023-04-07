@@ -56,7 +56,6 @@ wrapper {
   align-content: center;
 }
 wrapper form {
-  z-index: 100;
   margin: 10% auto;
   padding: 25px 20px 20px;
   height: -webkit-fit-content;

@@ -39,7 +39,7 @@ wrapper {
 wrapper .event {
   width: 90%;
   margin: 0 auto 20px;
-  height: 368px;
+  height: 560px;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,14 +51,17 @@ wrapper .event {
       -ms-flex-align: center;
           align-items: center;
 }
-wrapper .event:nth-child(2) {
-  opacity: 50%;
-  background-color: #bec3c7;
-}
 wrapper .event .customer_event {
   border-radius: 10px;
   width: 48%;
   height: 90%;
   background-color: #bec3c7;
-  opacity: 50%;
+  opacity: 70%;
+}
+wrapper .event .customer_event p {
+  font-family: "Lato-Bold", Arial, sans-serif;
+  color: #239881;
+  margin-left: 25%;
+  font-size: x-large;
+  font-weight: 700;
 }

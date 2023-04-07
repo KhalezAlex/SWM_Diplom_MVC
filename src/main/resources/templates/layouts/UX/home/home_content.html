@@ -5,12 +5,13 @@
     <title>Home_content</title>
 </head>
 <body>
-  <wrapper th:fragment="layout_home_content(eventsSuggested)">
+  <wrapper th:fragment="layout_home_content(eventsSuggested, yourEvents, isAuthenticated)">
     <div class="event">
       <div class="customer_event">
+          <p th:text="${'future events in: ' + eventsSuggested.get(0).city}"></p>
           <ul style="list-style: none">
               <li th:each="event: ${eventsSuggested}">
-                  <div style="display: flex; justify-content: space-between; margin: 7px">
+                  <div style="display: flex; justify-content: space-between; margin: 7px 7px 14px;">
                       <div>
                           <img th:src="@{'/images/activity_pics/' + ${event.activityId} + '.png'}"
                                style="height: 52px; border-radius: 5px">
@@ -23,17 +24,39 @@
                           <span th:text="${'will come: ' + event.willCome}"></span> <br>
                           <span th:text="${'needed: ' + event.needed}"></span>
                       </div>
+                      <form method="POST" th:action="@{/event/participate}">
+                          <input type="number" name="eventId" th:value="${event.id}" hidden>
+                          <button th:if="${isAuthenticated}">I'm in!</button>
+                          <button th:if="${!isAuthenticated}" disabled>I'm in!</button>
+                      </form>
+                  </div>
+              </li>
+          </ul>
+      </div>
+      <div class="customer_event">
+          <p>Your events: </p>
+          <ul style="list-style: none">
+              <li th:each="event: ${yourEvents}">
+                  <div style="display: flex; justify-content: space-between; margin: 7px 7px 14px;">
                       <div>
-                          <button> I'm in! </button>
+                          <img th:src="@{'/images/activity_pics/' + ${event.activityId} + '.png'}"
+                               style="height: 52px; border-radius: 5px">
+                      </div>
+                      <div>
+                          <span>[[${event.date}]]</span><br>
+                          <span>[[${event.time}]]</span>
+                      </div>
+                      <div>
+                          <span th:text="${'will come: ' + event.willCome}"></span> <br>
+                          <span th:text="${'needed: ' + event.needed}"></span>
                       </div>
                   </div>
               </li>
           </ul>
       </div>
-      <div class="customer_event"></div>
     </div>
-    <div class="event">
-    </div>
+<!--    <div class="event">-->
+<!--    </div>-->
   </wrapper>
 </body>
 </html>

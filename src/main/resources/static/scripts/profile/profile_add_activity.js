@@ -19,7 +19,6 @@ $("#profile_activities").on('change', () => {
 })
 
 function drawNewActivity(activity) {
-    // label.addEventListener('click', function() {tagsDeleteListener(label)});
     let img = document.createElement('img');
     img.setAttribute('src', "/images/activity_pics/" + activity.id + ".png");
     img.setAttribute('class', 'img_tags');

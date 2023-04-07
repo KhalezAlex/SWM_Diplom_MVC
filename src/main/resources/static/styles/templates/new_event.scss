@@ -24,7 +24,6 @@ wrapper {
     align-content: center;
     form{
         @extend %form_profile_tpl;
-        z-index: 100;
         margin: 10% auto;
         padding: 25px 20px 20px;
         height: fit-content;
