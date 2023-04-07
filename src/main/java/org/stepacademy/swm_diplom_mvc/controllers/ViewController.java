@@ -25,9 +25,10 @@ public class ViewController {
     DBServiceAggregator aggregator;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model, Authentication auth) {
         model.addAttribute("activePage", "home");
         setEventsSuggested(model);
+        setYourEvents(model, auth);
         return "pages/UX/home";
     }
 
@@ -45,7 +46,7 @@ public class ViewController {
     private List<EventDTO> getEventsSuggested(String cityName) {
         List<EventDTO> events = getAllFutureEvents(cityName);
         for (int i = 0; i < events.size(); i++)
-            if (i > 4 || events.get(i).getNeeded() == 0)
+            if (i > 5 || events.get(i).getNeeded() == 0)
                 events.remove(i--);
         return events;
     }
@@ -58,6 +59,24 @@ public class ViewController {
         });
         events.sort(Comparator.comparing(EventDTO::getDateTime));
         return events;
+    }
+
+    private void setYourEvents(Model model, Authentication auth) {
+        if (auth == null) return;
+        Customer customer = aggregator.customerService.findCustomerByLogin(auth.getName());
+        List<EventDTO> events = new LinkedList<>();
+        customer.getEventsIn().forEach(event ->  {
+            if (!event.getDateTime().isBefore(LocalDateTime.now()))
+                events.add(new EventDTO(event));
+        });
+        events.sort(Comparator.comparing(EventDTO::getDateTime));
+        model.addAttribute("yourEvents", events);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        events.forEach(System.out::println);
     }
 
 

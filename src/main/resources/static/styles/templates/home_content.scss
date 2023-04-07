@@ -25,21 +25,28 @@ wrapper {
     .event {
         width: 90%;
         margin: 0 auto 20px;
-        height: 0.46 * $body_height;
+        height: 0.7 * $body_height;
         border-radius: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .event:nth-child(2) {
-        opacity: 50%;
-        background-color: $grey;
-    }
+    // .event:nth-child(2) {
+    //     opacity: 50%;
+    //     background-color: $grey;
+    // }
     .event .customer_event {
         border-radius: 10px;
         width: 48%;
         height: 90%;
         background-color: $grey;
-        opacity: 50%;
+        opacity: 70%;
+        p {
+            font-family: "Lato-Bold", Arial, sans-serif;
+            color: #239881;
+            margin-left: 25%;
+            font-size: x-large;
+            font-weight: 700;
+        }
     }
 }

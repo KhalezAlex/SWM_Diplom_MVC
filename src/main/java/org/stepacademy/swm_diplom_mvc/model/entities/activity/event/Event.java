@@ -81,6 +81,12 @@ public class Event {
         return id.get();
     }
 
+    public void registerParticipant(Customer customer) {
+        this.participants.add(customer);
+        this.needed--;
+        this.willCome++;
+    }
+
     @Override
     public String toString() {
         return "Event{id= " + id + ", activity= " + activity.getId() + ", city= " + city.getId() + ", address= "

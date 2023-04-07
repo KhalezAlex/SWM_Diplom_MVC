@@ -80,7 +80,6 @@ wrapper .form {
   min-height: -webkit-fit-content;
   min-height: -moz-fit-content;
   min-height: fit-content;
-  z-index: 100;
   margin: 10% auto;
   padding: 25px 20px 20px;
   height: -webkit-fit-content;
