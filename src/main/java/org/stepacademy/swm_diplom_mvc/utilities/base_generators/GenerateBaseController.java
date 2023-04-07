@@ -55,6 +55,7 @@ public class GenerateBaseController {
         aggregator.customerService.saveAdmin(new Customer("admin", "admin"));
         aggregator.customerService.save(new Customer("user", "user"));
         Customer customer = new Customer("loser", "loser");
+        customer.getRoles().removeAll(customer.getRoles());
         customer.getRoles().add(aggregator.roleService.findById(3).get());
         aggregator.customerService.save(customer);
     }
@@ -149,11 +150,10 @@ public class GenerateBaseController {
     }
 
     private void generateActivities() {
-        String[] activity = {"Виды спорта: ", "Футбол", "Баскетбол", "Волейбол", "Хоккей", "Пробежка", "Коньки", "Лыжи",
-                "Сноуборд", "Кросс Фит", "Тренажёрный зал", "Йога", "Единоборства"};
-        for (String act : activity)
-            if (!act.equals(activity[0]))
-                aggregator.activityService.save(new Activity(act));
+        String[] activities = {"Тренажерный зал", "Баскетбол", "Боулинг", "Кросс-фит", "Велосипед",
+                "Единоборства", "Футбол", "Коньки", "Ролики", "Пробежка", "Теннис", "Волейбол"};
+        for (String activity : activities)
+            aggregator.activityService.save(new Activity(activity));
     }
 
     @GetMapping("/events")
@@ -167,14 +167,18 @@ public class GenerateBaseController {
     }
 
     private void generateEventsForCity(List<Profile> profiles) {
-        for (int i = 0; i < 8; i++)
-            generateEvent(profiles.remove(0));
+        for (int i = 0; i < profiles.size() - 3; i++) {
+            Profile profile = profiles.remove(0);
+            int eventsByPerson = (int) (Math.random() * 11);
+            while (eventsByPerson-- != 0)
+                generateEvent(profile);
+        }
     }
 
     private void generateEvent(Profile profile) {
         Activity activity = aggregator.activityService.findById(
                 (int) (Math.random() * aggregator.activityService.findAll().size()) + 1).get();
-        LocalDateTime date = LocalDateTime.now().plusDays((int) (Math.random() * 30))
+        LocalDateTime date = LocalDateTime.now().plusDays((int) (Math.random() * 10))
                 .plusHours((int) (Math.random() * 24));
         Event event = new Event(activity, profile.getCity(), "", date,
                 profile.getCustomer(), (int) (Math.random() * 5 + 1), (int) (Math.random() * 5 + 5));

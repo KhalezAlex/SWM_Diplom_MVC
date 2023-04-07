@@ -1,13 +1,14 @@
-function tagsDeleteListener(label) {
+function tagsDeleteListener(img) {
+    let str = img.getAttribute('src');
     $.ajax({
         url: "/profile/activity/delete",
         method: "get",
         dataType: "html",
         data: {
             profileId: $("#input_profile_id").val(),
-            tag: label.innerHTML.substring(1)},
+            tagId: str.substring(22, str.length - 4)},
         success: function(data) {
-            label.remove();
+            img.remove();
             addTagToSelect(data);
             tagsAmount--;
         }

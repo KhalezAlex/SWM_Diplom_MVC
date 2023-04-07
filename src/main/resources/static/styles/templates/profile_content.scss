@@ -39,6 +39,8 @@ wrapper {
     align-content: center;
     .form {
         @extend %form_profile_tpl;
+        min-width: fit-content;
+        min-height: fit-content;
         z-index: 100;
         margin: 10% auto;
         padding: 25px 20px 20px;
@@ -55,27 +57,29 @@ wrapper {
                 margin-right: 30px;
                 img {
                     display: flex;
-                    width: 100px;
-                    height: 100px;
-                    background-color: aqua;
+                    width: 150px;
+                    height: 150px;
                 }
             }
             .div_username_logout {
                 input {
                     @extend %input_as_label_tpl;
+                    margin: 5px;
                 }
             }
             .div_tags_list {
                 font-family: inherit;
-                width: fit-content;
-                display: flex;
-                flex-direction: column;
+                width: 170px;
+                // display: flex;
+                // flex-direction: column;
                 input {
                     @extend %input_as_label_tpl;
                 }
             }
         }
         .div_profile_fields_inputs_table {
+            display: flex;
+            justify-content: center;
             >table {
                 input, select {
                     font-family: "Lato-Bold", Arial, sans-serif;
@@ -101,4 +105,9 @@ wrapper {
             }
         }
     }
+}
+
+.img_tags {
+    margin: 5px;
+    border-radius: 5px;
 }

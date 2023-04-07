@@ -23,9 +23,11 @@ public class Activity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "activity",cascade = CascadeType.ALL)
     private Set<Event> events;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "activityTags", cascade = CascadeType.ALL)
     private Set<Profile> profiles;
 

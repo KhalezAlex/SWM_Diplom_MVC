@@ -1,14 +1,12 @@
 package org.stepacademy.swm_diplom_mvc.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.IDaoEvent;
 import org.stepacademy.swm_diplom_mvc.model.dto.EventDTO;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
@@ -18,9 +16,7 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.city.City;
 import org.stepacademy.swm_diplom_mvc.utilities.DBServiceAggregator;
 
 import java.time.LocalDateTime;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 @RequestMapping(path = "/")
@@ -47,17 +43,23 @@ public class ViewController {
     }
 
     private List<EventDTO> getEventsSuggested(String cityName) {
-        List<EventDTO> events = new LinkedList<>();
-        //Можно удалить
-//        aggregator.eventService.findEventsByCity_Name(cityName).forEach(event -> events.add(new EventDTO(event)));
-        aggregator.eventService.findEventsByCity_Name(cityName).forEach(event -> {
-            //Проверка на дату и время создания, если больше текущей не показывает на странице.
-            if(!event.getDateTime().isBefore(LocalDateTime.now())){
-                events.add(new EventDTO(event));
-            }
-        });
+        List<EventDTO> events = getAllFutureEvents(cityName);
+        for (int i = 0; i < events.size(); i++)
+            if (i > 4)
+                events.remove(i--);
         return events;
     }
+
+    private List<EventDTO> getAllFutureEvents(String cityName) {
+        List<EventDTO> events = new LinkedList<>();
+        aggregator.eventService.findEventsByCity_Name(cityName).forEach(event -> {
+            if(!event.getDateTime().isBefore(LocalDateTime.now()))
+                events.add(new EventDTO(event));
+        });
+        events.sort(Comparator.comparing(EventDTO::getDateTime));
+        return events;
+    }
+
 
     @GetMapping("/register")
     public String register(Model model) {
