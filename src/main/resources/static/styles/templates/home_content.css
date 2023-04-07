@@ -54,9 +54,10 @@ wrapper .event {
 wrapper .event .customer_event {
   border-radius: 10px;
   width: 48%;
-  height: 90%;
+  height: 100%;
   background-color: #bec3c7;
   opacity: 70%;
+  overflow: hidden;
 }
 wrapper .event .customer_event p {
   font-family: "Lato-Bold", Arial, sans-serif;

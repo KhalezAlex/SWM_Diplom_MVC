@@ -46,7 +46,10 @@ public class ViewController {
     private List<EventDTO> getEventsSuggested(String cityName) {
         List<EventDTO> events = getAllFutureEvents(cityName);
         for (int i = 0; i < events.size(); i++)
-            if (i > 5 || events.get(i).getNeeded() == 0)
+            if (i > 5 || events.get(i).getNeeded() == 0 ||
+                    aggregator.eventService.findById(events.get(i).getId()).get().getParticipants().contains(
+                        aggregator.customerService.findCustomerByLogin(
+                            SecurityContextHolder.getContext().getAuthentication().getName())))
                 events.remove(i--);
         return events;
     }
@@ -71,12 +74,6 @@ public class ViewController {
         });
         events.sort(Comparator.comparing(EventDTO::getDateTime));
         model.addAttribute("yourEvents", events);
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        events.forEach(System.out::println);
     }
 
 

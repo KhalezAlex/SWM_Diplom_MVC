@@ -28,11 +28,19 @@ public class EventController {
 
     @PostMapping("/participate")
     public String participate(@RequestParam int eventId, Authentication auth) {
-        System.out.println(eventId);
-        System.out.println(auth.getName());
-//        Event event = eventService.findById(eventId).get();
-//        Customer customer = customerService.findCustomerByLogin(auth.getName());
-//        event.getParticipants().add(customer);
+        Event event = eventService.findById(eventId).get();
+        event.setNeeded(event.getNeeded() - 1);
+        event.setWillCome(event.getWillCome() + 1);
+        customerService.participate(customerService.findCustomerByLogin(auth.getName()).getId(), event);
+        return "redirect:/";
+    }
+
+    @PostMapping("/roastOut")
+    public String roastOut(@RequestParam int eventId, Authentication auth) {
+        Event event = eventService.findById(eventId).get();
+        event.setNeeded(event.getNeeded() + 1);
+        event.setWillCome(event.getWillCome() - 1);
+        customerService.roastOut(customerService.findCustomerByLogin(auth.getName()).getId(), event);
         return "redirect:/";
     }
 }

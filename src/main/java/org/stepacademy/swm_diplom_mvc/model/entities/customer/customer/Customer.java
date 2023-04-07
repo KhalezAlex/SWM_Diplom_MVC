@@ -90,6 +90,13 @@ public class Customer implements UserDetails {
         return true;
     }
 
+    public void participate(Event event) {
+        this.eventsIn.add(event);
+        event.setNeeded(event.getNeeded() - 1);
+        event.setWillCome(event.getWillCome() + 1);
+        event.getParticipants().add(this);
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

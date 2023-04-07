@@ -3,8 +3,10 @@ package org.stepacademy.swm_diplom_mvc.model.dao.customer.customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IRepoProfile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.IRepoRole;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.event.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.customer.Customer;
 
 import java.util.List;
@@ -78,5 +80,19 @@ public class DBServiceCustomer implements IDaoCustomer {
         Customer customer = customerRepo.findById(id).get();
         customerRepo.delete(customer);
         return customer;
+    }
+
+    @Transactional
+    public void participate(int id, Event event) {
+        Customer customer = customerRepo.findById(id).get();
+        customer.getEventsIn().add(event);
+        customerRepo.save(customer);
+    }
+
+    @Transactional
+    public void roastOut(int id, Event event) {
+        Customer customer = customerRepo.findById(id).get();
+        customer.getEventsIn().remove(event);
+        customerRepo.save(customer);
     }
 }

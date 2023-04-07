@@ -167,7 +167,8 @@ public class GenerateBaseController {
     }
 
     private void generateEventsForCity(List<Profile> profiles) {
-        for (int i = 0; i < profiles.size() - 3; i++) {
+//        for (int i = 0; i < profiles.size() - 3; i++) {
+        for (int i = 0; i < 2; i++) {
             Profile profile = profiles.remove(0);
             int eventsByPerson = (int) (Math.random() * 11);
             while (eventsByPerson-- != 0)

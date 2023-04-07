@@ -31,16 +31,13 @@ wrapper {
         justify-content: space-between;
         align-items: center;
     }
-    // .event:nth-child(2) {
-    //     opacity: 50%;
-    //     background-color: $grey;
-    // }
     .event .customer_event {
         border-radius: 10px;
         width: 48%;
-        height: 90%;
+        height: 100%;
         background-color: $grey;
         opacity: 70%;
+        overflow: hidden;
         p {
             font-family: "Lato-Bold", Arial, sans-serif;
             color: #239881;

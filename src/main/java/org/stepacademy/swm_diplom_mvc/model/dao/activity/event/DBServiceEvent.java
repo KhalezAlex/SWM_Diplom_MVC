@@ -53,6 +53,13 @@ public class DBServiceEvent implements IDaoEvent{
 
     @Transactional
     public boolean participate(int eventId, Customer customer) {
+        Event event = eventRepo.findById(eventId).get();
+        event.registerParticipant(customer);
+        System.out.println("************");
+        System.out.println("************");
+        System.out.println("************");
+        System.out.println("************");
+        System.out.println(event.getParticipants().size());
         return true;
     }
 }

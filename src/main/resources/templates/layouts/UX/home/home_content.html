@@ -8,30 +8,35 @@
   <wrapper th:fragment="layout_home_content(eventsSuggested, yourEvents, isAuthenticated)">
     <div class="event">
       <div class="customer_event">
-          <p th:text="${'future events in: ' + eventsSuggested.get(0).city}"></p>
-          <ul style="list-style: none">
-              <li th:each="event: ${eventsSuggested}">
-                  <div style="display: flex; justify-content: space-between; margin: 7px 7px 14px;">
-                      <div>
-                          <img th:src="@{'/images/activity_pics/' + ${event.activityId} + '.png'}"
-                               style="height: 52px; border-radius: 5px">
+          <p th:text="${'future events in your city: '}"></p>
+          <h2 th:if="${eventsSuggested.size == 0}">No events in your city registered... Be first!</h2>
+          <br th:if="${eventsSuggested.size == 0}">
+          <h2 th:if="${eventsSuggested.size == 0}">...Or check in other city:</h2>
+          <th:block th:if="${eventsSuggested.size != 0}">
+              <ul style="list-style: none">
+                  <li th:each="event: ${eventsSuggested}">
+                      <div style="display: flex; justify-content: space-between; margin: 7px 7px 14px;">
+                          <div>
+                              <img th:src="@{'/images/activity_pics/' + ${event.activityId} + '.png'}"
+                                   style="height: 52px; border-radius: 5px">
+                          </div>
+                          <div>
+                              <span>[[${event.date}]]</span><br>
+                              <span>[[${event.time}]]</span>
+                          </div>
+                          <div>
+                              <span th:text="${'will come: ' + event.willCome}"></span> <br>
+                              <span th:text="${'needed: ' + event.needed}"></span>
+                          </div>
+                          <form method="POST" th:action="@{/event/participate}">
+                              <input type="number" name="eventId" th:value="${event.id}" hidden>
+                              <button th:if="${isAuthenticated}">I'm in!</button>
+                              <button th:if="${!isAuthenticated}" disabled>I'm in!</button>
+                          </form>
                       </div>
-                      <div>
-                          <span>[[${event.date}]]</span><br>
-                          <span>[[${event.time}]]</span>
-                      </div>
-                      <div>
-                          <span th:text="${'will come: ' + event.willCome}"></span> <br>
-                          <span th:text="${'needed: ' + event.needed}"></span>
-                      </div>
-                      <form method="POST" th:action="@{/event/participate}">
-                          <input type="number" name="eventId" th:value="${event.id}" hidden>
-                          <button th:if="${isAuthenticated}">I'm in!</button>
-                          <button th:if="${!isAuthenticated}" disabled>I'm in!</button>
-                      </form>
-                  </div>
-              </li>
-          </ul>
+                  </li>
+              </ul>
+          </th:block>
       </div>
       <div class="customer_event">
           <p>Your events: </p>
@@ -50,6 +55,10 @@
                           <span th:text="${'will come: ' + event.willCome}"></span> <br>
                           <span th:text="${'needed: ' + event.needed}"></span>
                       </div>
+                      <form method="POST" th:action="@{/event/roastOut}">
+                          <input type="number" name="eventId" th:value="${event.id}" hidden>
+                          <button th:if="${isAuthenticated}">I'm out!</button>
+                      </form>
                   </div>
               </li>
           </ul>

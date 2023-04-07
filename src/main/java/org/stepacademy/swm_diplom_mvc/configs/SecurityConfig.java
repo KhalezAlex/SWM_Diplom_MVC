@@ -39,7 +39,7 @@ public class SecurityConfig {
                                 "/admin_home/*").hasRole("ADMIN")
                         .requestMatchers("/event/save").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/profile", "/profile/update", "/logout", "/profile/activity/*",
-                                "/event/participate").authenticated()
+                                "/event/participate", "/event/roastOut").authenticated()
                         .requestMatchers("/customer/register", "/register",
                                 "/service/generateBase", "/service/tags", "/service/events").anonymous()
                         .requestMatchers("/", "/webjars/**", "/*", "/home/events/onLoadEvents").permitAll()
