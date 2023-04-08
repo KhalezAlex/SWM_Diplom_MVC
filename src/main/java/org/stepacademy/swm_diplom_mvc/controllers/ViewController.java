@@ -65,7 +65,7 @@ public class ViewController {
     }
 
     private boolean isInEvent(EventDTO event) {
-        Customer customer  =customerService.findCustomerByLogin(
+        Customer customer = customerService.findCustomerByLogin(
                 SecurityContextHolder.getContext().getAuthentication().getName());
         return eventService.findById(event.getId()).get().getParticipants().contains(customer) ||
                 eventService.findById(event.getId()).get().getInitiator() == customer;

@@ -11,6 +11,16 @@ wrapper {
   display: flex;
 }
 
+wrapper a {
+  height: 100%;
+  text-align: center;
+  font-family: "Lato-Bold", Arial, sans-serif;
+  font-size: x-large;
+  font-weight: 700;
+  border-radius: 10px;
+  border-style: none;
+}
+
 @font-face {
   font-family: "Lato-Regular";
   src: url(../../fonts/Lato-Regular.ttf) format("ttf");
@@ -38,4 +48,18 @@ wrapper {
 }
 wrapper h1, wrapper h2 {
   color: #1bbc9b;
+}
+wrapper a {
+  color: #e5eee3;
+  background-color: #1bbc9b;
+  text-decoration: none;
+  margin-right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
 }

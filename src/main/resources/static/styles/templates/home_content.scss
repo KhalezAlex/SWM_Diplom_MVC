@@ -45,5 +45,18 @@ wrapper {
             font-size: x-large;
             font-weight: 700;
         }
+        ul {
+            margin-right: 20px;
+        }
+        button {
+            @extend %button_tpl;
+            padding: 5px;
+            width: fit-content;
+            height: fit-content;
+            font-family: "Lato-Bold", Arial, sans-serif;
+            color: $white;
+            background-color: $green;
+            border-radius: 5px;
+        }
     }
 }

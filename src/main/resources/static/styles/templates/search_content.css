@@ -63,3 +63,6 @@ wrapper form {
   background-color: rgb(216, 214, 214);
   opacity: 70%;
 }
+wrapper form table tr td input, wrapper form table tr td select {
+  border-radius: 5px;
+}

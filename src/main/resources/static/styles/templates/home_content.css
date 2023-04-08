@@ -11,6 +11,12 @@ wrapper {
   display: flex;
 }
 
+wrapper .event .customer_event button {
+  width: 138px;
+  height: 35px;
+  border-style: none;
+}
+
 @font-face {
   font-family: "Lato-Regular";
   src: url(../../fonts/Lato-Regular.ttf) format("ttf");
@@ -65,4 +71,20 @@ wrapper .event .customer_event p {
   margin-left: 25%;
   font-size: x-large;
   font-weight: 700;
+}
+wrapper .event .customer_event ul {
+  margin-right: 20px;
+}
+wrapper .event .customer_event button {
+  padding: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-family: "Lato-Bold", Arial, sans-serif;
+  color: #e5eee3;
+  background-color: #1bbc9b;
+  border-radius: 5px;
 }

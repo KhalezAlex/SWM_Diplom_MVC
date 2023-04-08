@@ -38,6 +38,7 @@ wrapper {
                 td {
                     input, select {
                         @extend %input_tpl;
+                        border-radius: 5px;
                     }
                 }
             }
