@@ -167,6 +167,11 @@ public class ViewController {
         return "pages/UI/search";
     }
 
+    @GetMapping("/message")
+    public String message(){
+        return "mvp2/index";
+    }
+
     @GetMapping("/admin")
     public String adminPage(){
         return "redirect:/admin_home/base";

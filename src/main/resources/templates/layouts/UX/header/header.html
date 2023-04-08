@@ -24,7 +24,10 @@
             search
           </button>
         </li>
-        <li><button>alerts</button></li>
+        <li><button th:class="${activePage == 'search'} ? active" onclick="window.location.href = '/message'">
+          message
+        </button>
+        </li>
         <li>
           <button th:if="${isAdmin}" onclick="window.location.href = '/admin'" >
             admin page
