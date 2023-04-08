@@ -25,4 +25,15 @@ wrapper {
     h1, h2 {
         color: $green;
     }
+    a {
+        @extend %header_button_tpl;
+        color: $white;
+        background-color: $green;
+        text-decoration: none;    
+        margin-right: 0;
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }

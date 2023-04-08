@@ -11,14 +11,18 @@
     <th:block th:insert="~{layouts/UX/header/header.html ::
                         layout_header(${isAuthenticated}, ${isAdmin}, ${cities}, ${city}, ${userName}, ${activePage})}">
     </th:block>
+
 <!--Контент-->
     <th:block th:if="${filteredEvents} == null" th:insert="~{layouts/UX/home/home_content.html ::
                         layout_home_content(${eventsSuggested}, ${yourEvents}, ${isAuthenticated})}"></th:block>
+
+<!--Контент после поиска-->
     <th:block th:if="${filteredEvents} != null" th:insert="~{layouts/UX/home/home_content.html ::
                         layout_home_content(${filteredEvents}, ${yourEvents}, ${isAuthenticated})}"></th:block>
+
 <!--Сервисная ссылка для генерации базы-->
     <input id="current_city" th:value="${city}" hidden>
-    <a th:href="@{/service/generateBase}">Сгенерировать базу</a>
+<!--    <a th:href="@{/service/generateBase}">Сгенерировать базу</a>-->
 
     <script th:src="@{/scripts/jquery_1_7.js}"></script>
 </body>
