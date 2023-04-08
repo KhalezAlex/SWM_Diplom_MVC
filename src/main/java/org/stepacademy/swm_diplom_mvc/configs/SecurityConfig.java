@@ -24,10 +24,10 @@ import javax.sql.DataSource;
 public class SecurityConfig {
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers(
-                "/styles/templates/*.css",
+                "/styles/templates/*.css", "/styles/mvp2/*.css",
 //                "/styles/*.css", "/styles/header/*.css", "/styles/profile/*.css",
-                "/images/*", "/images/activity_pics/*",
-                "/scripts/*.js", "/scripts/profile/*.js", "/scripts/home/*.js",
+                "/images/*", "/images/activity_pics/*", "/styles/mvp2/*",
+                "/scripts/*.js", "/scripts/profile/*.js", "/scripts/home/*.js", "/scripts/mvp2/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
     }
 
