@@ -109,7 +109,7 @@ public class ViewController {
     private void setProfileModelAttrs(Model model, Authentication auth, String name) {
         setProfileCommonModelAttrs(model, auth, name);
         if (Objects.equals(model.getAttribute("isOwner"), true))
-            setProfileOwnerModelAttrs(model, name);
+            setProfileOwnerModelAttrs(model, name, auth);
     }
     private void setProfileCommonModelAttrs(Model model, Authentication auth, String name) {
         Customer customer = customerService.findCustomerByLogin(name);
@@ -120,11 +120,16 @@ public class ViewController {
 //Проверка на то, будет пользователь свой профиль просматривать, или нет, чтобы на фронте ограничить редактирование
         model.addAttribute("isOwner", auth.getName().equals(customer.getLogin()));
     }
-    private void setProfileOwnerModelAttrs(Model model, String name) {
+    private void setProfileOwnerModelAttrs(Model model, String name, Authentication auth) {
 //Список городов для редактирования профиля
         model.addAttribute("cities", cityService.findAll());
 //Список видов спорта - тегов для дальнейшего использования при выборе ивентов
         model.addAttribute("tags", profileActivitiesList(name));
+//Список событий, зарегистрированных пользователем
+        List<EventDTO> events = new LinkedList<>();
+        List<Event> e = eventService.filterByInitiator(auth.getName());
+        e.forEach(event -> events.add(new EventDTO(event)));
+        model.addAttribute("eventsInitiated", events);
     }
     private List<Activity> profileActivitiesList(String name) {
         List<Activity> tags = activityService.findAll();

@@ -24,6 +24,12 @@ wrapper form table tr td input, wrapper form table tr td select {
   border: 2px solid #16a086;
 }
 
+wrapper form table tr td button, wrapper form table tr td a {
+  width: 138px;
+  height: 35px;
+  border-style: none;
+}
+
 @font-face {
   font-family: "Lato-Regular";
   src: url(../../fonts/Lato-Regular.ttf) format("ttf");
@@ -50,7 +56,6 @@ wrapper {
   align-content: center;
 }
 wrapper form {
-  z-index: 100;
   margin: 10% auto;
   padding: 25px 20px 20px;
   height: -webkit-fit-content;
@@ -63,6 +68,29 @@ wrapper form {
   background-color: rgb(216, 214, 214);
   opacity: 70%;
 }
+wrapper form table {
+  margin: auto;
+}
 wrapper form table tr td input, wrapper form table tr td select {
   border-radius: 5px;
+}
+wrapper form table tr td button, wrapper form table tr td a {
+  font-size: larger;
+  background-color: #1bbc9b;
+  color: #e5eee3;
+  font-family: "Lato-Bold", Arial, sans-serif;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+wrapper form table tr td a {
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }

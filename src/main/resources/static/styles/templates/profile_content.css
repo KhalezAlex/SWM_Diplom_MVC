@@ -116,6 +116,7 @@ wrapper .form .div_profile_fields_inputs .div_username_logout input {
 wrapper .form .div_profile_fields_inputs .div_tags_list {
   font-family: inherit;
   width: 170px;
+  max-height: 190px;
 }
 wrapper .form .div_profile_fields_inputs_table {
   display: -webkit-box;

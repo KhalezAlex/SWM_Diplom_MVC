@@ -70,6 +70,7 @@ wrapper {
             .div_tags_list {
                 font-family: inherit;
                 width: 170px;
+                max-height: 190px;
                 input {
                     @extend %input_as_label_tpl;
                 }

@@ -5,7 +5,7 @@
     <title>Profile_update_form</title>
 </head>
 <body>
-  <wrapper th:fragment="layout_profile_update_form(profile, cities, tags, organized)">
+  <wrapper th:fragment="layout_profile_update_form(profile, cities, tags, organized, eventsInitiated)">
     <form id="form" class="form" method="post" th:action="@{/profile/update}" th:object="${profile}"
           enctype="multipart/form-data" onclick="profileUpdateActivation()">
       <div class="div_profile_fields_inputs">
@@ -61,7 +61,7 @@
             <td><input type="text" th:value="${organized}" disabled></td>
           </tr>
           <tr id="tags_row" hidden>
-            <td>tags</td>
+            <td>Tags:</td>
             <td>
               <select id="profile_activities" disabled>
                 <option>Choose activity</option>

@@ -42,7 +42,8 @@ public class SecurityConfig {
                                 "/event/participate", "/event/roastOut", "event/filter").authenticated()
                         .requestMatchers("/customer/register", "/register",
                                 "/service/generateBase", "/service/tags", "/service/events").anonymous()
-                        .requestMatchers("/", "/webjars/**", "/*", "/home/events/onLoadEvents").permitAll()
+                        .requestMatchers("/", "/webjars/**", "/*", "/home/events/onLoadEvents", "/search",
+                                "/event/filter").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

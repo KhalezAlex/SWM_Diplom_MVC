@@ -9,6 +9,8 @@ import java.util.List;
 public interface IRepoEvent extends CrudRepository<Event, Integer> {
     List<Event> findEventsByCity_Name(String cityName);
 
+    List<Event> findEventsByInitiator_Login(String login);
+
     List<Event> findEventsByCity_NameAndActivity_NameAndDateTimeBetween(String cityName, String activityName,
                                                                         LocalDateTime startDate, LocalDateTime endDate);
 

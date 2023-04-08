@@ -24,7 +24,6 @@ wrapper {
     align-content: center;
     form {
         @extend %form_profile_tpl;
-        z-index: 100;
         margin: 10% auto;
         padding: 25px 20px 20px;
         height: fit-content;
@@ -34,11 +33,27 @@ wrapper {
         background-color: rgb(216, 214, 214);
         opacity: 70%;
         table {
+            margin: auto;
             tr {
                 td {
                     input, select {
                         @extend %input_tpl;
                         border-radius: 5px;
+                    }
+                    button, a {
+                        @extend %button_tpl;
+                        font-size: larger;
+                        background-color: $green;
+                        color: $white;
+                        font-family: "Lato-Bold", Arial, sans-serif;
+                        border-radius: 5px;
+                        margin-top: 5px;
+                    }
+                    a {
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                 }
             }

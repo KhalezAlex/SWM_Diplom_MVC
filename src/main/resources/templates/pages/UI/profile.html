@@ -14,12 +14,12 @@
 <!--Просмотр  чужого профиля-->
   <th:block th:if="${!isOwner}"
             th:insert="~{layouts/UX/profile/profile_view_content.html ::
-                            layout_profile_view_div(${profile}, ${organized})}">
+                        layout_profile_view_div(${profile}, ${organized})}">
   </th:block>
 <!--Просмотр своего профиля-->
   <th:block th:if="${isOwner}"
             th:insert="~{layouts/UX/profile/profile_update_content.html ::
-                            layout_profile_update_form(${profile}, ${cities}, ${tags}, ${organized})}">
+                        layout_profile_update_form(${profile}, ${cities}, ${tags}, ${organized}, ${eventsInitiated})}">
   </th:block>
 
 <!--Реактив нужен только для просмотра и редактирования своего профиля-->

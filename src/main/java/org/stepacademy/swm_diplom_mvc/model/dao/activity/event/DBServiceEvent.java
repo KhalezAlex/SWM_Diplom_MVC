@@ -44,14 +44,18 @@ public class DBServiceEvent implements IDaoEvent{
         return event;
     }
 
+    @Override
+    public List<Event> findEventsByCity_Name(String city) {
+        return eventRepo.findEventsByCity_Name(city);
+    }
+
     public List<Event> filter(String cityName, String activityName, LocalDateTime startDate,
                               LocalDateTime endDate) {
         return eventRepo.findEventsByCity_NameAndActivity_NameAndDateTimeBetween(
                 cityName, activityName, startDate, endDate);
     }
 
-    @Override
-    public List<Event> findEventsByCity_Name(String city) {
-        return eventRepo.findEventsByCity_Name(city);
+    public List<Event> filterByInitiator(String login) {
+        return eventRepo.findEventsByInitiator_Login(login);
     }
 }
