@@ -22,6 +22,12 @@ body {
         border-radius: 10px;
         display: flex;
         justify-content: space-between;
+        .emblem {
+            font-family: "Lato-Bold", Arial, sans-serif;
+            color: $white;
+            font-size: x-large;
+            margin-left: 20px
+        }
         nav {
             ul {
                 display: flex;
@@ -47,6 +53,8 @@ body {
                     }
                     >a {
                         @extend %header_button_tpl;
+                        padding-left: 3px;
+                        padding-right: 3px;
                         color: $white;
                         background-color: $green;
                         text-decoration: none;    

@@ -59,7 +59,7 @@ public class ViewController {
     private List<EventDTO> getEventsSuggested(String cityName) {
         List<EventDTO> events = getAllFutureEvents(cityName);
         for (int i = 0; i < events.size(); i++)
-            if (i > 5 || events.get(i).getNeeded() == 0 || isInEvent(events.get(i)))
+            if (i > 7 || events.get(i).getNeeded() == 0 || isInEvent(events.get(i)))
                 events.remove(i--);
         return events;
     }

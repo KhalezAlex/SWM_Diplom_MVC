@@ -6,7 +6,9 @@
 </head>
 <body>
   <header th:fragment="layout_header(isAuthenticated, isAdmin, cities, cityOfPresence, name, activePage)">
-    <div><img src="" alt=""></div>
+    <div style="margin-left: 20px">
+      <h1 class="emblem">SWM</h1>
+    </div>
     <nav>
       <ul>
         <li>
@@ -24,7 +26,7 @@
             search
           </button>
         </li>
-        <li><button th:class="${activePage == 'search'} ? active" onclick="window.location.href = '/message'">
+        <li><button th:class="${activePage == 'message'} ? active" onclick="window.location.href = '/message'">
           message
         </button>
         </li>

@@ -78,7 +78,7 @@ public class EventController {
                                             LocalDateTime endDate) {
         List<EventDTO> events = new LinkedList<>();
         List<Event> e = eventService.filter(city, activity, startDate, endDate);
-        if (e.size() < 6)
+        if (e.size() < 8)
             e.forEach(event -> {
                 if (!(event.getNeeded() == 0 || isInEvent(new EventDTO(event))))
                     events.add(new EventDTO(event));

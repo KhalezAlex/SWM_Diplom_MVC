@@ -40,6 +40,12 @@ body header {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+body header .emblem {
+  font-family: "Lato-Bold", Arial, sans-serif;
+  color: #e5eee3;
+  font-size: x-large;
+  margin-left: 20px;
+}
 body header nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -72,6 +78,8 @@ body header nav ul li :last-child button {
   margin-right: 0;
 }
 body header nav ul li > a {
+  padding-left: 3px;
+  padding-right: 3px;
   color: #e5eee3;
   background-color: #1bbc9b;
   text-decoration: none;

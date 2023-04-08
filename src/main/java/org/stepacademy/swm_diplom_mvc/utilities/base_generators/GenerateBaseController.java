@@ -62,7 +62,7 @@ public class GenerateBaseController {
         testUsersInit();
         activityTableInit();
         usersBaseInit();
-        return "pages/UX/home";
+        return "redirect:/";
     }
 
     private void roleTableInit() {
@@ -183,7 +183,7 @@ public class GenerateBaseController {
     @GetMapping("/events")
     private String eventTableInit() {
         generateEvents(cityService.findAll());
-        return "pages/UX/home";
+        return "redirect:/";
     }
 
     private void generateEvents(List<City> cities) {
@@ -191,8 +191,8 @@ public class GenerateBaseController {
     }
 
     private void generateEventsForCity(List<Profile> profiles) {
-//        for (int i = 0; i < profiles.size() - 3; i++) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < profiles.size() - 3; i++) {
+//        for (int i = 0; i < 2; i++) {
             Profile profile = profiles.remove(0);
             int eventsByPerson = (int) (Math.random() * 11);
             while (eventsByPerson-- != 0)
@@ -215,7 +215,7 @@ public class GenerateBaseController {
     @GetMapping("/tags")
     private String generateTagsCloud() {
         profileService.findAll().forEach(this::generateTags);
-        return "pages/UX/home";
+        return "redirect:/";
     }
 
     private void generateTags(Profile profile) {

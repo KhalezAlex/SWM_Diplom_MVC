@@ -8,7 +8,7 @@
   <wrapper th:fragment="layout_home_content(eventsSuggested, yourEvents, isAuthenticated)">
     <div class="event">
       <div class="customer_event">
-          <p th:text="${'future events in your city: '}"></p>
+          <p th:text="${'Future events in your city: '}"></p>
           <h2 th:if="${eventsSuggested.size == 0}">No events in your city registered... Be first!</h2>
           <br th:if="${eventsSuggested.size == 0}">
           <h2 th:if="${eventsSuggested.size == 0}">...Or check in other city:</h2>
