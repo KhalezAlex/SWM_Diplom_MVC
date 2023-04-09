@@ -68,10 +68,10 @@
 </tr>
 <tr>
 <th>Гость</th>
-<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30" /></th>
-<th></th>
-<th></th>
-<th></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
 <th></th>
 <th></th>
 <th></th>  
@@ -79,32 +79,32 @@
 <tr>
 <th>Striker</th>
 <th></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
 <th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
 </tr>
 <tr>
 <th>Пользователь</th>
 <th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
 </tr>
 <tr>
 <th>Админ + Crud</th>
 <th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
 </tr>
 </table>
   
