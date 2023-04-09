@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <th>Гость</th>
-<th></th>
+<th><img src="![free-png ru-39](https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png)" /></th>
 <th></th>
 <th></th>
 <th></th>
