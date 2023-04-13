@@ -1,11 +1,10 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.location;
 
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Set;
 
 @Getter
 @Setter
@@ -20,7 +19,7 @@ public class Country {
     @Column(name = "name", unique = true)
     private String name;
 
-//Создаём связь в БД, одна "страна" много "городов". + подключаем зависимость к сущностям
+    //Создаём связь в БД, одна "страна" много "городов". + подключаем зависимость к сущностям
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
     private Set<City> cities;
 
@@ -30,9 +29,6 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Country{id= " + id + ", name= " + name + '}';
     }
 }

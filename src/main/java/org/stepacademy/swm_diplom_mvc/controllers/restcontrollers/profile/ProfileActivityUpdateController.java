@@ -12,8 +12,6 @@ import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
 
-
-
 @RestController
 @RequestMapping(path = "/profile")
 public class ProfileActivityUpdateController {
@@ -23,7 +21,6 @@ public class ProfileActivityUpdateController {
     DBServiceProfile profileService;
     @Autowired
     DBServiceCity cityService;
-
 
     @GetMapping("/activity/add")
     public Activity add(@RequestParam int profileId, @RequestParam String tag) {

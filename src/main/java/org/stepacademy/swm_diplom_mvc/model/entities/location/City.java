@@ -1,13 +1,12 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.location;
 
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
-
-import java.util.Set;
 
 @Getter
 @Setter
@@ -44,10 +43,6 @@ public class City {
 
     @Override
     public String toString() {
-        return "City{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", country=" + country +
-                '}';
+        return "City{id= " + id + ", name= " + name + ", country= " + country + '}';
     }
 }

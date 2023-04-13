@@ -1,11 +1,10 @@
 package org.stepacademy.swm_diplom_mvc.model.dao.location.country;
 
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.Country;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DBServiceCountry implements IDaoCountry{
@@ -29,8 +28,9 @@ public class DBServiceCountry implements IDaoCountry{
 
     @Override
     public Country update(Country country) {
-        if(countryRepo.findById(country.getId()).isPresent())
+        if (countryRepo.findById(country.getId()).isPresent()) {
             countryRepo.save(country);
+        }
         return null;
     }
 

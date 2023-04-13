@@ -1,14 +1,11 @@
 package org.stepacademy.swm_diplom_mvc.model.dao.activity.event;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 
 @Service
 public class DBServiceEvent implements IDaoEvent{
@@ -32,8 +29,9 @@ public class DBServiceEvent implements IDaoEvent{
 
     @Override
     public Event update(Event event) {
-        if(eventRepo.findById(event.getId()).isPresent())
+        if (eventRepo.findById(event.getId()).isPresent()) {
             return eventRepo.save(event);
+        }
         return null;
     }
 

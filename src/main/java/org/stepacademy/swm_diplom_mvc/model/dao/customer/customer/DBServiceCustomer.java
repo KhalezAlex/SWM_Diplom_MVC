@@ -1,16 +1,14 @@
 package org.stepacademy.swm_diplom_mvc.model.dao.customer.customer;
 
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IRepoProfile;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.IRepoRole;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DBServiceCustomer implements IDaoCustomer {
@@ -18,14 +16,10 @@ public class DBServiceCustomer implements IDaoCustomer {
     private IRepoCustomer customerRepo;
 
     @Autowired
-    private IRepoProfile profileRepo;
-
-    @Autowired
     private IRepoRole roleRepo;
 
     @Autowired
     private PasswordEncoder encoder;
-
 
     @Override
     public Customer findCustomerByLogin(String login) {

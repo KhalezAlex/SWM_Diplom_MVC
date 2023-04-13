@@ -2,12 +2,10 @@ package org.stepacademy.swm_diplom_mvc.model.entities.activity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -74,8 +72,9 @@ public class Event {
     public Integer getParticipantId(String login) {
         AtomicInteger id = new AtomicInteger(-1);
         this.participants.forEach(participant -> {
-            if (participant.getLogin().equals(login))
+            if (participant.getLogin().equals(login)) {
                 id.set(participant.getId());
+            }
         });
         return id.get();
     }

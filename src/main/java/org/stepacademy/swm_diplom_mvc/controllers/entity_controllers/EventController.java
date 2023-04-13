@@ -1,5 +1,7 @@
 package org.stepacademy.swm_diplom_mvc.controllers.entity_controllers;
 
+import java.time.LocalDateTime;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,9 +16,6 @@ import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
 import org.stepacademy.swm_diplom_mvc.model.dto.EventDTO;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
-
-import java.time.LocalDateTime;
-import java.util.*;
 
 @Controller
 @RequestMapping("/event")
@@ -41,9 +40,9 @@ public class EventController {
 
     @PostMapping("/participate")
     public String participate(@RequestParam int eventId, Authentication auth) {
-        if (customerService.findCustomerByLogin(auth.getName()).getEventsIn().size() > 6)
+        if (customerService.findCustomerByLogin(auth.getName()).getEventsIn().size() > 6) {
             return "redirect:/";
-
+        }
         Event event = eventService.findById(eventId).get();
         event.setNeeded(event.getNeeded() - 1);
         event.setWillCome(event.getWillCome() + 1);
@@ -67,8 +66,9 @@ public class EventController {
             ra.addFlashAttribute("error", true);
             return "redirect:/search";
         }
-        if (startDate.isBefore(LocalDateTime.now()))
+        if (startDate.isBefore(LocalDateTime.now())) {
             startDate = LocalDateTime.now();
+        }
         ra.addFlashAttribute("filteredEvents", getSearchResults(cityService.findById(city).get().getName(),
                 activityService.findById(activity).get().getName(), startDate, endDate));
         return "redirect:/";
@@ -78,23 +78,27 @@ public class EventController {
                                             LocalDateTime endDate) {
         List<EventDTO> events = new LinkedList<>();
         List<Event> e = eventService.filter(city, activity, startDate, endDate);
-        if (e.size() < 8)
+        if (e.size() < 8) {
             e.forEach(event -> {
-                if (!(event.getNeeded() == 0 || isInEvent(new EventDTO(event))))
+                if (!(event.getNeeded() == 0 || isInEvent(new EventDTO(event)))) {
                     events.add(new EventDTO(event));
+                }
             });
-        else
-            for (int i = 0; i < 6; i++){
-                if (!(e.get(i).getNeeded() == 0 || isInEvent(new EventDTO(e.get(i)))))
+        } else {
+            for (int i = 0; i < 6; i++) {
+                if (!(e.get(i).getNeeded() == 0 || isInEvent(new EventDTO(e.get(i))))) {
                     events.add(new EventDTO(e.get(i)));
+                }
             }
+        }
         events.sort(Comparator.comparing(EventDTO::getDateTime));
         return events;
     }
+
     private boolean isInEvent(EventDTO event) {
         Customer customer = customerService.findCustomerByLogin(
                 SecurityContextHolder.getContext().getAuthentication().getName());
-        return eventService.findById(event.getId()).get().getParticipants().contains(customer) ||
-                eventService.findById(event.getId()).get().getInitiator() == customer;
+        return eventService.findById(event.getId()).get().getParticipants().contains(customer)
+                || eventService.findById(event.getId()).get().getInitiator() == customer;
     }
 }

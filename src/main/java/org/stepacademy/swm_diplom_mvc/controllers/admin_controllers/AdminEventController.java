@@ -1,5 +1,7 @@
 package org.stepacademy.swm_diplom_mvc.controllers.admin_controllers;
 
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +18,6 @@ import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
-import java.util.List;
-import java.util.Optional;
-
 @Controller
 @RequestMapping("admin_event")
 public class AdminEventController {
@@ -33,20 +32,20 @@ public class AdminEventController {
     private IDaoCustomer iDaoCustomer;
 
     @GetMapping("/all")
-    public String all(Model model){
+    public String all(Model model) {
         model.addAttribute("all", iDaoEvent.findAll());
         model.addAttribute("navSelected", "event");
         return "pages/admin/admin-event";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id){
+    public String delete(@PathVariable("id") Integer id) {
         iDaoEvent.delete(id);
         return "redirect:/admin-event";
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable("id") Integer id, Model model){
+    public String update(@PathVariable("id") Integer id, Model model) {
         Optional<Event> event = iDaoEvent.findById(id);
         List<Activity> activities = iDaoActivity.findAll();
         List<City> cities = iDaoCity.findAll();
@@ -60,9 +59,8 @@ public class AdminEventController {
     }
 
     @PostMapping("/update")
-    public String updateEvent(Event event){
+    public String updateEvent(Event event) {
         iDaoEvent.update(event);
         return "redirect:/admin-event";
     }
-
 }

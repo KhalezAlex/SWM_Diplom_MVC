@@ -1,12 +1,11 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.customer;
 
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
-
-import java.util.Set;
 
 @Getter
 @Setter
@@ -64,15 +63,8 @@ public class Profile {
 
     @Override
     public String toString() {
-        return "Profile{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", age=" + age +
-                ", strikes_amount=" + strikes_amount +
-                ", customer=" + customer +
-                ", city=" + city + ", upic=" + upic +
-                ", events_organized=" + customer.getEventsOrganized().size() +
-                '}';
+        return "Profile{id= " + id + ", name= " + name + ", phone= " + phone + ", age= " + age + ", strikes_amount= "
+                + strikes_amount + ", customer= " + customer + ", city= " + city + ", upic= " + upic
+                + ", events_organized= " + customer.getEventsOrganized().size() + '}';
     }
 }
