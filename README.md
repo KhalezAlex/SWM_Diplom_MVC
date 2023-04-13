@@ -18,17 +18,102 @@
     </ol>
 </h4>
 <h3>Профиль пользователей</h3>
-  <h4></h4>
+  <h4>
+    <ol type="I">
+    <li>Загрузка картинок</li>
+    <li>Заполнение информации о пользователе</li>
+      <ol type="a">
+      <li>Имя</li>
+      <li>Телефон</li>
+      <li>Теги спорта</li>
+      <li>Город</li>
+      <li>Возраст</li>
+      </ol>
+    <li>Просмотр профиль пользователей</li>
+    </ol>
+  </h4>
 <h3>Мероприятия</h3>
-  <h4></h4>
+  <h4>
+  <ol type="I">
+    <li>Создание мероприятий</li>
+    <li>Просмотр мероприятий</li>
+    <li>Принять участие в мероприятии</li>
+    <li>Выйти из мероприятия</li>
+    <li>Писк мероприятия</li>
+    <ol type="a">
+      <li>Город</li>
+      <li>Вид спорта</li>
+      <li>Поиск по периоду времени</li>
+      </ol>
+    </ol>
+  </h4>
 <h3>Административный интерфейс</h3>
-  <h4></h4>
+  <h4>
+  <ol type="I">
+    <li>Расширенный функционал пользователя</li>
+    <li>Возможность добавлять, редактировать, удалять сущности</li>
+    </ol>
+  </h4>
+<h3>Таблица ролей</h3>  
+<table>
+<tr>
+<th>Роль</th>
+<th>Регистрация</th>
+<th>Авторизация</th>
+<th>Просмотр мероприятий</th>
+<th>Поиск мероприятий</th>
+<th>Профиль</th>
+<th>Регистрация мероприятия</th>
+<th>Участие в мероприятии</th>  
+</tr>
+<tr>
+<th>Гость</th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230771725-12ff80ac-7ef1-483a-9530-98f9056dc0d5.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230771725-12ff80ac-7ef1-483a-9530-98f9056dc0d5.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230771725-12ff80ac-7ef1-483a-9530-98f9056dc0d5.png" width="30"/></th>  
+</tr>
+<tr>
+<th>Striker</th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230771725-12ff80ac-7ef1-483a-9530-98f9056dc0d5.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230771725-12ff80ac-7ef1-483a-9530-98f9056dc0d5.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+</tr>
+<tr>
+<th>Пользователь</th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230771725-12ff80ac-7ef1-483a-9530-98f9056dc0d5.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+</tr>
+<tr>
+<th>Админ + Crud</th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230771725-12ff80ac-7ef1-483a-9530-98f9056dc0d5.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+<th><img src="https://user-images.githubusercontent.com/97876403/230770711-cad3f005-3622-473e-86bc-29d3cb9a5426.png" width="30"/></th>
+</tr>
+</table>
   
 <h2>MVP2</h2>
 <h3>Ведётся сбор требований</h3>
 
-<h3>Стек технологий</h3>
+<h2>Стек технологий</h2>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Spring/Springboot+Security+Thymeleaf)](https://git.io/typing-svg)
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Bootstrap+PostgreSQL+Hibernate)](https://git.io/typing-svg)
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=HTML/CSS/JS+Lombok+Maven)](https://git.io/typing-svg)
+
