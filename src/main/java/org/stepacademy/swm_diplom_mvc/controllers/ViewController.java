@@ -38,21 +38,23 @@ public class ViewController {
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
         model.addAttribute("activePage", "home");
-        setEventsSuggested(model);
+        setEventsSuggested(model, auth);
         setYourEvents(model, auth);
         return "pages/UI/home";
     }
 
-    private void setEventsSuggested(Model model) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Profile profile = profileService.findByLogin(username);
+    private void setEventsSuggested(Model model, Authentication auth) {
+        Profile profile = null;
+        if (auth != null) {
+            profile = profileService.findByLogin(auth.getName());
+        }
+        String city = "Москва";
         if (profile != null) {
             if (profile.getCity() != null) {
-                model.addAttribute("eventsSuggested", getEventsSuggested(profile.getCity().getName()));
-                return;
+                city = profile.getCity().getName();
             }
         }
-        model.addAttribute("eventsSuggested", getEventsSuggested("Москва"));
+        model.addAttribute("eventsSuggested", getEventsSuggested(city));
     }
 
     private List<EventDTO> getEventsSuggested(String cityName) {
@@ -75,7 +77,7 @@ public class ViewController {
     private List<EventDTO> getAllFutureEvents(String cityName) {
         List<EventDTO> events = new LinkedList<>();
         eventService.findEventsByCity_Name(cityName).forEach(event -> {
-            if (!event.getDateTime().isBefore(LocalDateTime.now())) {
+            if(!event.getDateTime().isBefore(LocalDateTime.now())) {
                 events.add(new EventDTO(event));
             }
         });
@@ -159,7 +161,7 @@ public class ViewController {
         Customer initiator = customerService.findCustomerByLogin(auth.getName());
         //Находим в БД город, по логину
         City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
-        //Создаём экземпляр для передачи в модель, с данными города и кастомера
+//Создаём экземпляр для передачи в модель, с данными города и кастомера
         if (city == null) {
             city = cityService.findById(1).get();
         }

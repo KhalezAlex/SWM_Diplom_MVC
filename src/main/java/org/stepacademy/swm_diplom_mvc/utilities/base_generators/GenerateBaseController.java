@@ -194,7 +194,7 @@ public class GenerateBaseController {
         for (int i = 0; i < profiles.size() - 3; i++) {
 //        for (int i = 0; i < 2; i++) {
             Profile profile = profiles.remove(0);
-            int eventsByPerson = (int) (Math.random() * 11);
+            int eventsByPerson = (int) (Math.random() * 5);
             while (eventsByPerson-- != 0)
                 generateEvent(profile);
         }
