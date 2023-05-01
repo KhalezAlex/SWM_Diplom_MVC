@@ -40,27 +40,32 @@ public class ViewController {
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
         model.addAttribute("activePage", "home");
-        setEventsSuggested(model);
+        setEventsSuggested(model, auth);
         setYourEvents(model, auth);
         return "pages/UI/home";
     }
 
-    private void setEventsSuggested(Model model) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Profile profile = profileService.findByLogin(username);
-        if (profile != null)
+    private void setEventsSuggested(Model model, Authentication auth) {
+        Profile profile = null;
+        if (auth != null) {
+            profile = profileService.findByLogin(auth.getName());
+        }
+        String city = "Москва";
+        if (profile != null) {
             if (profile.getCity() != null) {
-                model.addAttribute("eventsSuggested", getEventsSuggested(profile.getCity().getName()));
-                return;
+                city = profile.getCity().getName();
             }
-        model.addAttribute("eventsSuggested", getEventsSuggested("Москва"));
+        }
+        model.addAttribute("eventsSuggested", getEventsSuggested(city));
     }
 
     private List<EventDTO> getEventsSuggested(String cityName) {
         List<EventDTO> events = getAllFutureEvents(cityName);
-        for (int i = 0; i < events.size(); i++)
-            if (i > 7 || events.get(i).getNeeded() == 0 || isInEvent(events.get(i)))
+        for (int i = 0; i < events.size(); i++) {
+            if (i > 7 || events.get(i).getNeeded() == 0 || isInEvent(events.get(i))) {
                 events.remove(i--);
+            }
+        }
         return events;
     }
 
@@ -74,8 +79,9 @@ public class ViewController {
     private List<EventDTO> getAllFutureEvents(String cityName) {
         List<EventDTO> events = new LinkedList<>();
         eventService.findEventsByCity_Name(cityName).forEach(event -> {
-            if(!event.getDateTime().isBefore(LocalDateTime.now()))
+            if(!event.getDateTime().isBefore(LocalDateTime.now())) {
                 events.add(new EventDTO(event));
+            }
         });
         events.sort(Comparator.comparing(EventDTO::getDateTime));
         return events;
@@ -86,8 +92,9 @@ public class ViewController {
         Customer customer = customerService.findCustomerByLogin(auth.getName());
         List<EventDTO> events = new LinkedList<>();
         customer.getEventsIn().forEach(event ->  {
-            if (!event.getDateTime().isBefore(LocalDateTime.now()))
+            if (!event.getDateTime().isBefore(LocalDateTime.now())) {
                 events.add(new EventDTO(event));
+            }
         });
         events.sort(Comparator.comparing(EventDTO::getDateTime));
         model.addAttribute("yourEvents", events);
@@ -108,8 +115,9 @@ public class ViewController {
     }
     private void setProfileModelAttrs(Model model, Authentication auth, String name) {
         setProfileCommonModelAttrs(model, auth, name);
-        if (Objects.equals(model.getAttribute("isOwner"), true))
+        if (Objects.equals(model.getAttribute("isOwner"), true)) {
             setProfileOwnerModelAttrs(model, name, auth);
+        }
     }
     private void setProfileCommonModelAttrs(Model model, Authentication auth, String name) {
         Customer customer = customerService.findCustomerByLogin(name);
@@ -149,8 +157,9 @@ public class ViewController {
 //Находим в БД город, по логину
         City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
 //Создаём экземпляр для передачи в модель, с данными города и кастомера
-        if (city == null)
+        if (city == null) {
             city = cityService.findById(1).get();
+        }
         Event event = new Event(null, city, "", LocalDateTime.now(), initiator, 0, 0);
         model.addAttribute("new_event", event);
         model.addAttribute("activities", activityService.findAll());
@@ -187,8 +196,9 @@ public class ViewController {
 
     @GetMapping("/logout")
     public  String logout(HttpServletRequest request) {
-        if (SecurityContextHolder.getContext().getAuthentication() != null)
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
             request.getSession().invalidate();
+        }
         return "redirect:/";
     }
 }
