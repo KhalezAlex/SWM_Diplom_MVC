@@ -1,22 +1,17 @@
 package org.stepacademy.swm_diplom_mvc.model.dao.customer.profile;
 
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.stepacademy.swm_diplom_mvc.model.dao.location.city.IRepoCity;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
-import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
+import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 @Service
 public class DBServiceProfile implements IDaoProfile {
     @Autowired
     private IRepoProfile profileRepo;
-    @Autowired
-    private IRepoCity cityRepo;
-
 
     @Override
     public List<Profile> findAll() {

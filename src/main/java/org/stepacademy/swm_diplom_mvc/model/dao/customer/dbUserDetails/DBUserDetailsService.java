@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IDaoCustomer;
+import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
 
 @Service
 public class DBUserDetailsService implements UserDetailsService {

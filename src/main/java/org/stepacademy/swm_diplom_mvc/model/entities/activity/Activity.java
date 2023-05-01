@@ -2,12 +2,11 @@ package org.stepacademy.swm_diplom_mvc.model.entities.activity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
-
-import java.util.Set;
 
 @Getter
 @Setter
@@ -23,7 +22,7 @@ public class Activity {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "activity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
     private Set<Event> events;
 
     @JsonIgnore
@@ -36,9 +35,6 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "Activity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Activity{id= " + id + ", name= " + name + '}';
     }
 }

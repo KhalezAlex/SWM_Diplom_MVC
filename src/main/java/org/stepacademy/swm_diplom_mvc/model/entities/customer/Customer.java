@@ -2,6 +2,9 @@ package org.stepacademy.swm_diplom_mvc.model.entities.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,9 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -29,10 +29,9 @@ public class Customer implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-//Связь с таблицей личных данных
+    //Связь с таблицей личных данных
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
-//    @OneToOne
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private Profile profile;
 
@@ -41,11 +40,11 @@ public class Customer implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-//Множество событий, организованных кастомером
+    //Множество событий, организованных кастомером
     @OneToMany(mappedBy = "initiator", cascade = CascadeType.ALL)
     private Set<Event> eventsOrganized;
 
-//Множество событий, в которых участвовал кастомер
+    //Множество событий, в которых участвовал кастомер
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "event_customers_t", joinColumns = @JoinColumn(name = "customer_id"),
                 inverseJoinColumns = @JoinColumn(name = "event_id"))
@@ -54,7 +53,7 @@ public class Customer implements UserDetails {
     public Customer(String login, String password) {
         this.login = login;
         this.password = password;
-//автоматом в базу заносится и профиль
+    //автоматом в базу заносится и профиль
         this.profile = new Profile();
     }
 
@@ -97,10 +96,6 @@ public class Customer implements UserDetails {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Customer{id= " + id + ", login= " + login + ", password= " + password + '}';
     }
 }

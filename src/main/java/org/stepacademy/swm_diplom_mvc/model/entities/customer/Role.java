@@ -1,13 +1,12 @@
 package org.stepacademy.swm_diplom_mvc.model.entities.customer;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter

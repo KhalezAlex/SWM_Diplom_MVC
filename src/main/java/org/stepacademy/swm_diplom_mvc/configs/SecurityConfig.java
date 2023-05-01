@@ -1,5 +1,6 @@
 package org.stepacademy.swm_diplom_mvc.configs;
 
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +18,12 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.dbUserDetails.DBUserDetailsService;
 
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers(
                 "/styles/templates/*.css", "/styles/mvp2/*.css",
-//                "/styles/*.css", "/styles/header/*.css", "/styles/profile/*.css",
                 "/images/*", "/images/activity_pics/*", "/styles/mvp2/*",
                 "/scripts/*.js", "/scripts/profile/*.js", "/scripts/home/*.js", "/scripts/mvp2/*.js",
                 "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.js");
@@ -55,15 +53,14 @@ public class SecurityConfig {
         return http.build();
     }
 
-
     @Bean
     public PasswordEncoder encoder() {
-// стандартный кодировщик Spring
+    // стандартный кодировщик Spring
         return new BCryptPasswordEncoder();
     }
 
 
-// КОНФИГУРАЦИЯ ДЛЯ ПОДКЛЮЧЕНИЯ БД
+    // КОНФИГУРАЦИЯ ДЛЯ ПОДКЛЮЧЕНИЯ БД
     @Bean
     public UserDetailsService userDetailsService() {
         return new DBUserDetailsService();
