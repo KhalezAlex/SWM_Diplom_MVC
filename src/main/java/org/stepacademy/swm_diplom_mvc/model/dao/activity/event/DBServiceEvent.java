@@ -53,6 +53,7 @@ public class DBServiceEvent implements IDaoEvent{
                 cityName, activityName, startDate, endDate);
     }
 
+    @Override
     public List<Event> filterByInitiator(String login) {
         return eventRepo.findEventsByInitiator_Login(login);
     }

@@ -76,23 +76,24 @@ public class EventController {
 
     private List<EventDTO> getSearchResults(String city, String activity, LocalDateTime startDate,
                                             LocalDateTime endDate) {
-        List<EventDTO> events = new LinkedList<>();
-        List<Event> e = eventService.filter(city, activity, startDate, endDate);
-        if (e.size() < 8) {
-            e.forEach(event -> {
+        List<EventDTO> eventDTOs = new LinkedList<>();
+        List<Event> events = eventService.filter(city, activity, startDate, endDate);
+// Проверить- 8 и 6. нестыковка. возможно, из-за этого и вылетел косяк на презентации
+        if (events.size() < 8) {
+            events.forEach(event -> {
                 if (!(event.getNeeded() == 0 || isInEvent(new EventDTO(event)))) {
-                    events.add(new EventDTO(event));
+                    eventDTOs.add(new EventDTO(event));
                 }
             });
         } else {
             for (int i = 0; i < 6; i++) {
-                if (!(e.get(i).getNeeded() == 0 || isInEvent(new EventDTO(e.get(i))))) {
-                    events.add(new EventDTO(e.get(i)));
+                if (!(events.get(i).getNeeded() == 0 || isInEvent(new EventDTO(events.get(i))))) {
+                    eventDTOs.add(new EventDTO(events.get(i)));
                 }
             }
         }
-        events.sort(Comparator.comparing(EventDTO::getDateTime));
-        return events;
+        eventDTOs.sort(Comparator.comparing(EventDTO::getDateTime));
+        return eventDTOs;
     }
 
     private boolean isInEvent(EventDTO event) {

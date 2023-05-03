@@ -55,12 +55,12 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder encoder() {
-    // стандартный кодировщик Spring
+// стандартный кодировщик Spring
         return new BCryptPasswordEncoder();
     }
 
 
-    // КОНФИГУРАЦИЯ ДЛЯ ПОДКЛЮЧЕНИЯ БД
+// КОНФИГУРАЦИЯ ДЛЯ ПОДКЛЮЧЕНИЯ БД
     @Bean
     public UserDetailsService userDetailsService() {
         return new DBUserDetailsService();

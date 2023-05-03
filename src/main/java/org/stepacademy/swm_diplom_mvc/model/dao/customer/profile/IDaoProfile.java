@@ -6,4 +6,5 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
 
 @Transactional
 public interface IDaoProfile extends IDaoDB<Profile> {
+    Profile findByLogin(String login);
 }

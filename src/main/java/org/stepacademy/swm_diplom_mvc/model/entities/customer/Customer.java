@@ -29,7 +29,7 @@ public class Customer implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    //Связь с таблицей личных данных
+//Связь с таблицей личных данных
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
@@ -40,11 +40,11 @@ public class Customer implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    //Множество событий, организованных кастомером
+//Множество событий, организованных кастомером
     @OneToMany(mappedBy = "initiator", cascade = CascadeType.ALL)
     private Set<Event> eventsOrganized;
 
-    //Множество событий, в которых участвовал кастомер
+//Множество событий, в которых участвовал кастомер
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "event_customers_t", joinColumns = @JoinColumn(name = "customer_id"),
                 inverseJoinColumns = @JoinColumn(name = "event_id"))
@@ -53,7 +53,7 @@ public class Customer implements UserDetails {
     public Customer(String login, String password) {
         this.login = login;
         this.password = password;
-    //автоматом в базу заносится и профиль
+//автоматом в базу заносится и профиль
         this.profile = new Profile();
     }
 

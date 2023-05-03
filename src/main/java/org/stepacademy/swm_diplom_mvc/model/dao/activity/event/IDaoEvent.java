@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface IDaoEvent extends IDaoDB<Event> {
     List<Event> findEventsByCity_Name(String city);
+
+    List<Event> filterByInitiator(String login);
 //    Event findEventByCityName(String cityName);
 }

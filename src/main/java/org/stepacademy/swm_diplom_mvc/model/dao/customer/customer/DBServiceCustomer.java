@@ -35,11 +35,11 @@ public class DBServiceCustomer implements IDaoCustomer {
 
     @Override
     public Customer addRole(Integer customerId, Integer roleId) {
-        //Создаём изменяемый объект, по id
+//Достаём изменяемый объект, по id
         Customer customer = customerRepo.findById(customerId).get();
-        //удаляем роль, чтобы выдать новую
+//удаляем роль, чтобы выдать новую
         customer.getRoles().removeAll(customer.getRoles());
-        //Выдаём новую роль
+//Выдаём новую роль
         customer.getRoles().add(roleRepo.findById(roleId).get());
         return customer;
     }

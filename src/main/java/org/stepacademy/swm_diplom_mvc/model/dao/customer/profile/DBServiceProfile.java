@@ -48,6 +48,7 @@ public class DBServiceProfile implements IDaoProfile {
         return null;
     }
 
+    @Override
     public Profile findByLogin(String login) {
         return profileRepo.findByCustomer_Login(login);
     }

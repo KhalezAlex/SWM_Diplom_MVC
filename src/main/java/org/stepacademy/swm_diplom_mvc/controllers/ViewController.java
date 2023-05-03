@@ -10,10 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
-import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.DBServiceEvent;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
-import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
+import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.IDaoActivity;
+import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.IDaoEvent;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IDaoCustomer;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IDaoProfile;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.city.IDaoCity;
 import org.stepacademy.swm_diplom_mvc.model.dto.EventDTO;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
@@ -24,16 +25,21 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 @Controller
 @RequestMapping(path = "/")
 public class ViewController {
+    private final IDaoProfile profileDAO;
+    private final IDaoCustomer customerDAO;
+    private final IDaoEvent eventDAO;
+    private final IDaoCity cityDAO;
+    private final IDaoActivity activityDAO;
+
     @Autowired
-    DBServiceProfile profileService;
-    @Autowired
-    DBServiceCustomer customerService;
-    @Autowired
-    DBServiceEvent eventService;
-    @Autowired
-    DBServiceCity cityService;
-    @Autowired
-    DBServiceActivity activityService;
+    public ViewController(IDaoProfile profileDAO, IDaoCustomer customerDAO, IDaoEvent eventDAO,
+                          IDaoCity cityDAO, IDaoActivity activityDAO) {
+        this.profileDAO = profileDAO;
+        this.customerDAO = customerDAO;
+        this.eventDAO = eventDAO;
+        this.cityDAO = cityDAO;
+        this.activityDAO = activityDAO;
+    }
 
     @GetMapping("/")
     public String home(Model model, Authentication auth) {
@@ -46,7 +52,7 @@ public class ViewController {
     private void setEventsSuggested(Model model, Authentication auth) {
         Profile profile = null;
         if (auth != null) {
-            profile = profileService.findByLogin(auth.getName());
+            profile = profileDAO.findByLogin(auth.getName());
         }
         String city = "Москва";
         if (profile != null) {
@@ -68,15 +74,15 @@ public class ViewController {
     }
 
     private boolean isInEvent(EventDTO event) {
-        Customer customer = customerService.findCustomerByLogin(
+        Customer customer = customerDAO.findCustomerByLogin(
                 SecurityContextHolder.getContext().getAuthentication().getName());
-        return eventService.findById(event.getId()).get().getParticipants().contains(customer)
-                || eventService.findById(event.getId()).get().getInitiator() == customer;
+        return eventDAO.findById(event.getId()).get().getParticipants().contains(customer)
+                || eventDAO.findById(event.getId()).get().getInitiator() == customer;
     }
 
     private List<EventDTO> getAllFutureEvents(String cityName) {
         List<EventDTO> events = new LinkedList<>();
-        eventService.findEventsByCity_Name(cityName).forEach(event -> {
+        eventDAO.findEventsByCity_Name(cityName).forEach(event -> {
             if(!event.getDateTime().isBefore(LocalDateTime.now())) {
                 events.add(new EventDTO(event));
             }
@@ -89,7 +95,7 @@ public class ViewController {
         if (auth == null) {
             return;
         }
-        Customer customer = customerService.findCustomerByLogin(auth.getName());
+        Customer customer = customerDAO.findCustomerByLogin(auth.getName());
         List<EventDTO> events = new LinkedList<>();
         customer.getEventsIn().forEach(event ->  {
             if (!event.getDateTime().isBefore(LocalDateTime.now())) {
@@ -122,8 +128,8 @@ public class ViewController {
     }
 
     private void setProfileCommonModelAttrs(Model model, Authentication auth, String name) {
-        Customer customer = customerService.findCustomerByLogin(name);
-        Profile profile = profileService.findById(customer.getId()).get();
+        Customer customer = customerDAO.findCustomerByLogin(name);
+        Profile profile = profileDAO.findById(customer.getId()).get();
         //Профиль для отображения в окне профиля
         model.addAttribute("profile", profile);
         model.addAttribute("organized", profile.getCustomer().getEventsOrganized().size());
@@ -133,19 +139,19 @@ public class ViewController {
 
     private void setProfileOwnerModelAttrs(Model model, String name, Authentication auth) {
         //Список городов для редактирования профиля
-        model.addAttribute("cities", cityService.findAll());
+        model.addAttribute("cities", cityDAO.findAll());
         //Список видов спорта - тегов для дальнейшего использования при выборе ивентов
         model.addAttribute("tags", profileActivitiesList(name));
         //Список событий, зарегистрированных пользователем
         List<EventDTO> events = new LinkedList<>();
-        List<Event> e = eventService.filterByInitiator(auth.getName());
+        List<Event> e = eventDAO.filterByInitiator(auth.getName());
         e.forEach(event -> events.add(new EventDTO(event)));
         model.addAttribute("eventsInitiated", events);
     }
 
     private List<Activity> profileActivitiesList(String name) {
-        List<Activity> tags = activityService.findAll();
-        Profile profile = profileService.findByLogin(name);
+        List<Activity> tags = activityDAO.findAll();
+        Profile profile = profileDAO.findByLogin(name);
         tags.removeAll(profile.getActivityTags());
         return tags;
     }
@@ -157,26 +163,26 @@ public class ViewController {
     }
 
     private void setNewEventModelAttrs(Model model, Authentication auth) {
-        //Находим в БД инициатора, по логину(тот кто сейчас авторизован)
-        Customer initiator = customerService.findCustomerByLogin(auth.getName());
-        //Находим в БД город, по логину
-        City city = customerService.findCustomerByLogin(auth.getName()).getProfile().getCity();
+//Находим в БД инициатора, по логину(тот кто сейчас авторизован)
+        Customer initiator = customerDAO.findCustomerByLogin(auth.getName());
+//Находим в БД город, по логину
+        City city = customerDAO.findCustomerByLogin(auth.getName()).getProfile().getCity();
 //Создаём экземпляр для передачи в модель, с данными города и кастомера
         if (city == null) {
-            city = cityService.findById(1).get();
+            city = cityDAO.findById(1).get();
         }
         Event event = new Event(null, city, "", LocalDateTime.now(), initiator, 0, 0);
         model.addAttribute("new_event", event);
-        model.addAttribute("activities", activityService.findAll());
-        model.addAttribute("cities", cityService.findAll());
+        model.addAttribute("activities", activityDAO.findAll());
+        model.addAttribute("cities", cityDAO.findAll());
         model.addAttribute("activePage", "new_event");
     }
 
     @GetMapping("/search")
     public String search(Model model) {
         model.addAttribute("currentDate", LocalDateTime.now());
-        model.addAttribute("cities", cityService.findAll());
-        model.addAttribute("activities", activityService.findAll());
+        model.addAttribute("cities", cityDAO.findAll());
+        model.addAttribute("activities", activityDAO.findAll());
         model.addAttribute("activePage", "search");
         return "pages/UI/search";
     }
