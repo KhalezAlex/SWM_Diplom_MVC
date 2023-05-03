@@ -1,20 +1,17 @@
 package org.stepacademy.swm_diplom_mvc.controllers.entity_controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IDaoCustomer;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
 
 @Controller
 @RequestMapping(path = "/customer")
+@RequiredArgsConstructor
 public class CustomerController {
-    @Autowired
-    DBServiceCustomer customerService;
-    @Autowired
-    DBServiceProfile profileService;
+    private final IDaoCustomer customerDAO;
 
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password,
@@ -23,11 +20,11 @@ public class CustomerController {
             ra.addFlashAttribute("error", "password");
             return "redirect:/register";
         }
-        if (customerService.findCustomerByLogin(username) != null) {
+        if (customerDAO.findCustomerByLogin(username) != null) {
             ra.addFlashAttribute("error", "login");
             return "redirect:/register";
         }
-        customerService.save(new Customer(username, password));
+        customerDAO.save(new Customer(username, password));
         return "redirect:/";
     }
 }

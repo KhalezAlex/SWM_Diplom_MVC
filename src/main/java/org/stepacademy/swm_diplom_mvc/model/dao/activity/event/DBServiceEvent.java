@@ -3,14 +3,15 @@ package org.stepacademy.swm_diplom_mvc.model.dao.activity.event;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 
 @Service
+@RequiredArgsConstructor
 public class DBServiceEvent implements IDaoEvent{
-    @Autowired
-    private IRepoEvent eventRepo;
+    private final IRepoEvent eventRepo;
 
     @Override
     public List<Event> findAll() {
@@ -47,6 +48,7 @@ public class DBServiceEvent implements IDaoEvent{
         return eventRepo.findEventsByCity_Name(city);
     }
 
+    @Override
     public List<Event> filter(String cityName, String activityName, LocalDateTime startDate,
                               LocalDateTime endDate) {
         return eventRepo.findEventsByCity_NameAndActivity_NameAndDateTimeBetween(

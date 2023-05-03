@@ -1,17 +1,17 @@
 package org.stepacademy.swm_diplom_mvc.utilities.base_generators;
 
 import com.ibm.icu.text.Transliterator;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
-import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.DBServiceEvent;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.DBServiceCustomer;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
-import org.stepacademy.swm_diplom_mvc.model.dao.location.city.DBServiceCity;
-import org.stepacademy.swm_diplom_mvc.model.dao.location.country.DBServiceCountry;
+import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.IDaoActivity;
+import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.IDaoEvent;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IDaoCustomer;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IDaoProfile;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.IDaoRole;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.city.IDaoCity;
+import org.stepacademy.swm_diplom_mvc.model.dao.location.country.IDaoCountry;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Activity;
 import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
@@ -32,27 +32,15 @@ import java.util.Set;
 
 @Controller
 @RequestMapping(path = "/service")
+@RequiredArgsConstructor
 public class GenerateBaseController {
-    @Autowired
-    public DBServiceCustomer customerService;
-
-    @Autowired
-    public DBServiceProfile profileService;
-
-    @Autowired
-    public DBServiceCountry countryService;
-
-    @Autowired
-    public DBServiceCity cityService;
-
-    @Autowired
-    public DBServiceRole roleService;
-
-    @Autowired
-    public DBServiceActivity activityService;
-
-    @Autowired
-    public DBServiceEvent eventService;
+    public final IDaoCustomer customerDAO;
+    public final IDaoProfile profileDAO;
+    public final IDaoCountry countryDAO;
+    public final IDaoCity cityDAO;
+    public final IDaoRole roleDAO;
+    public final IDaoActivity activityDAO;
+    public final IDaoEvent eventDAO;
 
     @GetMapping("/generateBase")
     public String generate() throws IOException {
@@ -66,26 +54,26 @@ public class GenerateBaseController {
     }
 
     private void roleTableInit() {
-        if (roleService.findById(1).isPresent())
+        if (roleDAO.findById(1).isPresent())
             return;
-        roleService.save(new Role(1, "ROLE_ADMIN"));
-        roleService.save(new Role(2, "ROLE_USER"));
-        roleService.save(new Role(3, "ROLE_STRIKED"));
+        roleDAO.save(new Role(1, "ROLE_ADMIN"));
+        roleDAO.save(new Role(2, "ROLE_USER"));
+        roleDAO.save(new Role(3, "ROLE_STRIKED"));
     }
 
     private void testUsersInit() {
-        if (customerService.findCustomerByLogin("admin") != null)
+        if (customerDAO.findCustomerByLogin("admin") != null)
             return;
-        customerService.saveAdmin(new Customer("admin", "admin"));
-        customerService.save(new Customer("user", "user"));
+        customerDAO.saveAdmin(new Customer("admin", "admin"));
+        customerDAO.save(new Customer("user", "user"));
         Customer customer = new Customer("loser", "loser");
         customer.getRoles().removeAll(customer.getRoles());
-        customer.getRoles().add(roleService.findById(3).get());
-        customerService.save(customer);
+        customer.getRoles().add(roleDAO.findById(3).get());
+        customerDAO.save(customer);
     }
 
     private void usersBaseInit() throws IOException {
-        if (customerService.findAll().size() > 3)
+        if (customerDAO.findAll().size() > 3)
             return;
         LinkedList<String> names = new LinkedList<>();
         fillNamesList(names);
@@ -101,7 +89,7 @@ public class GenerateBaseController {
         String firstName = name.split(" ")[0];
         String secondName = name.split(" ")[1];
         String nickname = getNickname(firstName, secondName);
-        customerService.save(new Customer(nickname, "user"));
+        customerDAO.save(new Customer(nickname, "user"));
         updateProfile(firstName, secondName);
     }
 
@@ -113,12 +101,12 @@ public class GenerateBaseController {
     }
 
     private void updateProfile(String firstName, String secondName) {
-        int citiesAmount = cityService.findAll().size();
-        Profile profile = profileService.findByLogin(getNickname(firstName, secondName));
-        profile.setCity(cityService.findById((int) (Math.random() * citiesAmount) + 1).get());
+        int citiesAmount = cityDAO.findAll().size();
+        Profile profile = profileDAO.findByLogin(getNickname(firstName, secondName));
+        profile.setCity(cityDAO.findById((int) (Math.random() * citiesAmount) + 1).get());
         if (Math.random() > 0.3)
             profile.setName(secondName + " " + firstName);
-        profileService.save(profile);
+        profileDAO.save(profile);
     }
 
     private void deleteDoubleNicknames(LinkedList<String> names) {
@@ -148,13 +136,13 @@ public class GenerateBaseController {
     }
 
     private void countryTableInit() {
-        if (!countryService.findAll().isEmpty())
+        if (!countryDAO.findAll().isEmpty())
             return;
-        countryService.save(new Country("Россия"));
+        countryDAO.save(new Country("Россия"));
     }
 
     private void cityTableInit() {
-        if (!cityService.findAll().isEmpty())
+        if (!cityDAO.findAll().isEmpty())
             return;
         generateCities();
     }
@@ -164,11 +152,11 @@ public class GenerateBaseController {
                 "Нижний Новгород", "Челябинск", "Красноярск", "Самара", "Уфа", "Ростов на Дону", "Омск", "Краснодар",
                 "Воронеж", "Пермь", "Волгоград"};
         for (String city : russianCities)
-            cityService.save(new City(city, countryService.findById(1).get()));
+            cityDAO.save(new City(city, countryDAO.findById(1).get()));
     }
 
     private void activityTableInit() {
-        if (!activityService.findAll().isEmpty())
+        if (!activityDAO.findAll().isEmpty())
             return;
         generateActivities();
     }
@@ -177,22 +165,21 @@ public class GenerateBaseController {
         String[] activities = {"Тренажерный зал", "Баскетбол", "Боулинг", "Кросс-фит", "Велосипед",
                 "Единоборства", "Футбол", "Коньки", "Ролики", "Пробежка", "Теннис", "Волейбол"};
         for (String activity : activities)
-            activityService.save(new Activity(activity));
+            activityDAO.save(new Activity(activity));
     }
 
     @GetMapping("/events")
     private String eventTableInit() {
-        generateEvents(cityService.findAll());
+        generateEvents(cityDAO.findAll());
         return "redirect:/";
     }
 
     private void generateEvents(List<City> cities) {
-        cities.forEach(city -> generateEventsForCity(profileService.findByCity(city)));
+        cities.forEach(city -> generateEventsForCity(profileDAO.findByCity(city)));
     }
 
     private void generateEventsForCity(List<Profile> profiles) {
         for (int i = 0; i < profiles.size() - 3; i++) {
-//        for (int i = 0; i < 2; i++) {
             Profile profile = profiles.remove(0);
             int eventsByPerson = (int) (Math.random() * 5);
             while (eventsByPerson-- != 0)
@@ -201,26 +188,26 @@ public class GenerateBaseController {
     }
 
     private void generateEvent(Profile profile) {
-        Activity activity = activityService.findById(
-                (int) (Math.random() * activityService.findAll().size()) + 1).get();
+        Activity activity = activityDAO.findById(
+                (int) (Math.random() * activityDAO.findAll().size()) + 1).get();
         LocalDateTime date = LocalDateTime.now().plusDays((int) (Math.random() * 10))
                 .plusHours((int) (Math.random() * 24));
         Event event = new Event(activity, profile.getCity(), "", date,
                 profile.getCustomer(), (int) (Math.random() * 5 + 1), (int) (Math.random() * 5 + 5));
         System.out.println(event);
-        eventService.save(event);
+        eventDAO.save(event);
     }
 
 
     @GetMapping("/tags")
     private String generateTagsCloud() {
-        profileService.findAll().forEach(this::generateTags);
+        profileDAO.findAll().forEach(this::generateTags);
         return "redirect:/";
     }
 
     private void generateTags(Profile profile) {
         for (int i = 0; i < (int) (Math.random() * 3) + 2; i++)
-            profile.getActivityTags().add(activityService.findById(
-                    (int) (Math.random() * activityService.findAll().size()) + 1).get());
+            profile.getActivityTags().add(activityDAO.findById(
+                    (int) (Math.random() * activityDAO.findAll().size()) + 1).get());
     }
 }

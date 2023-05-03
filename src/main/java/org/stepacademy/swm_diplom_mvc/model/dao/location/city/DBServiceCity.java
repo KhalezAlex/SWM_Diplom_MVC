@@ -2,14 +2,15 @@ package org.stepacademy.swm_diplom_mvc.model.dao.location.city;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 @Service
+@RequiredArgsConstructor
 public class DBServiceCity implements IDaoCity{
-    @Autowired
-    private IRepoCity cityRepo;
+    private final IRepoCity cityRepo;
 
     @Override
     public List<City> findAll() {

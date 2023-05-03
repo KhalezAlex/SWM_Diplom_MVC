@@ -2,7 +2,8 @@ package org.stepacademy.swm_diplom_mvc.controllers.admin_controllers;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,29 +14,28 @@ import org.stepacademy.swm_diplom_mvc.model.entities.customer.Role;
 
 @Controller
 @RequestMapping("/admin_customer")
+@RequiredArgsConstructor
 public class AdminCustomerController {
-    @Autowired
-    private IDaoCustomer iDaoCustomer;
-    @Autowired
-    private IDaoRole iDaoRole;
+    private final IDaoCustomer customerDAO;
+    private final IDaoRole roleDAO;
 
     @GetMapping("/all")
     public String all(Model model) {
-        model.addAttribute("customer", iDaoCustomer.findAll());
+        model.addAttribute("customer", customerDAO.findAll());
         model.addAttribute("navSelected", "customer");
         return "pages/admin/admin-customer";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
-        iDaoCustomer.delete(id);
+        customerDAO.delete(id);
         return "redirect:/admin-customer";
     }
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") Integer id, Model model) {
-        Optional<Customer> customer = iDaoCustomer.findById(id);
-        List<Role> roles = iDaoRole.findAll();
+        Optional<Customer> customer = customerDAO.findById(id);
+        List<Role> roles = roleDAO.findAll();
         model.addAttribute("customer", customer);
         model.addAttribute("roles", roles);
         model.addAttribute("navSelected", "customer");
@@ -44,7 +44,7 @@ public class AdminCustomerController {
 
     @PostMapping("/update")
     public String update(Customer customer, @RequestParam Integer roleId) {
-        iDaoCustomer.update(iDaoCustomer.addRole(customer.getId(), roleId));
+        customerDAO.update(customerDAO.addRole(customer.getId(), roleId));
         return "redirect:/admin-customer";
     }
 }

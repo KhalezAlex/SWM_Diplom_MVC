@@ -11,7 +11,6 @@ import org.stepacademy.swm_diplom_mvc.model.dao.customer.role.DBServiceRole;
 
 @Controller
 public class CustomErrorController implements ErrorController {
-
     @Autowired
     DBServiceRole roleService;
 

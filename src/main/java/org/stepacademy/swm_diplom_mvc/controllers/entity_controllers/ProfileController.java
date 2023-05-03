@@ -3,18 +3,19 @@ package org.stepacademy.swm_diplom_mvc.controllers.entity_controllers;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Objects;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.DBServiceProfile;
+import org.stepacademy.swm_diplom_mvc.model.dao.customer.profile.IDaoProfile;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
 
 @Controller
 @RequestMapping(path = "/profile")
+@RequiredArgsConstructor
 public class ProfileController {
-    @Autowired
-    private DBServiceProfile profileService;
+    private final IDaoProfile profileDAO;
 
     @PostMapping("/update")
     public String update(@ModelAttribute Profile profile, @RequestParam(value = "upicData", required = false)
@@ -23,9 +24,9 @@ public class ProfileController {
             String upicAsString = Base64.getEncoder().encodeToString(upic.getBytes());
             profile.setUpic(upicAsString);
         } else {
-            profile.setUpic(profileService.findById(profile.getId()).get().getUpic());
+            profile.setUpic(profileDAO.findById(profile.getId()).get().getUpic());
         }
-        profileService.update(profile);
+        profileDAO.update(profile);
         return "redirect:/";
     }
 }

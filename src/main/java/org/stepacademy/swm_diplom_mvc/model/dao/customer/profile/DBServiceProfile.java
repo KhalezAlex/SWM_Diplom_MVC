@@ -3,15 +3,16 @@ package org.stepacademy.swm_diplom_mvc.model.dao.customer.profile;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Profile;
 import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 @Service
+@RequiredArgsConstructor
 public class DBServiceProfile implements IDaoProfile {
-    @Autowired
-    private IRepoProfile profileRepo;
+    private final IRepoProfile profileRepo;
 
     @Override
     public List<Profile> findAll() {
@@ -53,6 +54,7 @@ public class DBServiceProfile implements IDaoProfile {
         return profileRepo.findByCustomer_Login(login);
     }
 
+    @Override
     public List<Profile> findByCity(City city) {
         return profileRepo.findProfilesByCity(city);
     }

@@ -3,13 +3,13 @@ package org.stepacademy.swm_diplom_mvc.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.*;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.DBServiceActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.activity.IDaoActivity;
 import org.stepacademy.swm_diplom_mvc.model.dao.activity.event.IDaoEvent;
 import org.stepacademy.swm_diplom_mvc.model.dao.customer.customer.IDaoCustomer;
@@ -24,22 +24,13 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 @Controller
 @RequestMapping(path = "/")
+@RequiredArgsConstructor
 public class ViewController {
     private final IDaoProfile profileDAO;
     private final IDaoCustomer customerDAO;
     private final IDaoEvent eventDAO;
     private final IDaoCity cityDAO;
     private final IDaoActivity activityDAO;
-
-    @Autowired
-    public ViewController(IDaoProfile profileDAO, IDaoCustomer customerDAO, IDaoEvent eventDAO,
-                          IDaoCity cityDAO, IDaoActivity activityDAO) {
-        this.profileDAO = profileDAO;
-        this.customerDAO = customerDAO;
-        this.eventDAO = eventDAO;
-        this.cityDAO = cityDAO;
-        this.activityDAO = activityDAO;
-    }
 
     @GetMapping("/")
     public String home(Model model, Authentication auth) {

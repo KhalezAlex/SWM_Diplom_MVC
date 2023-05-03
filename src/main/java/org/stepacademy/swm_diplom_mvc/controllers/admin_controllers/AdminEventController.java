@@ -2,7 +2,8 @@ package org.stepacademy.swm_diplom_mvc.controllers.admin_controllers;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,36 +21,32 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.City;
 
 @Controller
 @RequestMapping("admin_event")
+@RequiredArgsConstructor
 public class AdminEventController {
-    @Autowired
-    private IDaoEvent iDaoEvent;
-    @Autowired
-    private IDaoActivity iDaoActivity;
-    @Autowired
-    private IDaoCity iDaoCity;
-
-    @Autowired
-    private IDaoCustomer iDaoCustomer;
+    private final IDaoEvent eventDAO;
+    private final IDaoActivity activityDAO;
+    private final IDaoCity cityDAO;
+    private final IDaoCustomer customerDAO;
 
     @GetMapping("/all")
     public String all(Model model) {
-        model.addAttribute("all", iDaoEvent.findAll());
+        model.addAttribute("all", eventDAO.findAll());
         model.addAttribute("navSelected", "event");
         return "pages/admin/admin-event";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
-        iDaoEvent.delete(id);
+        eventDAO.delete(id);
         return "redirect:/admin-event";
     }
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") Integer id, Model model) {
-        Optional<Event> event = iDaoEvent.findById(id);
-        List<Activity> activities = iDaoActivity.findAll();
-        List<City> cities = iDaoCity.findAll();
-        List<Customer> customers = iDaoCustomer.findAll();
+        Optional<Event> event = eventDAO.findById(id);
+        List<Activity> activities = activityDAO.findAll();
+        List<City> cities = cityDAO.findAll();
+        List<Customer> customers = customerDAO.findAll();
         model.addAttribute("event", event);
         model.addAttribute("activities", activities);
         model.addAttribute("cities", cities);
@@ -60,7 +57,7 @@ public class AdminEventController {
 
     @PostMapping("/update")
     public String updateEvent(Event event) {
-        iDaoEvent.update(event);
+        eventDAO.update(event);
         return "redirect:/admin-event";
     }
 }

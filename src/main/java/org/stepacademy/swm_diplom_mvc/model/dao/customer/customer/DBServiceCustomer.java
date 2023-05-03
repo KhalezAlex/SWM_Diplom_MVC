@@ -2,7 +2,8 @@ package org.stepacademy.swm_diplom_mvc.model.dao.customer.customer;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,15 +12,11 @@ import org.stepacademy.swm_diplom_mvc.model.entities.activity.Event;
 import org.stepacademy.swm_diplom_mvc.model.entities.customer.Customer;
 
 @Service
+@RequiredArgsConstructor
 public class DBServiceCustomer implements IDaoCustomer {
-    @Autowired
-    private IRepoCustomer customerRepo;
-
-    @Autowired
-    private IRepoRole roleRepo;
-
-    @Autowired
-    private PasswordEncoder encoder;
+    private final IRepoCustomer customerRepo;
+    private final IRepoRole roleRepo;
+    private final PasswordEncoder encoder;
 
     @Override
     public Customer findCustomerByLogin(String login) {
@@ -27,10 +24,10 @@ public class DBServiceCustomer implements IDaoCustomer {
     }
 
     @Override
-    public Customer saveAdmin(Customer customer) {
+    public void saveAdmin(Customer customer) {
         customer.setPassword(encoder.encode(customer.getPassword()));
         customer.getRoles().add(roleRepo.findById(1).get());
-        return customerRepo.save(customer);
+        customerRepo.save(customer);
     }
 
     @Override
@@ -77,6 +74,7 @@ public class DBServiceCustomer implements IDaoCustomer {
     }
 
     @Transactional
+    @Override
     public void participate(int id, Event event) {
         Customer customer = customerRepo.findById(id).get();
         customer.getEventsIn().add(event);
@@ -84,6 +82,7 @@ public class DBServiceCustomer implements IDaoCustomer {
     }
 
     @Transactional
+    @Override
     public void roastOut(int id, Event event) {
         Customer customer = customerRepo.findById(id).get();
         customer.getEventsIn().remove(event);

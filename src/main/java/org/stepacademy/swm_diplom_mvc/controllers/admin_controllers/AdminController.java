@@ -2,7 +2,8 @@ package org.stepacademy.swm_diplom_mvc.controllers.admin_controllers;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +19,17 @@ import org.stepacademy.swm_diplom_mvc.model.entities.location.Country;
 
 @Controller
 @RequestMapping("/admin_home")
+@RequiredArgsConstructor
 public class AdminController {
-    @Autowired
-    private IDaoActivity iDaoActivity;
-    @Autowired
-    private IDaoCity iDaoCity;
-    @Autowired
-    private IDaoCountry iDaoCountry;
+    private final IDaoActivity activityDAO;
+    private final IDaoCity cityDAO;
+    private final IDaoCountry countryDAO;
 
     @GetMapping("/base")
     public String allActivity(Model model) {
-        model.addAttribute("all", iDaoActivity.findAll());
-        model.addAttribute("allCity", iDaoCity.findAll());
-        model.addAttribute("allCountry", iDaoCountry.findAll());
+        model.addAttribute("all", activityDAO.findAll());
+        model.addAttribute("allCity", cityDAO.findAll());
+        model.addAttribute("allCountry", countryDAO.findAll());
         model.addAttribute("navSelected", "admin");
         return "pages/admin/admin";
     }
@@ -44,13 +43,13 @@ public class AdminController {
     }
     @PostMapping("/saveActivity")
     public String saveActivity(Activity activity) {
-        iDaoActivity.save(activity);
+        this.activityDAO.save(activity);
         return "redirect:/admin";
     }
 
     @GetMapping("/saveCity")
     public String saveCity(Model model) {
-        List<Country> country = iDaoCountry.findAll();
+        List<Country> country = countryDAO.findAll();
         model.addAttribute("city", new City());
         model.addAttribute("country", country);
         model.addAttribute("navSelected", "admin");
@@ -59,7 +58,7 @@ public class AdminController {
 
     @PostMapping("/saveCity")
     public String saveCity(City city) {
-        iDaoCity.save(city);
+        cityDAO.save(city);
         return "redirect:/admin";
     }
 
@@ -71,13 +70,13 @@ public class AdminController {
     }
     @PostMapping("/saveCountry")
     public String saveCountry(Country country) {
-        iDaoCountry.save(country);
+        countryDAO.save(country);
         return "redirect:/admin";
     }
 
     @GetMapping("/updateActivity/{id}")
     public String updateActivity(@PathVariable("id") Integer id, Model model) {
-        Optional<Activity> activity = iDaoActivity.findById(id);
+        Optional<Activity> activity = this.activityDAO.findById(id);
         model.addAttribute("activity", activity);
         model.addAttribute("navSelected", "admin");
         return "pages/admin/update-service/activity-update";
@@ -85,14 +84,14 @@ public class AdminController {
 
     @PostMapping("/updateActivity")
     public String updateActivity(Activity activity) {
-        iDaoActivity.update(activity);
+        this.activityDAO.update(activity);
         return "redirect:/admin";
     }
 
     @GetMapping("/updateCity/{id}")
     public String updateCity(@PathVariable("id") Integer id, Model model) {
-        Optional<City> city = iDaoCity.findById(id);
-        List<Country> countries = iDaoCountry.findAll();
+        Optional<City> city = cityDAO.findById(id);
+        List<Country> countries = countryDAO.findAll();
         model.addAttribute("city", city);
         model.addAttribute("countries", countries);
         model.addAttribute("navSelected", "admin");
@@ -101,13 +100,13 @@ public class AdminController {
 
     @PostMapping("/updateCity")
     public String updateCity(City city) {
-        iDaoCity.update(city);
+        cityDAO.update(city);
         return "redirect:/admin";
     }
 
     @GetMapping("/updateCountry/{id}")
     public String updateCountry(@PathVariable("id") Integer id, Model model) {
-        Optional<Country> country = iDaoCountry.findById(id);
+        Optional<Country> country = countryDAO.findById(id);
         model.addAttribute("country", country);
         model.addAttribute("navSelected", "admin");
         return "pages/admin/update-service/country-update";
@@ -115,25 +114,25 @@ public class AdminController {
 
     @PostMapping("/updateCountry")
     public String updateCountry(Country country) {
-        iDaoCountry.update(country);
+        countryDAO.update(country);
         return "redirect:/admin";
     }
 
     @GetMapping("/deleteActivity/{id}")
     public String deleteActivity(@PathVariable("id") Integer id) {
-        iDaoActivity.delete(id);
+        activityDAO.delete(id);
         return "redirect:/admin";
     }
 
     @GetMapping("/deleteCity/{id}")
     public String deleteCity(@PathVariable("id") Integer id) {
-        iDaoCity.delete(id);
+        cityDAO.delete(id);
         return "redirect:/admin";
     }
 
     @GetMapping("/deleteCountry/{id}")
     public String deleteCountry(@PathVariable("id") Integer id) {
-        iDaoCountry.delete(id);
+        countryDAO.delete(id);
         return "redirect:/admin";
     }
 }
